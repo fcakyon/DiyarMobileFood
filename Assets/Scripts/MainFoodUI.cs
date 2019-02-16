@@ -3,19 +3,12 @@ using UnityEngine;
 using UnityEngine.Experimental.XR;
 using UnityEngine.EventSystems;
 
-public class AutoPlaceItem : MonoBehaviour {
-
-
-    public ItemPlacerConnection ItemPlacedController;
-    public ItemPlacerConnectionMain ItemPlacedController2;
-
-    //ARSessionOrigin m_SessionOrigin;
-
-    //static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
+public class MainFoodUI : MonoBehaviour {
+    
+    public FoodModelConnection FoodModelConnectionScript;
+    public FoodPositionConnection FoodPositionConnectionScript;
 
     public LayerMask layerMask;
-
-    public GameObject[] TestingGround;
 
     public GameObject fixButton;
 
@@ -25,49 +18,22 @@ public class AutoPlaceItem : MonoBehaviour {
 
     public Vector3 lastPlacementPos;
 
-
-
-    void Awake()
-    {
-        if (Application.isEditor)
-        {
-            for (int i = 0; i < TestingGround.Length; i++)
-            {
-                TestingGround[i].SetActive(true);
-            }
-
-        }else{
-
-            for (int i = 0; i < TestingGround.Length; i++)
-            {
-                TestingGround[i].SetActive(false);
-            }
-
-        }
-
-        //m_SessionOrigin = GetComponent<ARSessionOrigin>();
-    }
-
     public void GameCode(){
-        if (ItemPlacedController != null)
+        if (FoodModelConnectionScript != null)
         {
             
-            //var angleY = 1000 * Time.deltaTime;
-            //Debug.Log("angleY: "+angleY);
-            //ItemPlacedController.GetGameObjectToPlace().transform.Rotate(transform.up, 2);
-            //Debug.Log("hasItemBeenPlaced: "+ItemPlacedController.hasItemBeenPlaced);
-            if (ItemPlacedController.hasItemBeenPlaced == false)
+            if (FoodModelConnectionScript.hasItemBeenPlaced == false)
             {
 
                 isPlacing = true;
-                ItemPlacedController.GetGameObjectToPlace().SetActive(true);
-                ItemPlacedController.GetGameObjectToPlace().transform.parent = null;
-                ItemPlacedController.GetGameObjectToPlace().transform.position = lastPlacementPos;
+                FoodModelConnectionScript.GetGameObjectToPlace().SetActive(true);
+                FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = null;
+                FoodModelConnectionScript.GetGameObjectToPlace().transform.position = lastPlacementPos;
                 //ItemPlacedController.GetGameObjectToPlace().transform.position = Vector3.Lerp(ItemPlacedController.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * speed);
-                ItemPlacedController.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0);
-                if (!ItemPlacedController.GetGameObjectToPlace().activeSelf)
+                FoodModelConnectionScript.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0);
+                if (!FoodModelConnectionScript.GetGameObjectToPlace().activeSelf)
                 {
-                    ItemPlacedController.GetGameObjectToPlace().SetActive(true);
+                    FoodModelConnectionScript.GetGameObjectToPlace().SetActive(true);
                 }
             }
         }
@@ -75,21 +41,21 @@ public class AutoPlaceItem : MonoBehaviour {
 
     public void GameCode2(Vector3 newPos)
     {
-        if (ItemPlacedController2 != null)
+        if (FoodPositionConnectionScript != null)
         {
             //Debug.Log("hasItemBeenPlaced: "+ItemPlacedController.hasItemBeenPlaced);
-            if (ItemPlacedController2.hasItemBeenPlaced == false)
+            if (FoodPositionConnectionScript.hasFoodPositionBeenPlaced == false)
             {
 
                 isPlacing = true;
                 lastPlacementPos = newPos;
-                ItemPlacedController2.GetGameObjectToPlace().SetActive(true);
-                ItemPlacedController2.GetGameObjectToPlace().transform.parent = null;
+                FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(true);
+                FoodPositionConnectionScript.GetGameObjectToPlace().transform.parent = null;
                 //ItemPlacedController.GetGameObjectToPlace().transform.position = newPos;
-                ItemPlacedController2.GetGameObjectToPlace().transform.position = Vector3.Lerp(ItemPlacedController2.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * speed);
-                if (!ItemPlacedController2.GetGameObjectToPlace().activeSelf)
+                FoodPositionConnectionScript.GetGameObjectToPlace().transform.position = Vector3.Lerp(FoodPositionConnectionScript.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * speed);
+                if (!FoodPositionConnectionScript.GetGameObjectToPlace().activeSelf)
                 {
-                    ItemPlacedController2.GetGameObjectToPlace().SetActive(true);
+                    FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(true);
                 }
             }
         }
@@ -99,13 +65,13 @@ public class AutoPlaceItem : MonoBehaviour {
 
     void Update()
     {
-        if (ItemPlacedController != null)
+        if (FoodModelConnectionScript != null)
         {
               
             GameCode();
             //ItemPlacedController.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0);
 
-            if (isPlacing == false && ItemPlacedController.hasItemBeenPlaced == false)
+            if (isPlacing == false && FoodModelConnectionScript.hasItemBeenPlaced == false)
             {
                 HideItem();
 
@@ -118,7 +84,7 @@ public class AutoPlaceItem : MonoBehaviour {
             isPlacing = false;
         }
 
-        if (ItemPlacedController2 != null)
+        if (FoodPositionConnectionScript != null)
         {
 
             RaycastHit hit;
@@ -127,10 +93,10 @@ public class AutoPlaceItem : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, 500.0f, layerMask))
             {
                 GameCode2(hit.point);
-                ItemPlacedController2.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0);
+                FoodPositionConnectionScript.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0);
             }
 
-            if (isPlacing == false && ItemPlacedController2.hasItemBeenPlaced == false)
+            if (isPlacing == false && FoodPositionConnectionScript.hasFoodPositionBeenPlaced == false)
             {
                 HideItem2();
 
@@ -212,43 +178,43 @@ public class AutoPlaceItem : MonoBehaviour {
     public void TapHasOccured()
     {
 
-        if (ItemPlacedController.hasItemBeenPlaced == false)
+        if (FoodModelConnectionScript.hasItemBeenPlaced == false)
         {
-            ItemPlacedController.hasItemBeenPlaced = true;
-            ItemPlacedController.GetGameObjectToPlace().transform.position = lastPlacementPos;
+            FoodModelConnectionScript.hasItemBeenPlaced = true;
+            FoodModelConnectionScript.GetGameObjectToPlace().transform.position = lastPlacementPos;
         }
     }
 
     public void TapHasOccured2()
     {
 
-        if (ItemPlacedController2.hasItemBeenPlaced == false)
+        if (FoodPositionConnectionScript. hasFoodPositionBeenPlaced == false)
         {
             fixButton.SetActive(false);
-            ItemPlacedController2.hasItemBeenPlaced = true;
-            ItemPlacedController2.GetGameObjectToPlace().transform.position = lastPlacementPos;
+            FoodPositionConnectionScript.hasFoodPositionBeenPlaced = true;
+            FoodPositionConnectionScript.GetGameObjectToPlace().transform.position = lastPlacementPos;
         }
     }
 
-    public void SetNewGameObjectToPlace(ItemPlacerConnection ItemPlacedController){
+    public void SetNewGameObjectToPlace(FoodModelConnection FoodModelConnectionScript){
 
         ShouldWeHideIt();
         //GameObjectToPlace = newItem;
-        this.ItemPlacedController = ItemPlacedController;
+        this.FoodModelConnectionScript = FoodModelConnectionScript;
 
     }
 
-    public void SetNewGameObjectToPlace2(ItemPlacerConnectionMain ItemPlacedController2)
+    public void SetNewGameObjectToPlace2(FoodPositionConnection FoodPositionConnectionScript)
     {
 
         ShouldWeHideIt2();
         //GameObjectToPlace = newItem;
-        this.ItemPlacedController2 = ItemPlacedController2;
+        this.FoodPositionConnectionScript = FoodPositionConnectionScript;
 
     }
 
     public void ShouldWeHideIt(){
-        if (ItemPlacedController != null)
+        if (FoodModelConnectionScript != null)
         {
                 HideItem();
         }
@@ -257,9 +223,9 @@ public class AutoPlaceItem : MonoBehaviour {
 
     public void ShouldWeHideIt2()
     {
-        if (ItemPlacedController2 != null)
+        if (FoodPositionConnectionScript != null)
         {
-            if (ItemPlacedController2.hasItemBeenPlaced == false)
+            if (FoodPositionConnectionScript.hasFoodPositionBeenPlaced == false)
             {
                 HideItem2();
             }
@@ -268,33 +234,33 @@ public class AutoPlaceItem : MonoBehaviour {
     }
 
     public void HideItem(){
-        if (ItemPlacedController != null)
+        if (FoodModelConnectionScript != null)
         {
-            ItemPlacedController2.GetGameObjectToPlace().SetActive(false);
-            ItemPlacedController.GetGameObjectToPlace().SetActive(false);
-            ItemPlacedController.GetGameObjectToPlace().transform.parent = Camera.main.transform;
-            ItemPlacedController.GetGameObjectToPlace().transform.localPosition = Vector3.zero;
+            FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(false);
+            FoodModelConnectionScript.GetGameObjectToPlace().SetActive(false);
+            FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = Camera.main.transform;
+            FoodModelConnectionScript.GetGameObjectToPlace().transform.localPosition = Vector3.zero;
         }
     }
 
     public void HideItem2()
     {
-        if (ItemPlacedController != null)
+        if (FoodModelConnectionScript != null)
         {
-            ItemPlacedController2.GetGameObjectToPlace().SetActive(false);
-            ItemPlacedController2.GetGameObjectToPlace().transform.parent = Camera.main.transform;
-            ItemPlacedController2.GetGameObjectToPlace().transform.localPosition = Vector3.zero;
+            FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(false);
+            FoodPositionConnectionScript.GetGameObjectToPlace().transform.parent = Camera.main.transform;
+            FoodPositionConnectionScript.GetGameObjectToPlace().transform.localPosition = Vector3.zero;
         }
     }
 
     public void RemoveItemToPlace(){
-        ItemPlacedController = null;
+        FoodModelConnectionScript = null;
 
     }
 
     public void RemoveItemToPlace2()
     {
-        ItemPlacedController2 = null;
+        FoodPositionConnectionScript = null;
 
     }
 

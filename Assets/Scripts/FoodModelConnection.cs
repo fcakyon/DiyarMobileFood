@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPlacerConnection : MonoBehaviour
+public class FoodModelConnection : MonoBehaviour
 {
 
     public bool hasItemBeenPlaced = false;
-    public GameObject ItemToSetIntoPlacer;
-    public AutoPlaceItem PlacerScript;
+    public GameObject foodModel;
+    public MainFoodUI MainFoodUIScript;
 
     // Use this for initialization
     void Start()
@@ -15,7 +15,7 @@ public class ItemPlacerConnection : MonoBehaviour
         if (hasItemBeenPlaced == false)
         {
 
-            ItemToSetIntoPlacer.SetActive(false);
+            foodModel.SetActive(false);
         }
     }
 
@@ -29,8 +29,8 @@ public class ItemPlacerConnection : MonoBehaviour
 
         if(hasItemBeenPlaced == false){
 
-            if(PlacerScript.ItemPlacedController!=this){
-                PlacerScript.SetNewGameObjectToPlace(this);
+            if(MainFoodUIScript.FoodModelConnectionScript!=this){
+                MainFoodUIScript.SetNewGameObjectToPlace(this);
 
             }else{
 
@@ -41,8 +41,6 @@ public class ItemPlacerConnection : MonoBehaviour
         }else{
             PutItemAway();
         }
-
-
     }
 
     public void ButtonClicked2()
@@ -54,15 +52,15 @@ public class ItemPlacerConnection : MonoBehaviour
     }
 
     public GameObject GetGameObjectToPlace(){
-        return ItemToSetIntoPlacer;
+        return foodModel;
     }
 
 
     public void PutItemAway(){
-        PlacerScript.SetNewGameObjectToPlace(this);
+        MainFoodUIScript.SetNewGameObjectToPlace(this);
         hasItemBeenPlaced = false;
-        PlacerScript.HideItem();
-        PlacerScript.RemoveItemToPlace();
+        MainFoodUIScript.HideItem();
+        MainFoodUIScript.RemoveItemToPlace();
 
     }
 }

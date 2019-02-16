@@ -2189,8 +2189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasItemBeenPlaced: 0
-  ItemToSetIntoPlacer: {fileID: 1475999324}
-  PlacerScript: {fileID: 519420030}
+  foodModel: {fileID: 1475999324}
+  MainFoodUIScript: {fileID: 1924173900}
 --- !u!1 &373474283
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,7 +3488,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420030}
+      - m_Target: {fileID: 1924173900}
         m_MethodName: TapHasOccured2
         m_Mode: 1
         m_Arguments:
@@ -3685,10 +3685,8 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
-  - component: {fileID: 519420030}
   - component: {fileID: 519420035}
   - component: {fileID: 519420036}
-  - component: {fileID: 519420037}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3703,27 +3701,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc87445288815433f9a9ce4fe0d25ff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemPlacedController: {fileID: 0}
-  ItemPlacedController2: {fileID: 0}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  TestingGround: []
-  fixButton: {fileID: 482276244}
-  speed: 4
-  isPlacing: 0
-  lastPlacementPos: {x: 0, y: 0, z: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3827,18 +3804,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
---- !u!114 &519420037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26eb0591e6a0e451280c0358ab467a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlacerScript: {fileID: 519420030}
 --- !u!1 &529103872
 GameObject:
   m_ObjectHideFlags: 0
@@ -4382,8 +4347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasItemBeenPlaced: 0
-  ItemToSetIntoPlacer: {fileID: 1328217982}
-  PlacerScript: {fileID: 519420030}
+  foodModel: {fileID: 1328217982}
+  MainFoodUIScript: {fileID: 1924173900}
 --- !u!1 &576995145
 GameObject:
   m_ObjectHideFlags: 0
@@ -5598,7 +5563,7 @@ Transform:
   m_Children:
   - {fileID: 714995601}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &714995600 stripped
 GameObject:
@@ -5857,8 +5822,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasItemBeenPlaced: 0
-  ItemToSetIntoPlacer: {fileID: 1279245140}
-  PlacerScript: {fileID: 519420030}
+  foodModel: {fileID: 1279245140}
+  MainFoodUIScript: {fileID: 1924173900}
 --- !u!1 &752383125
 GameObject:
   m_ObjectHideFlags: 0
@@ -6708,7 +6673,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0.00024414062}
   m_SizeDelta: {x: 0, y: -423.60266}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &828499689
@@ -7456,7 +7421,7 @@ Transform:
   m_Children:
   - {fileID: 1767305493}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -1.297, y: -45.084003, z: -1.2930001}
 --- !u!1 &971569425
 GameObject:
@@ -9313,7 +9278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1279245141
 Transform:
   m_ObjectHideFlags: 0
@@ -9326,7 +9291,7 @@ Transform:
   m_Children:
   - {fileID: 374237922}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1287463685
 GameObject:
@@ -9724,7 +9689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1328217983
 Transform:
   m_ObjectHideFlags: 0
@@ -9737,7 +9702,7 @@ Transform:
   m_Children:
   - {fileID: 695845962}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1332463878
 GameObject:
@@ -10328,7 +10293,7 @@ Transform:
   m_Children:
   - {fileID: 1698322877}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1479580013
 GameObject:
@@ -11688,7 +11653,7 @@ Transform:
   m_Children:
   - {fileID: 569294124}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1707119931
 GameObject:
@@ -11920,8 +11885,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasItemBeenPlaced: 0
-  ItemToSetIntoPlacer: {fileID: 956715439}
-  PlacerScript: {fileID: 519420030}
+  foodModel: {fileID: 956715439}
+  MainFoodUIScript: {fileID: 1924173900}
 --- !u!1 &1717987921
 GameObject:
   m_ObjectHideFlags: 0
@@ -13658,6 +13623,68 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1917610189}
   m_CullTransparentMesh: 0
+--- !u!1 &1924173897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1924173898}
+  - component: {fileID: 1924173900}
+  - component: {fileID: 1924173899}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1924173898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924173897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.092753515, y: 1.0713607, z: 0.8252753}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1924173899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924173897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26eb0591e6a0e451280c0358ab467a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainFoodUIScript: {fileID: 1924173900}
+--- !u!114 &1924173900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924173897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc87445288815433f9a9ce4fe0d25ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FoodModelConnectionScript: {fileID: 0}
+  FoodPositionConnectionScript: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  fixButton: {fileID: 482276244}
+  speed: 4
+  isPlacing: 0
+  lastPlacementPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1933192767
 GameObject:
   m_ObjectHideFlags: 0
@@ -13742,7 +13769,6 @@ GameObject:
   - component: {fileID: 1937418553}
   - component: {fileID: 1937418552}
   - component: {fileID: 1937418558}
-  - component: {fileID: 1937418551}
   m_Layer: 5
   m_Name: Reset
   m_TagString: Untagged
@@ -13769,20 +13795,6 @@ RectTransform:
   m_AnchoredPosition: {x: -783, y: 349.99997}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1937418551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1937418549}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a44447c6a5b7f4709ad2b108a0071b61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasItemBeenPlaced: 0
-  ItemToSetIntoPlacer: {fileID: 1803680796}
-  PlacerScript: {fileID: 519420030}
 --- !u!95 &1937418552
 Animator:
   serializedVersion: 3
@@ -13884,7 +13896,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 519420030}
+      - m_Target: {fileID: 1924173900}
         m_MethodName: HideItem
         m_Mode: 1
         m_Arguments:
@@ -13942,9 +13954,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed9ddda94a4be4443a499f0a17a7ee6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasItemBeenPlaced: 0
-  ItemToSetIntoPlacer: {fileID: 2101428302}
-  PlacerScript: {fileID: 519420030}
+  hasFoodPositionBeenPlaced: 0
+  foodPositionModel: {fileID: 2101428302}
+  MainFoodUIScript: {fileID: 1924173900}
 --- !u!1 &1942322365
 GameObject:
   m_ObjectHideFlags: 0
@@ -14649,8 +14661,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasItemBeenPlaced: 0
-  ItemToSetIntoPlacer: {fileID: 704491476}
-  PlacerScript: {fileID: 519420030}
+  foodModel: {fileID: 704491476}
+  MainFoodUIScript: {fileID: 1924173900}
 --- !u!1 &2101428302
 GameObject:
   m_ObjectHideFlags: 0
@@ -14686,7 +14698,7 @@ RectTransform:
   m_Children:
   - {fileID: 1803680800}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
