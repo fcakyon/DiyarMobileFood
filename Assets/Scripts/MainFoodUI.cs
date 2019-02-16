@@ -12,25 +12,50 @@ public class MainFoodUI : MonoBehaviour {
 
     public GameObject fixButton;
 
-    public float speed = 3f;
+    public float foodPositionSpeed = 4f;
 
     public bool isPlacing = false;
 
     public Vector3 lastPlacementPos;
 
-    public void GameCode(){
+
+    void Update()
+    {
         if (FoodModelConnectionScript != null)
         {
-            
-            if (FoodModelConnectionScript.hasItemBeenPlaced == false)
-            {
+            FoodModelChange();
+        }
 
-                isPlacing = true;
+        if (FoodPositionConnectionScript != null)
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+            if (Physics.Raycast(ray, out hit, 500.0f, layerMask))
+            {
+                FoodPositionPlacement(hit.point);
+                FoodPositionConnectionScript.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0);
+            }
+
+            if (isPlacing == false && FoodPositionConnectionScript.hasFoodPositionBeenPlaced == false)
+            {
+                HideFoodPosition();
+            }
+            isPlacing = false;
+        }
+    }
+
+    public void FoodModelChange()
+    {
+        if (FoodModelConnectionScript != null)
+        {
+            if (FoodModelConnectionScript.hasFoodModelBeenChanged == false)
+            {
                 FoodModelConnectionScript.GetGameObjectToPlace().SetActive(true);
                 FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = null;
                 FoodModelConnectionScript.GetGameObjectToPlace().transform.position = lastPlacementPos;
-                //ItemPlacedController.GetGameObjectToPlace().transform.position = Vector3.Lerp(ItemPlacedController.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * speed);
-                FoodModelConnectionScript.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0);
+                FoodModelConnectionScript.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli
+                FoodModelConnectionScript.hasFoodModelBeenChanged = true;
                 if (!FoodModelConnectionScript.GetGameObjectToPlace().activeSelf)
                 {
                     FoodModelConnectionScript.GetGameObjectToPlace().SetActive(true);
@@ -39,20 +64,18 @@ public class MainFoodUI : MonoBehaviour {
         }
     }
 
-    public void GameCode2(Vector3 newPos)
+    public void FoodPositionPlacement(Vector3 newPos)
     {
         if (FoodPositionConnectionScript != null)
         {
             //Debug.Log("hasItemBeenPlaced: "+ItemPlacedController.hasItemBeenPlaced);
             if (FoodPositionConnectionScript.hasFoodPositionBeenPlaced == false)
             {
-
                 isPlacing = true;
                 lastPlacementPos = newPos;
                 FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(true);
                 FoodPositionConnectionScript.GetGameObjectToPlace().transform.parent = null;
-                //ItemPlacedController.GetGameObjectToPlace().transform.position = newPos;
-                FoodPositionConnectionScript.GetGameObjectToPlace().transform.position = Vector3.Lerp(FoodPositionConnectionScript.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * speed);
+                FoodPositionConnectionScript.GetGameObjectToPlace().transform.position = Vector3.Lerp(FoodPositionConnectionScript.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * foodPositionSpeed);
                 if (!FoodPositionConnectionScript.GetGameObjectToPlace().activeSelf)
                 {
                     FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(true);
@@ -61,134 +84,9 @@ public class MainFoodUI : MonoBehaviour {
         }
     }
 
-
-
-    void Update()
+    public void FixFoodPosition()
     {
-        if (FoodModelConnectionScript != null)
-        {
-              
-            GameCode();
-            //ItemPlacedController.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0);
-
-            if (isPlacing == false && FoodModelConnectionScript.hasItemBeenPlaced == false)
-            {
-                HideItem();
-
-            }else{
-
-                CheckTouchType();
-
-            }
-
-            isPlacing = false;
-        }
-
-        if (FoodPositionConnectionScript != null)
-        {
-
-            RaycastHit hit;
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-
-            if (Physics.Raycast(ray, out hit, 500.0f, layerMask))
-            {
-                GameCode2(hit.point);
-                FoodPositionConnectionScript.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0);
-            }
-
-            if (isPlacing == false && FoodPositionConnectionScript.hasFoodPositionBeenPlaced == false)
-            {
-                HideItem2();
-
-            }
-            else
-            {
-
-                //CheckTouchType2();
-
-            }
-
-            isPlacing = false;
-        }
-
-    }
-
-    public void CheckTouchType()
-    {
-        
-        if (Input.touchCount > 0)
-        {
-            
-            //Debug.Log("1: "+EventSystem.current.IsPointerOverGameObject(0).ToString());
-        //Debug.Log("2: " +(EventSystem.current.currentSelectedGameObject != null).ToString());
-
-            if (EventSystem.current.IsPointerOverGameObject(0) ||
-            EventSystem.current.currentSelectedGameObject != null)
-        {
-            //Debug.Log("return etti");
-            return;
-        }
-
-        //Debug.Log("return etmedi");
-
-            Touch touch = Input.GetTouch(0);
-            RaycastHit hit;
-            //Debug.Log(touch.position);
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-            //Debug.Log(Physics.Raycast(ray, out hit, 500.0f, layerMask));
-            if (Physics.Raycast(ray, out hit, 500.0f, layerMask))
-            {
-                TapHasOccured();
-            }
-        }
-
-    }
-
-    public void CheckTouchType2()
-    {
-
-        if (Input.touchCount > 0)
-        {
-
-            //Debug.Log("1: " + EventSystem.current.IsPointerOverGameObject(0).ToString());
-            //Debug.Log("2: " +(EventSystem.current.currentSelectedGameObject != null).ToString());
-
-            if (EventSystem.current.IsPointerOverGameObject(0) ||
-            EventSystem.current.currentSelectedGameObject != null)
-            {
-                //Debug.Log("return etti");
-                return;
-            }
-
-            //Debug.Log("return etmedi");
-
-            Touch touch = Input.GetTouch(0);
-            RaycastHit hit;
-            //Debug.Log(touch.position);
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-            //Debug.Log(Physics.Raycast(ray, out hit, 500.0f, layerMask));
-            if (Physics.Raycast(ray, out hit, 500.0f, layerMask))
-            {
-                TapHasOccured2();
-            }
-        }
-
-    }
-
-    public void TapHasOccured()
-    {
-
-        if (FoodModelConnectionScript.hasItemBeenPlaced == false)
-        {
-            FoodModelConnectionScript.hasItemBeenPlaced = true;
-            FoodModelConnectionScript.GetGameObjectToPlace().transform.position = lastPlacementPos;
-        }
-    }
-
-    public void TapHasOccured2()
-    {
-
-        if (FoodPositionConnectionScript. hasFoodPositionBeenPlaced == false)
+        if (FoodPositionConnectionScript.hasFoodPositionBeenPlaced == false)
         {
             fixButton.SetActive(false);
             FoodPositionConnectionScript.hasFoodPositionBeenPlaced = true;
@@ -196,54 +94,47 @@ public class MainFoodUI : MonoBehaviour {
         }
     }
 
-    public void SetNewGameObjectToPlace(FoodModelConnection FoodModelConnectionScript){
-
-        ShouldWeHideIt();
-        //GameObjectToPlace = newItem;
-        this.FoodModelConnectionScript = FoodModelConnectionScript;
-
-    }
-
-    public void SetNewGameObjectToPlace2(FoodPositionConnection FoodPositionConnectionScript)
+    public void SetFoodModel(FoodModelConnection FoodModelConnectionScript)
     {
-
-        ShouldWeHideIt2();
-        //GameObjectToPlace = newItem;
-        this.FoodPositionConnectionScript = FoodPositionConnectionScript;
-
+        ShouldWeHideFoodModel();
+        this.FoodModelConnectionScript = FoodModelConnectionScript;
     }
 
-    public void ShouldWeHideIt(){
+    public void SetFoodPosition(FoodPositionConnection FoodPositionConnectionScript)
+    {
+        ShouldWeHideFoodPosition();
+        this.FoodPositionConnectionScript = FoodPositionConnectionScript;
+    }
+
+    public void ShouldWeHideFoodModel(){
         if (FoodModelConnectionScript != null)
         {
-                HideItem();
+            HideFoodModel();
         }
-
     }
 
-    public void ShouldWeHideIt2()
+    public void ShouldWeHideFoodPosition()
     {
         if (FoodPositionConnectionScript != null)
         {
             if (FoodPositionConnectionScript.hasFoodPositionBeenPlaced == false)
             {
-                HideItem2();
+                HideFoodPosition();
             }
         }
-
     }
 
-    public void HideItem(){
+    public void HideFoodModel(){
         if (FoodModelConnectionScript != null)
         {
-            FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(false);
+            FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(false); // bu gerekli, reset atıp fixleyince position modeli silinmiyor yoksa
             FoodModelConnectionScript.GetGameObjectToPlace().SetActive(false);
             FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = Camera.main.transform;
             FoodModelConnectionScript.GetGameObjectToPlace().transform.localPosition = Vector3.zero;
         }
     }
 
-    public void HideItem2()
+    public void HideFoodPosition()
     {
         if (FoodModelConnectionScript != null)
         {
@@ -253,15 +144,13 @@ public class MainFoodUI : MonoBehaviour {
         }
     }
 
-    public void RemoveItemToPlace(){
+    public void RemoveFoodModelConnection(){
         FoodModelConnectionScript = null;
-
     }
 
-    public void RemoveItemToPlace2()
+    public void RemoveFoodPositionConnection()
     {
         FoodPositionConnectionScript = null;
-
     }
 
 }

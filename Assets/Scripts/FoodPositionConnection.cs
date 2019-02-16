@@ -15,7 +15,6 @@ public class FoodPositionConnection : MonoBehaviour
         if (hasFoodPositionBeenPlaced == false)
         {
             ButtonClicked();
-            foodPositionModel.SetActive(false);
         }
     }
 
@@ -27,17 +26,8 @@ public class FoodPositionConnection : MonoBehaviour
 
     public void ButtonClicked()
     {
-        PutItemAway2();
-        if (MainFoodUIScript.FoodPositionConnectionScript != this)
-        {
-            MainFoodUIScript.SetNewGameObjectToPlace2(this);
-        }
-
-    }
-
-    public void ButtonClicked2()
-    {
-        ButtonClicked();
+        VanishFoodPosition();
+        MainFoodUIScript.SetFoodPosition(this);
         foodPositionModel.SetActive(false);
         MainFoodUIScript.fixButton.SetActive(true);
     }
@@ -47,12 +37,10 @@ public class FoodPositionConnection : MonoBehaviour
         return foodPositionModel;
     }
 
-    public void PutItemAway2()
+    public void VanishFoodPosition()
     {
-        MainFoodUIScript.SetNewGameObjectToPlace2(this);
         hasFoodPositionBeenPlaced = false;
-        MainFoodUIScript.HideItem2();
-        MainFoodUIScript.RemoveItemToPlace2();
-
+        MainFoodUIScript.ShouldWeHideFoodPosition();
+        MainFoodUIScript.RemoveFoodPositionConnection();
     }
 }

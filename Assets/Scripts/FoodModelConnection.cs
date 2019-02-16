@@ -5,16 +5,15 @@ using UnityEngine;
 public class FoodModelConnection : MonoBehaviour
 {
 
-    public bool hasItemBeenPlaced = false;
+    public bool hasFoodModelBeenChanged = false;
     public GameObject foodModel;
     public MainFoodUI MainFoodUIScript;
 
     // Use this for initialization
     void Start()
     {
-        if (hasItemBeenPlaced == false)
+        if (hasFoodModelBeenChanged == false)
         {
-
             foodModel.SetActive(false);
         }
     }
@@ -25,42 +24,22 @@ public class FoodModelConnection : MonoBehaviour
 
     }
 
-    public void ButtonClicked(){
-
-        if(hasItemBeenPlaced == false){
-
-            if(MainFoodUIScript.FoodModelConnectionScript!=this){
-                MainFoodUIScript.SetNewGameObjectToPlace(this);
-
-            }else{
-
-                PutItemAway();
-            }
-
-
-        }else{
-            PutItemAway();
-        }
-    }
-
-    public void ButtonClicked2()
+    public void ButtonClicked()
     {
-
-        PutItemAway();
-        ButtonClicked();
-
+        VanishFoodModel();
+        MainFoodUIScript.SetFoodModel(this);
     }
 
-    public GameObject GetGameObjectToPlace(){
+    public GameObject GetGameObjectToPlace()
+    {
         return foodModel;
     }
 
-
-    public void PutItemAway(){
-        MainFoodUIScript.SetNewGameObjectToPlace(this);
-        hasItemBeenPlaced = false;
-        MainFoodUIScript.HideItem();
-        MainFoodUIScript.RemoveItemToPlace();
+    public void VanishFoodModel()
+    {
+        hasFoodModelBeenChanged = false;
+        MainFoodUIScript.ShouldWeHideFoodModel();
+        MainFoodUIScript.RemoveFoodModelConnection();
 
     }
 }
