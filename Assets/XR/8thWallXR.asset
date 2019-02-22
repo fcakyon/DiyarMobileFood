@@ -21,8 +21,17 @@ MonoBehaviour:
   autoUpdateSec: 3600
   updateTimeoutSec: 25
   downloadTimeoutSec: 600
-  updateAvailable: 0
+  updateAvailable: 1
   releaseNotes:
+  - id: 10.1
+    notes: "## Release 10.1\n\n### 8th Wall Web\nNew Features:\n- Added support for
+      A-Frame 0.9.0.\n\nFixes:\n- Fixed error when providing `includedTypes` to XrController.hitTest().\n-
+      Reduced memory usage when tracking over extended distances.\n\n### 8th Wall
+      XR for Unity\nFixes:\n- Fixed issue which reduced framerate on slower ARCore
+      devices. \n- Fixed issue where old frames would be displayed on slower ARCore
+      devices.\n- Fixed crash on ARKit devices when ARWorldTrackingConfiguration is
+      not available.\n- Fixed issue on ARCore devices where camera permissions were
+      not requested properly in apps built with Unity 2018.3 or newer."
   - id: 10
     notes: "## Release 10.0\n\nRelease 10 adds a revamped web developer console with
       streamlined developer-mode, access to allowed origins and QR codes. It adds
@@ -133,5 +142,3 @@ MonoBehaviour:
       Fixes:\n  * 3x rendering performance speedup for iOS ARKit.\n  * 1080p high
       resolution camera feed for iOS ARKit.\n  * Improved performance and stability
       for instant surface tracking.\n  * Miscellaneous bug fixes and improvements."
-  - id: 6.3
-    notes: "## Release 6.3\n\n* Fixes:\n  * Fixed a few crashes on iOS."
