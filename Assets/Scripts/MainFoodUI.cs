@@ -49,16 +49,20 @@ public class MainFoodUI : MonoBehaviour {
     {
         if (FoodModelConnectionScript != null)
         {
-            if (FoodModelConnectionScript.hasFoodModelBeenChanged == false)
+            if (FoodModelConnectionScript.foodModel != null)
             {
-                FoodModelConnectionScript.GetGameObjectToPlace().SetActive(true);
-                FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = null;
-                FoodModelConnectionScript.GetGameObjectToPlace().transform.position = lastPlacementPos;
-                FoodModelConnectionScript.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli
-                FoodModelConnectionScript.hasFoodModelBeenChanged = true;
-                if (!FoodModelConnectionScript.GetGameObjectToPlace().activeSelf)
+                if (FoodModelConnectionScript.hasFoodModelBeenChanged == false)
                 {
+                    Debug.Log(FoodModelConnectionScript.hasFoodModelBeenChanged);
                     FoodModelConnectionScript.GetGameObjectToPlace().SetActive(true);
+                    FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = null;
+                    FoodModelConnectionScript.GetGameObjectToPlace().transform.position = lastPlacementPos;
+                    FoodModelConnectionScript.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli
+                    FoodModelConnectionScript.hasFoodModelBeenChanged = true;
+                    if (!FoodModelConnectionScript.GetGameObjectToPlace().activeSelf)
+                    {
+                        FoodModelConnectionScript.GetGameObjectToPlace().SetActive(true);
+                    }
                 }
             }
         }

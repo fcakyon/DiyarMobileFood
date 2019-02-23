@@ -40,7 +40,7 @@ public class FoodPositionConnection : MonoBehaviour
     public void VanishFoodPosition()
     {
         hasFoodPositionBeenPlaced = false;
-        MainFoodUIScript.ShouldWeHideFoodPosition();
+        MainFoodUIScript.HideFoodPosition();
         MainFoodUIScript.RemoveFoodPositionConnection();
     }
 }
