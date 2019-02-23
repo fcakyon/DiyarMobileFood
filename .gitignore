@@ -56,5 +56,6 @@ crashlytics-build.properties
 #XR settings
 Assets/XR/XRAppSettings.asset
 Assets/XR/Scripts/XRMobileAppKey.cs
+ProjectSettings/ProjectSettings.asset
 
 .DS_Store
