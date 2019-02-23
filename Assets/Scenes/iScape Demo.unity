@@ -2288,7 +2288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasFoodModelBeenChanged: 0
-  foodModel: {fileID: 1475999324}
+  foodModel: {fileID: 0}
   MainFoodUIScript: {fileID: 1924173900}
 --- !u!1 &373474283
 GameObject:
@@ -5581,11 +5581,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 699514501}
   m_CullTransparentMesh: 0
---- !u!1 &704491476 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1571173274647652, guid: 995838bf2627e4badabb3226efc23ef2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1947060511}
 --- !u!1 &730675858
 GameObject:
   m_ObjectHideFlags: 0
@@ -10361,11 +10356,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1466114254}
   m_CullTransparentMesh: 0
---- !u!1 &1475999324 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1206153792448082, guid: 249c2a90d17f4421aa3af99977633414,
-    type: 2}
-  m_PrefabInternal: {fileID: 1846230285}
 --- !u!1 &1479580013
 GameObject:
   m_ObjectHideFlags: 0
@@ -14820,7 +14810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasFoodModelBeenChanged: 0
-  foodModel: {fileID: 704491476}
+  foodModel: {fileID: 0}
   MainFoodUIScript: {fileID: 1924173900}
 --- !u!1 &2101428302
 GameObject:

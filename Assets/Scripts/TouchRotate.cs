@@ -22,6 +22,8 @@ public class TouchRotate : MonoBehaviour
     {
         if (MainFoodUIScript.FoodModelConnectionScript != null)
         {
+            if (MainFoodUIScript.FoodModelConnectionScript.foodModel != null)
+            {
             if (Input.touchCount == 0)
             {
                 MainFoodUIScript.FoodModelConnectionScript.GetGameObjectToPlace().transform.Rotate(0f, 15 * Time.deltaTime, 0f);
@@ -42,6 +44,7 @@ public class TouchRotate : MonoBehaviour
                 }
 
 
+            }
             }
         }
     }
