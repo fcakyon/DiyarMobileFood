@@ -428,7 +428,7 @@ RectTransform:
   m_GameObject: {fileID: 84212691}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.95, y: 1.93, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1276768329}
   m_RootOrder: 0
@@ -457,7 +457,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 747d2d8c7c35441e88d209c4ccba3298, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5118,6 +5118,7 @@ GameObject:
   - component: {fileID: 828499690}
   - component: {fileID: 828499689}
   - component: {fileID: 828499691}
+  - component: {fileID: 828499692}
   m_Layer: 5
   m_Name: Grid Layout
   m_TagString: Untagged
@@ -5142,7 +5143,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -993.46936}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &828499689
@@ -5188,6 +5189,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &828499692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 828499687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fe773e12f37246e7bf183e19c7c890e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelButtonPrefab: {fileID: 2082436477}
 --- !u!1 &841699652
 GameObject:
   m_ObjectHideFlags: 0
@@ -6120,7 +6133,7 @@ GameObject:
   - component: {fileID: 1077826065}
   - component: {fileID: 1077826064}
   m_Layer: 5
-  m_Name: Example Panel (1)
+  m_Name: NextPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7841,7 +7854,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pasta
+  m_Text: 
 --- !u!222 &1362748555
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11567,7 +11580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2082436478
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11705,7 +11718,7 @@ MonoBehaviour:
   hasFoodModelBeenChanged: 0
   foodModel: {fileID: 0}
   assetBundleUrl: 
-  prefabName: 
+  prefabName: Model
   MainFoodUIScript: {fileID: 1924173900}
 --- !u!114 &2082436484
 MonoBehaviour:
