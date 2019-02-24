@@ -41,7 +41,8 @@ public class ModelListInit : MonoBehaviour {
             GameObject modelButton = Instantiate(modelButtonPrefab);
 
             modelButton.GetComponent<FoodModelConnection>().assetBundleUrl = model.prefabLink;
-            modelButton.GetComponent<FoodModelConnection>().prefabName = model.name;
+            //modelButton.GetComponent<FoodModelConnection>().prefabName = model.name;
+            modelButton.GetComponent<FoodModelConnection>().prefabName = "model";
 
             UnityWebRequest imageRequest = UnityWebRequestTexture.GetTexture(model.imageUrl);
             yield return imageRequest.SendWebRequest();

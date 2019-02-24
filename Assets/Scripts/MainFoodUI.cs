@@ -53,7 +53,6 @@ public class MainFoodUI : MonoBehaviour {
             {
                 if (FoodModelConnectionScript.hasFoodModelBeenChanged == false)
                 {
-                    Debug.Log(FoodModelConnectionScript.hasFoodModelBeenChanged);
                     FoodModelConnectionScript.GetGameObjectToPlace().SetActive(true);
                     FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = null;
                     FoodModelConnectionScript.GetGameObjectToPlace().transform.position = lastPlacementPos;
