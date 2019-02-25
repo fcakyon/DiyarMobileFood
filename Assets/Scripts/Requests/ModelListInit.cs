@@ -43,20 +43,20 @@ public class ModelListInit : MonoBehaviour {
             modelButton.GetComponent<FoodModelConnection>().assetBundleUrl = model.prefabLink;
             modelButton.GetComponent<FoodModelConnection>().prefabName = model.name;
 
-            UnityWebRequest imageRequest = UnityWebRequestTexture.GetTexture(model.imageUrl);
-            yield return imageRequest.SendWebRequest();
-
             Transform content = modelButton.transform.Find("Content");
             Text text = content.Find("Text").GetComponent<Text>();
             text.text = model.name;
-            Image image = content.Find("Image").GetComponent<Image>();
-            Texture2D texture = DownloadHandlerTexture.GetContent(imageRequest);
-            image.sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
 
             modelButton.name = model.name;
             modelButton.SetActive(true);
             modelButton.transform.SetParent(gameObject.transform);
             modelButton.transform.localScale = Vector3.one;
+
+            UnityWebRequest imageRequest = UnityWebRequestTexture.GetTexture(model.imageUrl);
+            yield return imageRequest.SendWebRequest();
+            Image image = content.Find("Image").GetComponent<Image>();
+            Texture2D texture = DownloadHandlerTexture.GetContent(imageRequest);
+            image.sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
     }
 }
