@@ -33,8 +33,11 @@ public class FoodModelConnection : MonoBehaviour
 
     public void DestroyFoodModel()
     {
-        bundle.Unload(true);
-        Destroy(foodModel);
+        if (bundle != null)
+        {
+            bundle.Unload(true);
+            Destroy(foodModel);
+        }
     }
 
     public void VanishFoodModel()
