@@ -53,7 +53,6 @@ public class MainFoodUI : MonoBehaviour {
             {
                 if (FoodModelConnectionScript.hasFoodModelBeenChanged == false)
                 {
-                    Debug.Log(FoodModelConnectionScript.hasFoodModelBeenChanged);
                     FoodModelConnectionScript.GetGameObjectToPlace().SetActive(true);
                     FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = null;
                     FoodModelConnectionScript.GetGameObjectToPlace().transform.position = lastPlacementPos;
@@ -132,9 +131,10 @@ public class MainFoodUI : MonoBehaviour {
         if (FoodModelConnectionScript != null)
         {
             FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(false); // bu gerekli, reset atıp fixleyince position modeli silinmiyor yoksa
-            FoodModelConnectionScript.GetGameObjectToPlace().SetActive(false);
-            FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = Camera.main.transform;
-            FoodModelConnectionScript.GetGameObjectToPlace().transform.localPosition = Vector3.zero;
+            FoodModelConnectionScript.DestroyFoodModel();
+            //FoodModelConnectionScript.GetGameObjectToPlace().SetActive(false);
+            //FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = Camera.main.transform;
+            //FoodModelConnectionScript.GetGameObjectToPlace().transform.localPosition = Vector3.zero;
         }
     }
 

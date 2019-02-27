@@ -41,7 +41,8 @@ public class ModelListInit : MonoBehaviour {
             GameObject modelButton = Instantiate(modelButtonPrefab);
 
             modelButton.GetComponent<FoodModelConnection>().assetBundleUrl = model.prefabLink;
-            modelButton.GetComponent<FoodModelConnection>().prefabName = model.name;
+            //modelButton.GetComponent<FoodModelConnection>().prefabName = model.name;
+            modelButton.GetComponent<FoodModelConnection>().prefabName = "model";
 
             Transform content = modelButton.transform.Find("Content");
             Text text = content.Find("Text").GetComponent<Text>();

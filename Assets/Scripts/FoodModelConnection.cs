@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class FoodModelConnection : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class FoodModelConnection : MonoBehaviour
     public string assetBundleUrl;
     public string prefabName;
     public MainFoodUI MainFoodUIScript;
-
+    AssetBundle bundle;
     // Use this for initialization
     void Start()
     {}
@@ -30,6 +31,11 @@ public class FoodModelConnection : MonoBehaviour
         return foodModel;
     }
 
+    public void DestroyFoodModel()
+    {
+        bundle.Unload(true);
+    }
+
     public void VanishFoodModel()
     {
         hasFoodModelBeenChanged = false;
@@ -39,12 +45,11 @@ public class FoodModelConnection : MonoBehaviour
 
     IEnumerator DownloadAssetBundleAndSetFoodModel(string url, string modelName)
         {
-            UnityEngine.Networking.UnityWebRequest request = UnityEngine.Networking.UnityWebRequestAssetBundle.GetAssetBundle(url, 0);
+            UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(url, 0, 0);
             yield return request.SendWebRequest();
-            AssetBundle bundle = UnityEngine.Networking.DownloadHandlerAssetBundle.GetContent(request);
+            bundle = DownloadHandlerAssetBundle.GetContent(request);
             GameObject foodModelAsset = bundle.LoadAsset<GameObject>(modelName);
             foodModel = Instantiate(foodModelAsset, new Vector3(0,0,0), Quaternion.identity) as GameObject;
             MainFoodUIScript.SetFoodModel(this);
         }
-
 }
