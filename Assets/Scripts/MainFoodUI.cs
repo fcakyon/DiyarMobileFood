@@ -77,7 +77,7 @@ public class MainFoodUI : MonoBehaviour {
                 isPlacing = true;
                 lastPlacementPos = newPos;
                 FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(true);
-                FoodPositionConnectionScript.GetGameObjectToPlace().transform.parent = null;
+                FoodPositionConnectionScript.GetGameObjectToPlace().transform.SetParent(null);
                 FoodPositionConnectionScript.GetGameObjectToPlace().transform.position = Vector3.Lerp(FoodPositionConnectionScript.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * foodPositionSpeed);
                 if (!FoodPositionConnectionScript.GetGameObjectToPlace().activeSelf)
                 {
@@ -143,7 +143,7 @@ public class MainFoodUI : MonoBehaviour {
         if (FoodModelConnectionScript != null)
         {
             FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(false);
-            FoodPositionConnectionScript.GetGameObjectToPlace().transform.parent = Camera.main.transform;
+            FoodPositionConnectionScript.GetGameObjectToPlace().transform.SetParent(Camera.main.transform);
             FoodPositionConnectionScript.GetGameObjectToPlace().transform.localPosition = Vector3.zero;
         }
     }
