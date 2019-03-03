@@ -52,10 +52,8 @@ public class FoodModelConnection : MonoBehaviour
             UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(url, 0, 0);
             yield return request.SendWebRequest();
             bundle = DownloadHandlerAssetBundle.GetContent(request);
-            Debug.Log(bundle);
             GameObject foodModelAsset = bundle.LoadAsset<GameObject>(modelName);
             foodModel = Instantiate(foodModelAsset, new Vector3(0,0,0), Quaternion.identity) as GameObject;
-            Debug.Log(foodModel);
             MainFoodUIScript.SetFoodModel(this);
         }
 }

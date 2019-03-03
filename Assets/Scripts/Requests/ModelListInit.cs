@@ -13,7 +13,7 @@ public class ModelListInit : MonoBehaviour {
     {
         public string name;
         public string category;
-        public string prefabLink;
+        public PrefabLinks prefabLinks;
         public string imageUrl;
     }
 
@@ -21,6 +21,13 @@ public class ModelListInit : MonoBehaviour {
     public class ModelsObjectArray
     {
         public Model[] models;
+    }
+
+    [System.Serializable]
+    public class PrefabLinks
+    {
+        public string ios;
+        public string android;
     }
 
     // Use this for initialization
@@ -33,15 +40,19 @@ public class ModelListInit : MonoBehaviour {
 
     IEnumerator GetModelsAndCreateButtons()
     {
-        UnityWebRequest request = UnityWebRequest.Get("https://diyar-server.herokuapp.com/v0/models/");
+        Debug.Log(Api.ModelUrl);
+        UnityWebRequest request = UnityWebRequest.Get(Api.ModelUrl);
         yield return request.SendWebRequest();
         ModelsObjectArray modelsObjectArray = JsonUtility.FromJson<ModelsObjectArray>("{\"models\":" + request.downloadHandler.text + "}");
         foreach(Model model in modelsObjectArray.models)
         {
             GameObject modelButton = Instantiate(modelButtonPrefab);
 
-            modelButton.GetComponent<FoodModelConnection>().assetBundleUrl = model.prefabLink;
-            //modelButton.GetComponent<FoodModelConnection>().prefabName = model.name;
+            if(Application.platform == RuntimePlatform.Android)
+                modelButton.GetComponent<FoodModelConnection>().assetBundleUrl = model.prefabLinks.android;
+            else
+                modelButton.GetComponent<FoodModelConnection>().assetBundleUrl = model.prefabLinks.ios;
+
             modelButton.GetComponent<FoodModelConnection>().prefabName = "model";
 
             Transform content = modelButton.transform.Find("Content");
