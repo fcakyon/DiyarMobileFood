@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Experimental.XR;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class MainFoodUI : MonoBehaviour {
     
@@ -172,6 +173,16 @@ public class MainFoodUI : MonoBehaviour {
     public void RemoveFoodPositionConnection()
     {
         FoodPositionConnectionScript = null;
+    }
+
+    public void LoadARScene()
+    {
+        SceneManager.LoadScene("ArScene");
+    }
+
+    public void Load3DScene()
+    {
+        SceneManager.LoadScene("3DScene");
     }
 
 }
