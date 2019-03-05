@@ -17,7 +17,9 @@ public class XRLightController : MonoBehaviour {
     }
     // Update the light exposure.
     float exposure = xr.GetLightExposure();
+    //Debug.Log("exp:" + exposure);
     float temperature = xr.GetLightTemperature();
+    //Debug.Log("temp:"+ temperature);
 
     // Exposure ranges from -1 to 1 in XR, adjust to 0-2 for Unity.
     sceneLight.intensity = exposure + 1.0f;
