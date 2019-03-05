@@ -20,13 +20,13 @@ public class TouchRotate : MonoBehaviour
 
     public void OneFingerRotate()
     {
-        if (MainFoodUIScript.FoodModelConnectionScript != null)
+        if (MainFoodUIScript.foodModelConnection != null)
         {
-            if (MainFoodUIScript.FoodModelConnectionScript.foodModel != null)
+            if (MainFoodUIScript.foodModelConnection.foodModel != null)
             {
             if (Input.touchCount == 0)
             {
-                MainFoodUIScript.FoodModelConnectionScript.GetGameObjectToPlace().transform.Rotate(0f, 15 * Time.deltaTime, 0f);
+                MainFoodUIScript.foodModelConnection.GetGameObjectToPlace().transform.Rotate(0f, 15 * Time.deltaTime, 0f);
             }
 
             else
@@ -40,7 +40,7 @@ public class TouchRotate : MonoBehaviour
                 if (touch0.phase == TouchPhase.Moved)
                 {
                     var angleY = -0.4f * touch0.deltaPosition.x;
-                    MainFoodUIScript.FoodModelConnectionScript.GetGameObjectToPlace().transform.Rotate(0f, angleY, 0f);
+                    MainFoodUIScript.foodModelConnection.GetGameObjectToPlace().transform.Rotate(0f, angleY, 0f);
                 }
 
 

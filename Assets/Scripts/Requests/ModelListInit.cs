@@ -40,7 +40,6 @@ public class ModelListInit : MonoBehaviour {
 
     IEnumerator GetModelsAndCreateButtons()
     {
-        Debug.Log(Api.ModelUrl);
         UnityWebRequest request = UnityWebRequest.Get(Api.ModelUrl);
         yield return request.SendWebRequest();
         ModelsObjectArray modelsObjectArray = JsonUtility.FromJson<ModelsObjectArray>("{\"models\":" + request.downloadHandler.text + "}");

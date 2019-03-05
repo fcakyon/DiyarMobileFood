@@ -5,20 +5,16 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MainFoodUI : MonoBehaviour {
-    
-    public FoodModelConnection FoodModelConnectionScript;
+
+    [HideInInspector]
+    public FoodModelConnection foodModelConnection;
+    [HideInInspector]
     public FoodPositionConnection FoodPositionConnectionScript;
-
     public LayerMask layerMask;
-
     public GameObject fixButton;
-
     public float foodPositionSpeed = 4f;
-
     public bool isPlacing = false;
-
     public Vector3 lastPlacementPos;
-
     public bool is3DScene;
 
     private void Start()
@@ -31,7 +27,7 @@ public class MainFoodUI : MonoBehaviour {
 
     void Update()
     {
-        if (FoodModelConnectionScript != null)
+        if (foodModelConnection != null)
         {
             FoodModelChange();
         }
@@ -57,25 +53,20 @@ public class MainFoodUI : MonoBehaviour {
 
     public void FoodModelChange()
     {
-        if (FoodModelConnectionScript != null)
+        if (foodModelConnection != null)
         {
-            if (FoodModelConnectionScript.foodModel != null)
+            if (foodModelConnection.foodModel != null)
             {
-                if (FoodModelConnectionScript.hasFoodModelBeenChanged == false)
+                if (foodModelConnection.hasFoodModelBeenChanged == false)
                 {
-                    FoodModelConnectionScript.GetGameObjectToPlace().SetActive(true);
-                    FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = null;
-                    FoodModelConnectionScript.GetGameObjectToPlace().transform.position = lastPlacementPos;
-                    FoodModelConnectionScript.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli
-                    //if (is3DScene == true)
-                   //{
-                    //    FoodModelConnectionScript.GetGameObjectToPlace().transform.localScale = new Vector3(1000,1000, 1000);
-                    //}
-
-                    FoodModelConnectionScript.hasFoodModelBeenChanged = true;
-                    if (!FoodModelConnectionScript.GetGameObjectToPlace().activeSelf)
+                    foodModelConnection.GetGameObjectToPlace().SetActive(true);
+                    foodModelConnection.GetGameObjectToPlace().transform.parent = null;
+                    foodModelConnection.GetGameObjectToPlace().transform.position = lastPlacementPos;
+                    foodModelConnection.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli
+                    foodModelConnection.hasFoodModelBeenChanged = true;
+                    if (!foodModelConnection.GetGameObjectToPlace().activeSelf)
                     {
-                        FoodModelConnectionScript.GetGameObjectToPlace().SetActive(true);
+                        foodModelConnection.GetGameObjectToPlace().SetActive(true);
                     }
                 }
             }
@@ -86,7 +77,6 @@ public class MainFoodUI : MonoBehaviour {
     {
         if (FoodPositionConnectionScript != null)
         {
-            //Debug.Log("hasItemBeenPlaced: "+ItemPlacedController.hasItemBeenPlaced);
             if (FoodPositionConnectionScript.hasFoodPositionBeenPlaced == false)
             {
                 isPlacing = true;
@@ -112,10 +102,10 @@ public class MainFoodUI : MonoBehaviour {
         }
     }
 
-    public void SetFoodModel(FoodModelConnection FoodModelConnectionScript)
+    public void SetFoodModel(FoodModelConnection foodModelConnection)
     {
         ShouldWeHideFoodModel();
-        this.FoodModelConnectionScript = FoodModelConnectionScript;
+        this.foodModelConnection = foodModelConnection;
     }
 
     public void SetFoodPosition(FoodPositionConnection FoodPositionConnectionScript)
@@ -125,7 +115,7 @@ public class MainFoodUI : MonoBehaviour {
     }
 
     public void ShouldWeHideFoodModel(){
-        if (FoodModelConnectionScript != null)
+        if (foodModelConnection != null)
         {
             HideFoodModel();
         }
@@ -143,22 +133,19 @@ public class MainFoodUI : MonoBehaviour {
     }
 
     public void HideFoodModel(){
-        if (FoodModelConnectionScript != null)
+        if (foodModelConnection != null)
         {
             if (is3DScene == false)
             {
                 FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(false); // bu gerekli, reset atıp fixleyince position modeli silinmiyor yoksa
             }
-            FoodModelConnectionScript.DestroyFoodModel();
-            //FoodModelConnectionScript.GetGameObjectToPlace().SetActive(false);
-            //FoodModelConnectionScript.GetGameObjectToPlace().transform.parent = Camera.main.transform;
-            //FoodModelConnectionScript.GetGameObjectToPlace().transform.localPosition = Vector3.zero;
+            foodModelConnection.DestroyFoodModel();
         }
     }
 
     public void HideFoodPosition()
     {
-        if (FoodModelConnectionScript != null)
+        if (foodModelConnection != null)
         {
             FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(false);
             FoodPositionConnectionScript.GetGameObjectToPlace().transform.SetParent(Camera.main.transform);
@@ -167,7 +154,7 @@ public class MainFoodUI : MonoBehaviour {
     }
 
     public void RemoveFoodModelConnection(){
-        FoodModelConnectionScript = null;
+        foodModelConnection = null;
     }
 
     public void RemoveFoodPositionConnection()
