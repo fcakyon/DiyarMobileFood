@@ -162,9 +162,14 @@ public class MainFoodUI : MonoBehaviour {
         FoodPositionConnectionScript = null;
     }
 
-    public void LoadARScene()
+    public void LoadARSceneFood()
     {
-        SceneManager.LoadScene("ArScene");
+        SceneManager.LoadScene("ArSceneFood");
+    }
+
+    public void LoadARSceneFurniture()
+    {
+        SceneManager.LoadScene("ArSceneFurniture");
     }
 
     public void Load3DScene()
