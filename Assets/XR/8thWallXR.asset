@@ -16,12 +16,12 @@ MonoBehaviour:
   - beta
   channel: release
   installedChannel: release
-  version: 10.0.8.520
+  version: 10.1.7.520
   autoUpdate: 0
   autoUpdateSec: 3600
   updateTimeoutSec: 25
   downloadTimeoutSec: 600
-  updateAvailable: 1
+  updateAvailable: 0
   releaseNotes:
   - id: 10.1
     notes: "## Release 10.1\n\n### 8th Wall Web\nNew Features:\n- Added support for

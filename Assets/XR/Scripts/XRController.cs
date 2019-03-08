@@ -1064,6 +1064,11 @@ public class XRController : MonoBehaviour {
       RunIfNotRunning();
     }
 
+#if (UNITY_ANDROID && !UNITY_EDITOR)
+  if (!remoteOnly) {
+    bridge.RenderFrameForDisplay();
+  }
+#endif
     updateNumber++;
 
     // Continue to stream scene to remote, even when XR is paused.
@@ -1290,7 +1295,7 @@ public class XRController : MonoBehaviour {
 
   private bool ShouldIssuePluginEvent() {
     #if (UNITY_ANDROID && !UNITY_EDITOR)
-    return !remoteOnly;
+    return false;
     #else
     // Check that we have an RGBA texture and don't manage an RGBA texture.
     if (realityRGBATexture != null
