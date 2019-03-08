@@ -8066,7 +8066,7 @@ MonoBehaviour:
   enableCamera: 1
   enableSurfaces: 1
   enableVerticalSurfaces: 0
-  enableCameraAutofocus: 0
+  enableCameraAutofocus: 1
 --- !u!4 &1479580015
 Transform:
   m_ObjectHideFlags: 0

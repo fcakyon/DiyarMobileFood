@@ -8,7 +8,7 @@ public class MainFoodUI : MonoBehaviour {
 
     [HideInInspector]
     public FoodModelConnection foodModelConnection;
-    [HideInInspector]
+    //[HideInInspector]
     public FoodPositionConnection FoodPositionConnectionScript;
     public LayerMask layerMask;
     public GameObject fixButton;
@@ -19,6 +19,7 @@ public class MainFoodUI : MonoBehaviour {
 
     private void Start()
     {
+        //Application.targetFrameRate = 60;
         if (is3DScene == true)
         {
             lastPlacementPos = new Vector3(0,0, 0);
@@ -61,6 +62,7 @@ public class MainFoodUI : MonoBehaviour {
                 {
                     foodModelConnection.GetGameObjectToPlace().SetActive(true);
                     foodModelConnection.GetGameObjectToPlace().transform.parent = null;
+                    foodModelConnection.GetGameObjectToPlace().transform.SetParent(GameObject.Find("Plane").transform);
                     foodModelConnection.GetGameObjectToPlace().transform.position = lastPlacementPos;
                     foodModelConnection.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli
                     foodModelConnection.hasFoodModelBeenChanged = true;
@@ -83,6 +85,7 @@ public class MainFoodUI : MonoBehaviour {
                 lastPlacementPos = newPos;
                 FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(true);
                 FoodPositionConnectionScript.GetGameObjectToPlace().transform.SetParent(null);
+                FoodPositionConnectionScript.GetGameObjectToPlace().transform.SetParent(GameObject.Find("Plane").transform);
                 FoodPositionConnectionScript.GetGameObjectToPlace().transform.position = Vector3.Lerp(FoodPositionConnectionScript.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * foodPositionSpeed);
                 if (!FoodPositionConnectionScript.GetGameObjectToPlace().activeSelf)
                 {
@@ -91,6 +94,23 @@ public class MainFoodUI : MonoBehaviour {
             }
         }
     }
+
+    //public void FixDecorPosition()
+    //{
+    //    if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+    //    {
+    //        RaycastHit hit;
+    //        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+    //        if (Physics.Raycast(ray, out hit, 100.0f, LayerMask.GetMask("Surface")))
+    //        {
+    //            Debug.Log("ray zemine degdi");
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("ray zemine degmedi");
+    //        }
+    //    }
+    //}
 
     public void FixFoodPosition()
     {
@@ -145,7 +165,7 @@ public class MainFoodUI : MonoBehaviour {
 
     public void HideFoodPosition()
     {
-        if (foodModelConnection != null)
+        if (FoodPositionConnectionScript != null)
         {
             FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(false);
             FoodPositionConnectionScript.GetGameObjectToPlace().transform.SetParent(Camera.main.transform);
