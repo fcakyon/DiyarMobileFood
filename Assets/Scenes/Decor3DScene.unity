@@ -612,12 +612,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1093094133}
+  - {fileID: 1893724083}
   - {fileID: 2134520575}
   - {fileID: 1317442511}
+  - {fileID: 1093094133}
   - {fileID: 1547425625}
   - {fileID: 1527976622}
-  - {fileID: 1893724083}
   m_Father: {fileID: 1913300397}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -930,7 +930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00024414062}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -1573.6027}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &78512082
@@ -6161,7 +6161,7 @@ RectTransform:
   m_Children:
   - {fileID: 1002808994}
   m_Father: {fileID: 33692614}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -8285,7 +8285,7 @@ RectTransform:
   - {fileID: 1147904018}
   - {fileID: 1871186010}
   m_Father: {fileID: 33692614}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8451,7 +8451,7 @@ RectTransform:
   - {fileID: 1760412680}
   - {fileID: 549244417}
   m_Father: {fileID: 33692614}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10417,7 +10417,7 @@ RectTransform:
   m_Children:
   - {fileID: 698207186}
   m_Father: {fileID: 33692614}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -10773,10 +10773,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodModelConnection: {fileID: 0}
   FoodPositionConnectionScript: {fileID: 0}
-  layerMask:
+  planeLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   fixButton: {fileID: 0}
+  resetButton: {fileID: 0}
   foodPositionSpeed: 4
   isPlacing: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}

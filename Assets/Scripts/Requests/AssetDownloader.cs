@@ -25,9 +25,13 @@ public class AssetDownloader : MonoBehaviour {
             if (coroutine != null) StopCoroutine(coroutine);
             if (request != null && !request.isDone) request.Abort();
             coroutine = DownloadAssetBundleAndSetFoodModel(foodModelConnection);
-            foodManager.HideFoodModel();
+            foodManager.DestroyFoodModel();
             foodManager.RemoveFoodModelConnection();
-            foodManager.SetFoodModel(foodModelConnection);
+            foodManager.SetFoodModelConnection(foodModelConnection);
+            if (foodManager.hasFoodModelBeenPlaced == true)
+            {
+                foodManager.isChanging = true;
+            }
             StartCoroutine(coroutine);
         }
     }

@@ -23,13 +23,6 @@ public class DecorManager : MonoBehaviour
 
     void Update()
     {
-        //CheckTouchType();
-
-        //if (foodModelConnection != null)
-        //{
-        //    FoodModelChange();
-        //}
-
         if (decorModelConnection != null && decorModelConnection.hasDecorModelBeenPlaced != true)
         {
             RaycastHit hit;
@@ -47,21 +40,18 @@ public class DecorManager : MonoBehaviour
 
     public void DecorModelPlacement(Vector3 newPos)
     {
-        if (decorModelConnection != null)
+        isPlacing = true;
+        lastPlacementPos = newPos;
+        decorModelConnection.GetGameObjectToPlace().SetActive(true);
+        decorModelConnection.GetGameObjectToPlace().transform.SetParent(null);
+        if (is3DScene == false)
         {
-            if (decorModelConnection.hasDecorModelBeenPlaced == false)
-            {
-                isPlacing = true;
-                lastPlacementPos = newPos;
-                decorModelConnection.GetGameObjectToPlace().SetActive(true);
-                decorModelConnection.GetGameObjectToPlace().transform.SetParent(null);
-                decorModelConnection.GetGameObjectToPlace().transform.SetParent(GameObject.Find("Plane").transform);
-                decorModelConnection.GetGameObjectToPlace().transform.position = Vector3.Lerp(decorModelConnection.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * foodPositionSpeed);
-                if (!decorModelConnection.GetGameObjectToPlace().activeSelf)
-                {
-                    decorModelConnection.GetGameObjectToPlace().SetActive(true);
-                }
-            }
+            decorModelConnection.GetGameObjectToPlace().transform.SetParent(GameObject.Find("Plane").transform);
+        }
+        decorModelConnection.GetGameObjectToPlace().transform.position = Vector3.Lerp(decorModelConnection.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * foodPositionSpeed);
+        if (!decorModelConnection.GetGameObjectToPlace().activeSelf)
+        {
+            decorModelConnection.GetGameObjectToPlace().SetActive(true);
         }
     }
 
@@ -121,11 +111,13 @@ public class DecorManager : MonoBehaviour
 
     public void LoadDecorARScene()
     {
+        HideDecorModel();
         SceneManager.LoadScene("DecorARScene");
     }
 
     public void LoadDecor3DScene()
     {
+        HideDecorModel();
         SceneManager.LoadScene("Decor3DScene");
     }
 
