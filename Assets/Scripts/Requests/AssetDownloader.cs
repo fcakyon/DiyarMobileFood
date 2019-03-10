@@ -5,7 +5,8 @@ using UnityEngine.Networking;
 
 public class AssetDownloader : MonoBehaviour {
 
-    public MainFoodUI MainFoodUIScript;
+    public FoodManager foodManager;
+    public DecorManager decorManager;
     private IEnumerator coroutine;
     UnityWebRequest request;
 
@@ -20,17 +21,29 @@ public class AssetDownloader : MonoBehaviour {
 
     public void ModelButtonClickHandler(FoodModelConnection foodModelConnection)
     {
-        if(MainFoodUIScript.foodModelConnection != foodModelConnection) {
+        if(foodManager.foodModelConnection != foodModelConnection) {
             if (coroutine != null) StopCoroutine(coroutine);
             if (request != null && !request.isDone) request.Abort();
             coroutine = DownloadAssetBundleAndSetFoodModel(foodModelConnection);
-            MainFoodUIScript.HideFoodModel();
-            MainFoodUIScript.RemoveFoodModelConnection();
-            MainFoodUIScript.SetFoodModel(foodModelConnection);
+            foodManager.HideFoodModel();
+            foodManager.RemoveFoodModelConnection();
+            foodManager.SetFoodModel(foodModelConnection);
             StartCoroutine(coroutine);
         }
     }
 
+    public void ModelButtonClickHandler(DecorModelConnection decorModelConnection)
+    {
+        if (decorManager.decorModelConnection != decorModelConnection)
+        {
+            if (coroutine != null) StopCoroutine(coroutine);
+            if (request != null && !request.isDone) request.Abort();
+            coroutine = DownloadAssetBundleAndSetDecorModel(decorModelConnection);
+            decorManager.RemoveDecorModelConnection();
+            decorManager.SetDecorModel(decorModelConnection);
+            StartCoroutine(coroutine);
+        }
+    }
 
     IEnumerator DownloadAssetBundleAndSetFoodModel(FoodModelConnection foodModelConnection)
     {
@@ -39,5 +52,14 @@ public class AssetDownloader : MonoBehaviour {
         foodModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
         GameObject foodModelAsset = foodModelConnection.bundle.LoadAsset<GameObject>(foodModelConnection.prefabName);
         foodModelConnection.foodModel = Instantiate(foodModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+    }
+
+    IEnumerator DownloadAssetBundleAndSetDecorModel(DecorModelConnection decorModelConnection)
+    {
+        request = UnityWebRequestAssetBundle.GetAssetBundle(decorModelConnection.assetBundleUrl, 0, 0);
+        yield return request.SendWebRequest();
+        decorModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
+        GameObject foodModelAsset = decorModelConnection.bundle.LoadAsset<GameObject>(decorModelConnection.prefabName);
+        decorModelConnection.decorModel = Instantiate(foodModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
     }
 }

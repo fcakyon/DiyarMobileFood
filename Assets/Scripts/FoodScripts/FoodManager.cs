@@ -4,9 +4,9 @@ using UnityEngine.Experimental.XR;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class MainFoodUI : MonoBehaviour {
+public class FoodManager : MonoBehaviour {
 
-    [HideInInspector]
+    //[HideInInspector]
     public FoodModelConnection foodModelConnection;
     //[HideInInspector]
     public FoodPositionConnection FoodPositionConnectionScript;
@@ -28,6 +28,8 @@ public class MainFoodUI : MonoBehaviour {
 
     void Update()
     {
+        //CheckTouchType();
+
         if (foodModelConnection != null)
         {
             FoodModelChange();
@@ -62,7 +64,10 @@ public class MainFoodUI : MonoBehaviour {
                 {
                     foodModelConnection.GetGameObjectToPlace().SetActive(true);
                     foodModelConnection.GetGameObjectToPlace().transform.parent = null;
-                    foodModelConnection.GetGameObjectToPlace().transform.SetParent(GameObject.Find("Plane").transform);
+                    if (is3DScene == false)
+                    {
+                        foodModelConnection.GetGameObjectToPlace().transform.SetParent(GameObject.Find("Plane").transform);
+                    }
                     foodModelConnection.GetGameObjectToPlace().transform.position = lastPlacementPos;
                     foodModelConnection.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli
                     foodModelConnection.hasFoodModelBeenChanged = true;
@@ -94,6 +99,34 @@ public class MainFoodUI : MonoBehaviour {
             }
         }
     }
+
+    //public void CheckTouchType()
+    //{
+    //    if (Input.touchCount == 1)
+    //    {
+    //        if (EventSystem.current.IsPointerOverGameObject() ||
+    //        EventSystem.current.currentSelectedGameObject != null)
+    //        {
+    //            Debug.Log("BURADA");
+    //            return;
+    //        }
+
+    //        PointerEventData pointer = new PointerEventData(EventSystem.current);
+    //        pointer.position = Input.GetTouch(0).position;
+
+    //        List<RaycastResult> raycastResults = new List<RaycastResult>();
+    //        EventSystem.current.RaycastAll(pointer, raycastResults);
+
+    //        if (raycastResults.Count > 0)
+    //        {
+    //            foreach (var go in raycastResults)
+    //            {
+    //                Debug.Log(go.gameObject.name, go.gameObject);
+    //            }
+    //        }
+    //    }
+    //    //SetNewGameObjectToPlace
+    //}
 
     //public void FixDecorPosition()
     //{
@@ -182,19 +215,14 @@ public class MainFoodUI : MonoBehaviour {
         FoodPositionConnectionScript = null;
     }
 
-    public void LoadARSceneFood()
+    public void LoadFoodARScene()
     {
-        SceneManager.LoadScene("ArSceneFood");
+        SceneManager.LoadScene("FoodARScene");
     }
 
-    public void LoadARSceneFurniture()
+    public void LoadFood3DScene()
     {
-        SceneManager.LoadScene("ArSceneFurniture");
-    }
-
-    public void Load3DScene()
-    {
-        SceneManager.LoadScene("3DScene");
+        SceneManager.LoadScene("Food3DScene");
     }
 
 }
