@@ -5071,7 +5071,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0.00024414062}
   m_SizeDelta: {x: 0, y: -1573.6027}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &828499689
@@ -10659,7 +10659,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodModelConnection: {fileID: 0}
-  FoodPositionConnectionScript: {fileID: 0}
   planeLayerMask:
     serializedVersion: 2
     m_Bits: 512
@@ -11072,6 +11071,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   fixButton: {fileID: 0}
+  resetButton: {fileID: 0}
   modelLerpSpeed: 4
   isPlacing: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}

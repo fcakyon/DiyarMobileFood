@@ -9,8 +9,6 @@ public class FoodManager : MonoBehaviour
 
     //[HideInInspector]
     public FoodModelConnection foodModelConnection;
-    //[HideInInspector]
-    public FoodPositionConnection FoodPositionConnectionScript;
     public LayerMask planeLayerMask;
     public GameObject fixButton;
     public GameObject resetButton;

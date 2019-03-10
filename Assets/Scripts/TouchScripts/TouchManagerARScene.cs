@@ -96,6 +96,15 @@ public class TouchManagerARScene : MonoBehaviour
             Debug.Log(touch.phase); 
             if (touch.phase == TouchPhase.Moved)
             {
+                TouchMovementCalculator.Calculate();
+                RaycastHit hit;
+                Debug.Log(TouchMovementCalculator.avgTouchPosition);
+                Ray ray = Camera.main.ScreenPointToRay(TouchMovementCalculator.avgTouchPosition);
+                if (Physics.Raycast(ray, out hit, 500f, modelLayerMask))
+                {
+                    currentSelected = hit.collider.gameObject.transform.parent.gameObject;
+                }
+
                 if (currentSelected != null)
                 {
 

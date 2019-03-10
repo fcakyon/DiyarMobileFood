@@ -13,6 +13,10 @@ public class TouchMovementCalculator : MonoBehaviour
     const float minPanDistance = 0;
 
     /// <summary>
+    ///   Average point between two finger
+    /// </summary>
+    static public Vector2 avgTouchPosition;
+    /// <summary>
     ///   The delta of the angle between two touch points
     /// </summary>
     static public float turnAngleDelta;
@@ -43,6 +47,8 @@ public class TouchMovementCalculator : MonoBehaviour
         {
             Touch touch1 = Input.touches[0];
             Touch touch2 = Input.touches[1];
+
+            avgTouchPosition = (touch1.position + touch2.position) / 2;
 
             // ... if at least one of them moved ...
             if (touch1.phase == TouchPhase.Moved || touch2.phase == TouchPhase.Moved)

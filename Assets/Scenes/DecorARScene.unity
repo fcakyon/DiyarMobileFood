@@ -6456,6 +6456,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   fixButton: {fileID: 482276244}
+  resetButton: {fileID: 0}
   modelLerpSpeed: 4
   isPlacing: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}
@@ -10614,7 +10615,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodModelConnection: {fileID: 0}
-  FoodPositionConnectionScript: {fileID: 0}
   planeLayerMask:
     serializedVersion: 2
     m_Bits: 0

@@ -10,6 +10,8 @@ public class DecorManager : MonoBehaviour
     public DecorModelConnection decorModelConnection;
     public LayerMask planeLayerMask;
     public GameObject fixButton;
+    public GameObject resetButton;
+
     public float modelLerpSpeed = 4f;
     public bool isPlacing = false;
     public Vector3 lastPlacementPos;
