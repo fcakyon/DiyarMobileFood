@@ -167,11 +167,13 @@ public class FoodManager : MonoBehaviour {
 
     public void LoadFoodARScene()
     {
+        HideFoodModel();
         SceneManager.LoadScene("FoodARScene");
     }
 
     public void LoadFood3DScene()
     {
+        HideFoodModel();
         SceneManager.LoadScene("Food3DScene");
     }
 
