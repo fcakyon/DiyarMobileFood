@@ -486,7 +486,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00061035156}
-  m_SizeDelta: {x: 0, y: 156.53052}
+  m_SizeDelta: {x: 0, y: 151.39722}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &108186832
 MonoBehaviour:
@@ -1544,7 +1544,7 @@ RectTransform:
   m_Children:
   - {fileID: 363833984}
   m_Father: {fileID: 557076344}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -2149,7 +2149,7 @@ RectTransform:
   - {fileID: 1982871085}
   - {fileID: 291663454}
   m_Father: {fileID: 557076344}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2908,7 +2908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &482276245
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3019,7 +3019,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1924173900}
-        m_MethodName: FixFoodPosition
+        m_MethodName: FixFoodModelPlace
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3029,15 +3029,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1732610540}
-        m_MethodName: Play
-        m_Mode: 5
+      - m_Target: {fileID: 1924173900}
+        m_MethodName: ApearResetButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Popup Panel In
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3429,12 +3429,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1937418550}
+  - {fileID: 289779755}
   - {fileID: 1873913510}
   - {fileID: 482276245}
+  - {fileID: 1937418550}
   - {fileID: 379444745}
   - {fileID: 1732610538}
-  - {fileID: 289779755}
   m_Father: {fileID: 1845219689}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4636,8 +4636,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 885.00006, y: -1818.4695}
-  m_SizeDelta: {x: 1770.0001, y: 1568.4695}
+  m_AnchoredPosition: {x: 885.00006, y: -1823.6028}
+  m_SizeDelta: {x: 1770.0001, y: 1573.6028}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &816587830
 MonoBehaviour:
@@ -5071,8 +5071,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
-  m_SizeDelta: {x: 0, y: -1568.4694}
+  m_AnchoredPosition: {x: 0, y: 0.00024414062}
+  m_SizeDelta: {x: 0, y: -1573.6027}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &828499689
 MonoBehaviour:
@@ -9445,7 +9445,7 @@ RectTransform:
   - {fileID: 1427071489}
   - {fileID: 1267580372}
   m_Father: {fileID: 557076344}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10674,12 +10674,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodModelConnection: {fileID: 0}
   FoodPositionConnectionScript: {fileID: 0}
-  layerMask:
+  planeLayerMask:
     serializedVersion: 2
     m_Bits: 512
   fixButton: {fileID: 482276244}
-  foodPositionSpeed: 5
+  resetButton: {fileID: 1937418549}
+  foodModelLerpSpeed: 4
   isPlacing: 0
+  isChanging: 0
+  hasFoodModelBeenPlaced: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}
   is3DScene: 0
 --- !u!1 &1937418549
@@ -10696,14 +10699,13 @@ GameObject:
   - component: {fileID: 1937418554}
   - component: {fileID: 1937418553}
   - component: {fileID: 1937418552}
-  - component: {fileID: 1937418558}
   m_Layer: 5
   m_Name: Reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1937418550
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10716,7 +10718,7 @@ RectTransform:
   m_Children:
   - {fileID: 2067781162}
   m_Father: {fileID: 557076344}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -10813,19 +10815,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1937418558}
-        m_MethodName: ButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1924173900}
-        m_MethodName: HideFoodModel
+        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10871,20 +10862,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1937418549}
   m_CullTransparentMesh: 0
---- !u!114 &1937418558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1937418549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed9ddda94a4be4443a499f0a17a7ee6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasFoodPositionBeenPlaced: 0
-  foodPositionModel: {fileID: 2101428302}
-  foodManager: {fileID: 1924173900}
 --- !u!1 &1942322365
 GameObject:
   m_ObjectHideFlags: 0
@@ -11286,7 +11263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2035805120
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11553,7 +11530,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1924173900}
-        m_MethodName: HideFoodPosition
+        m_MethodName: ApearFixButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11621,7 +11598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a44447c6a5b7f4709ad2b108a0071b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasFoodModelBeenChanged: 0
   foodModel: {fileID: 0}
   assetBundleUrl: 
   prefabName: model
@@ -11856,8 +11832,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 885.00006, y: -1818.4694}
-  m_SizeDelta: {x: 1770.0001, y: 1568.4694}
+  m_AnchoredPosition: {x: 885.00006, y: -1823.6027}
+  m_SizeDelta: {x: 1770.0001, y: 1573.6027}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2143995223
 MonoBehaviour:

@@ -1903,7 +1903,7 @@ RectTransform:
   - {fileID: 1982871085}
   - {fileID: 291663454}
   m_Father: {fileID: 557076344}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2793,8 +2793,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 0
-  m_Color1: {r: 1, g: 0.56078434, b: 0.2784314, a: 1}
-  m_Color2: {r: 1, g: 0.32156864, b: 0.3019608, a: 1}
+  m_Color1: {r: 0, g: 0.9644847, b: 1, a: 1}
+  m_Color2: {r: 0.35642865, g: 0.2688679, b: 1, a: 1}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
   m_Rotation: 0
@@ -3323,12 +3323,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1937418550}
+  - {fileID: 1957313315}
   - {fileID: 1873913510}
   - {fileID: 482276245}
+  - {fileID: 1937418550}
   - {fileID: 379444745}
   - {fileID: 1732610538}
-  - {fileID: 1957313315}
   m_Father: {fileID: 1845219689}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4966,7 +4966,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -1573.6027}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &828499689
@@ -9359,7 +9359,7 @@ RectTransform:
   - {fileID: 1427071489}
   - {fileID: 1267580372}
   m_Father: {fileID: 557076344}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10602,7 +10602,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1924173898}
   - component: {fileID: 1924173900}
-  - component: {fileID: 1924173899}
   m_Layer: 0
   m_Name: FoodManager
   m_TagString: Untagged
@@ -10623,19 +10622,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1924173899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1924173897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26eb0591e6a0e451280c0358ab467a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodManager: {fileID: 0}
-  decorManager: {fileID: 0}
 --- !u!114 &1924173900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10649,10 +10635,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodModelConnection: {fileID: 0}
   FoodPositionConnectionScript: {fileID: 0}
-  layerMask:
+  planeLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   fixButton: {fileID: 482276244}
+  resetButton: {fileID: 0}
   foodPositionSpeed: 4
   isPlacing: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}
@@ -10691,7 +10678,7 @@ RectTransform:
   m_Children:
   - {fileID: 2067781162}
   m_Father: {fileID: 557076344}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -11031,7 +11018,7 @@ RectTransform:
   m_Children:
   - {fileID: 473795316}
   m_Father: {fileID: 557076344}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -11650,7 +11637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a44447c6a5b7f4709ad2b108a0071b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasFoodModelBeenChanged: 0
+  isChanging: 0
+  hasFoodModelBeenPlaced: 0
   foodModel: {fileID: 0}
   assetBundleUrl: 
   prefabName: model

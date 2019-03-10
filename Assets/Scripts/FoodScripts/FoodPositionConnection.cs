@@ -26,21 +26,14 @@ public class FoodPositionConnection : MonoBehaviour
 
     public void ButtonClicked()
     {
-        VanishFoodPosition();
-        foodManager.SetFoodPosition(this);
-        foodPositionModel.SetActive(false);
+        //VanishFoodPosition();
+        //foodManager.SetFoodPosition(this);
+        //foodPositionModel.SetActive(false);
         foodManager.fixButton.SetActive(true);
     }
 
     public GameObject GetGameObjectToPlace()
     {
         return foodPositionModel;
-    }
-
-    public void VanishFoodPosition()
-    {
-        hasFoodPositionBeenPlaced = false;
-        foodManager.HideFoodPosition();
-        foodManager.RemoveFoodPositionConnection();
     }
 }

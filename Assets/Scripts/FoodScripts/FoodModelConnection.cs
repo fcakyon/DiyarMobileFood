@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class FoodModelConnection : MonoBehaviour
 {
-    [HideInInspector]
-    public bool hasFoodModelBeenChanged = false;
     //[HideInInspector]
     public GameObject foodModel;
     [HideInInspector]
@@ -31,7 +29,6 @@ public class FoodModelConnection : MonoBehaviour
 
     public void ButtonClicked()
     {
-        hasFoodModelBeenChanged = false;
         assetDownloader.ModelSelectHandler(this);
     }
 
