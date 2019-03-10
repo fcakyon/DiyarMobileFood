@@ -5193,7 +5193,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000026549838}
+  m_AnchoredPosition: {x: 0, y: -0.00015491487}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &828499689
@@ -10790,7 +10790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26eb0591e6a0e451280c0358ab467a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainFoodUIScript: {fileID: 1924173900}
+  foodManager: {fileID: 0}
+  decorManager: {fileID: 0}
 --- !u!114 &1924173900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11014,7 +11015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasFoodPositionBeenPlaced: 0
   foodPositionModel: {fileID: 2101428302}
-  MainFoodUIScript: {fileID: 1924173900}
+  foodManager: {fileID: 0}
 --- !u!1 &1942322365
 GameObject:
   m_ObjectHideFlags: 0
@@ -11383,7 +11384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.6994537}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -252.3, y: -4.475}
+  m_AnchoredPosition: {x: -252.29999, y: -4.475006}
   m_SizeDelta: {x: -523.5, y: -8.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2035805121
@@ -11408,7 +11409,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 55
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 55
@@ -11453,7 +11454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c139742919a314864b5f0661d73e07ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainFoodUIScript: {fileID: 1924173900}
+  foodManager: {fileID: 0}
+  decorManager: {fileID: 0}
 --- !u!4 &2042436136
 Transform:
   m_ObjectHideFlags: 0

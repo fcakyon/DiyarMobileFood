@@ -4,11 +4,11 @@ using UnityEngine.Experimental.XR;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class MainFoodUI : MonoBehaviour {
+public class FoodManager : MonoBehaviour {
 
-    [HideInInspector]
+    //[HideInInspector]
     public FoodModelConnection foodModelConnection;
-    [HideInInspector]
+    //[HideInInspector]
     public FoodPositionConnection FoodPositionConnectionScript;
     public LayerMask layerMask;
     public GameObject fixButton;
@@ -19,10 +19,8 @@ public class MainFoodUI : MonoBehaviour {
 
     private void Start()
     {
-        if (is3DScene == true)
-        {
-            lastPlacementPos = new Vector3(0,0, 0);
-        }
+        //Application.targetFrameRate = 60;
+        if (is3DScene == true) lastPlacementPos = new Vector3(0, 0, 0);
     }
 
     void Update()
@@ -61,6 +59,10 @@ public class MainFoodUI : MonoBehaviour {
                 {
                     foodModelConnection.GetGameObjectToPlace().SetActive(true);
                     foodModelConnection.GetGameObjectToPlace().transform.parent = null;
+                    if (is3DScene == false)
+                    {
+                        foodModelConnection.GetGameObjectToPlace().transform.SetParent(GameObject.Find("Plane").transform);
+                    }
                     foodModelConnection.GetGameObjectToPlace().transform.position = lastPlacementPos;
                     foodModelConnection.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli
                     foodModelConnection.hasFoodModelBeenChanged = true;
@@ -83,6 +85,7 @@ public class MainFoodUI : MonoBehaviour {
                 lastPlacementPos = newPos;
                 FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(true);
                 FoodPositionConnectionScript.GetGameObjectToPlace().transform.SetParent(null);
+                FoodPositionConnectionScript.GetGameObjectToPlace().transform.SetParent(GameObject.Find("Plane").transform);
                 FoodPositionConnectionScript.GetGameObjectToPlace().transform.position = Vector3.Lerp(FoodPositionConnectionScript.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * foodPositionSpeed);
                 if (!FoodPositionConnectionScript.GetGameObjectToPlace().activeSelf)
                 {
@@ -145,7 +148,7 @@ public class MainFoodUI : MonoBehaviour {
 
     public void HideFoodPosition()
     {
-        if (foodModelConnection != null)
+        if (FoodPositionConnectionScript != null)
         {
             FoodPositionConnectionScript.GetGameObjectToPlace().SetActive(false);
             FoodPositionConnectionScript.GetGameObjectToPlace().transform.SetParent(Camera.main.transform);
@@ -162,19 +165,14 @@ public class MainFoodUI : MonoBehaviour {
         FoodPositionConnectionScript = null;
     }
 
-    public void LoadARSceneFood()
+    public void LoadFoodARScene()
     {
-        SceneManager.LoadScene("ArSceneFood");
+        SceneManager.LoadScene("FoodARScene");
     }
 
-    public void LoadARSceneFurniture()
+    public void LoadFood3DScene()
     {
-        SceneManager.LoadScene("ArSceneFurniture");
-    }
-
-    public void Load3DScene()
-    {
-        SceneManager.LoadScene("3DScene");
+        SceneManager.LoadScene("Food3DScene");
     }
 
 }

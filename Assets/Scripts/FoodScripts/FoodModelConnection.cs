@@ -8,7 +8,7 @@ public class FoodModelConnection : MonoBehaviour
 {
     [HideInInspector]
     public bool hasFoodModelBeenChanged = false;
-    [HideInInspector]
+    //[HideInInspector]
     public GameObject foodModel;
     [HideInInspector]
     public string assetBundleUrl;

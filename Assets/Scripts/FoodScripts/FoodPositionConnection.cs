@@ -7,7 +7,7 @@ public class FoodPositionConnection : MonoBehaviour
     
     public bool hasFoodPositionBeenPlaced = false;
     public GameObject foodPositionModel;
-    public MainFoodUI MainFoodUIScript;
+    public FoodManager foodManager;
 
     // Use this for initialization
     void Start()
@@ -27,9 +27,9 @@ public class FoodPositionConnection : MonoBehaviour
     public void ButtonClicked()
     {
         VanishFoodPosition();
-        MainFoodUIScript.SetFoodPosition(this);
+        foodManager.SetFoodPosition(this);
         foodPositionModel.SetActive(false);
-        MainFoodUIScript.fixButton.SetActive(true);
+        foodManager.fixButton.SetActive(true);
     }
 
     public GameObject GetGameObjectToPlace()
@@ -40,7 +40,7 @@ public class FoodPositionConnection : MonoBehaviour
     public void VanishFoodPosition()
     {
         hasFoodPositionBeenPlaced = false;
-        MainFoodUIScript.HideFoodPosition();
-        MainFoodUIScript.RemoveFoodPositionConnection();
+        foodManager.HideFoodPosition();
+        foodManager.RemoveFoodPositionConnection();
     }
 }
