@@ -39,6 +39,7 @@ public class AssetDownloader : MonoBehaviour {
             if (coroutine != null) StopCoroutine(coroutine);
             if (request != null && !request.isDone) request.Abort();
             coroutine = DownloadAssetBundleAndSetDecorModel(decorModelConnection);
+            if (decorManager.is3DScene == true) decorManager.HideDecorModel();
             decorManager.RemoveDecorModelConnection();
             decorManager.SetDecorModel(decorModelConnection);
             StartCoroutine(coroutine);

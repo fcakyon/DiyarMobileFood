@@ -4309,8 +4309,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 0
-  m_Color1: {r: 1, g: 0.56078434, b: 0.2784314, a: 1}
-  m_Color2: {r: 1, g: 0.32156864, b: 0.3019608, a: 1}
+  m_Color1: {r: 0, g: 0.9644847, b: 1, a: 1}
+  m_Color2: {r: 0.35642865, g: 0.2688679, b: 1, a: 1}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
   m_Rotation: 0
@@ -4966,7 +4966,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: 0, y: -1573.6027}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &828499689
@@ -6452,7 +6452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553f9a2616aa84e3f84a52b348345147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodModelConnection: {fileID: 0}
   decorModelConnection: {fileID: 0}
   planeLayerMask:
     serializedVersion: 2
@@ -8298,8 +8297,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 0
-  m_Color1: {r: 1, g: 0.56078434, b: 0.2784314, a: 1}
-  m_Color2: {r: 1, g: 0.32156864, b: 0.3019608, a: 1}
+  m_Color1: {r: 0, g: 0.9644847, b: 1, a: 1}
+  m_Color2: {r: 0.35642865, g: 0.2688679, b: 1, a: 1}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
   m_Rotation: 0
@@ -10297,8 +10296,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 0
-  m_Color1: {r: 1, g: 0.56078434, b: 0.2784314, a: 1}
-  m_Color2: {r: 1, g: 0.32156864, b: 0.3019608, a: 1}
+  m_Color1: {r: 0, g: 0.9644847, b: 1, a: 1}
+  m_Color2: {r: 0.35642865, g: 0.2688679, b: 1, a: 1}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
   m_Rotation: 0
@@ -11080,8 +11079,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 0
-  m_Color1: {r: 1, g: 0.56078434, b: 0.2784314, a: 1}
-  m_Color2: {r: 1, g: 0.32156864, b: 0.3019608, a: 1}
+  m_Color1: {r: 0, g: 0.9644847, b: 1, a: 1}
+  m_Color2: {r: 0.35642865, g: 0.2688679, b: 1, a: 1}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
   m_Rotation: 0

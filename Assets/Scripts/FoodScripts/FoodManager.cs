@@ -20,16 +20,11 @@ public class FoodManager : MonoBehaviour {
     private void Start()
     {
         //Application.targetFrameRate = 60;
-        if (is3DScene == true)
-        {
-            lastPlacementPos = new Vector3(0,0, 0);
-        }
+        if (is3DScene == true) lastPlacementPos = new Vector3(0, 0, 0);
     }
 
     void Update()
     {
-        //CheckTouchType();
-
         if (foodModelConnection != null)
         {
             FoodModelChange();
@@ -99,51 +94,6 @@ public class FoodManager : MonoBehaviour {
             }
         }
     }
-
-    //public void CheckTouchType()
-    //{
-    //    if (Input.touchCount == 1)
-    //    {
-    //        if (EventSystem.current.IsPointerOverGameObject() ||
-    //        EventSystem.current.currentSelectedGameObject != null)
-    //        {
-    //            Debug.Log("BURADA");
-    //            return;
-    //        }
-
-    //        PointerEventData pointer = new PointerEventData(EventSystem.current);
-    //        pointer.position = Input.GetTouch(0).position;
-
-    //        List<RaycastResult> raycastResults = new List<RaycastResult>();
-    //        EventSystem.current.RaycastAll(pointer, raycastResults);
-
-    //        if (raycastResults.Count > 0)
-    //        {
-    //            foreach (var go in raycastResults)
-    //            {
-    //                Debug.Log(go.gameObject.name, go.gameObject);
-    //            }
-    //        }
-    //    }
-    //    //SetNewGameObjectToPlace
-    //}
-
-    //public void FixDecorPosition()
-    //{
-    //    if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
-    //    {
-    //        RaycastHit hit;
-    //        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-    //        if (Physics.Raycast(ray, out hit, 100.0f, LayerMask.GetMask("Surface")))
-    //        {
-    //            Debug.Log("ray zemine degdi");
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("ray zemine degmedi");
-    //        }
-    //    }
-    //}
 
     public void FixFoodPosition()
     {
