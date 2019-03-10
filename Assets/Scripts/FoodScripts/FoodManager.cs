@@ -15,16 +15,19 @@ public class FoodManager : MonoBehaviour
     public GameObject fixButton;
     public GameObject resetButton;
 
-    public float foodModelLerpSpeed = 4f;
+    public float modelLerpSpeed = 4f;
     public bool isPlacing = false;
     public bool isChanging = false;
     public bool hasFoodModelBeenPlaced;
     public Vector3 lastPlacementPos;
 
+    GameObject surfacePlane;
+
     public bool is3DScene;
 
     private void Start()
     {
+        surfacePlane = GameObject.Find("Plane");
         //Application.targetFrameRate = 60;
         if (is3DScene == true) lastPlacementPos = new Vector3(0, 0, 0);
     }
@@ -60,9 +63,9 @@ public class FoodManager : MonoBehaviour
         foodModelConnection.GetGameObjectToPlace().transform.SetParent(null);
         if (is3DScene == false)
         {
-            foodModelConnection.GetGameObjectToPlace().transform.SetParent(GameObject.Find("Plane").transform);
+            foodModelConnection.GetGameObjectToPlace().transform.SetParent(surfacePlane.transform);
         }
-        foodModelConnection.GetGameObjectToPlace().transform.position = Vector3.Lerp(foodModelConnection.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * foodModelLerpSpeed);
+        foodModelConnection.GetGameObjectToPlace().transform.position = Vector3.Lerp(foodModelConnection.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * modelLerpSpeed);
     }
 
     public void ChangeFoodModel()
@@ -74,7 +77,7 @@ public class FoodManager : MonoBehaviour
             if (is3DScene == false)
             {
 
-                foodModelConnection.GetGameObjectToPlace().transform.SetParent(GameObject.Find("Plane").transform);
+                foodModelConnection.GetGameObjectToPlace().transform.SetParent(surfacePlane.transform);
             }
             foodModelConnection.GetGameObjectToPlace().transform.position = lastPlacementPos;
             foodModelConnection.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli

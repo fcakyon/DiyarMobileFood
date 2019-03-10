@@ -10,13 +10,17 @@ public class DecorManager : MonoBehaviour
     public DecorModelConnection decorModelConnection;
     public LayerMask planeLayerMask;
     public GameObject fixButton;
-    public float foodPositionSpeed = 4f;
+    public float modelLerpSpeed = 4f;
     public bool isPlacing = false;
     public Vector3 lastPlacementPos;
+
+    GameObject surfacePlane;
+
     public bool is3DScene;
 
     private void Start()
     {
+        surfacePlane = GameObject.Find("Plane");
         //Application.targetFrameRate = 60;
         if (is3DScene == true) lastPlacementPos = new Vector3(0, 0, 0);
     }
@@ -25,34 +29,32 @@ public class DecorManager : MonoBehaviour
     {
         if (decorModelConnection != null && decorModelConnection.hasDecorModelBeenPlaced != true)
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-
-            if (Physics.Raycast(ray, out hit, 500.0f, planeLayerMask))
-            {
-                DecorModelPlacement(hit.point);
-                decorModelConnection.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0);
-            }
-
-            isPlacing = false;
+            AutoPlaceModel();
         }
     }
 
-    public void DecorModelPlacement(Vector3 newPos)
+    public void AutoPlaceModel()
     {
-        isPlacing = true;
+        RaycastHit hit;
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+        if (Physics.Raycast(ray, out hit, 500.0f, planeLayerMask))
+        {
+            PlaceFoodModel(hit.point);
+            decorModelConnection.GetGameObjectToPlace().transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
+    }
+
+    public void PlaceFoodModel(Vector3 newPos)
+    {
         lastPlacementPos = newPos;
         decorModelConnection.GetGameObjectToPlace().SetActive(true);
         decorModelConnection.GetGameObjectToPlace().transform.SetParent(null);
         if (is3DScene == false)
         {
-            decorModelConnection.GetGameObjectToPlace().transform.SetParent(GameObject.Find("Plane").transform);
+            decorModelConnection.GetGameObjectToPlace().transform.SetParent(surfacePlane.transform);
         }
-        decorModelConnection.GetGameObjectToPlace().transform.position = Vector3.Lerp(decorModelConnection.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * foodPositionSpeed);
-        if (!decorModelConnection.GetGameObjectToPlace().activeSelf)
-        {
-            decorModelConnection.GetGameObjectToPlace().SetActive(true);
-        }
+        decorModelConnection.GetGameObjectToPlace().transform.position = Vector3.Lerp(decorModelConnection.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * modelLerpSpeed);
     }
 
     //public void FixDecorPosition()
@@ -79,6 +81,9 @@ public class DecorManager : MonoBehaviour
             HideFixButton();
             decorModelConnection.hasDecorModelBeenPlaced = true;
             decorModelConnection.GetGameObjectToPlace().transform.position = lastPlacementPos;
+            Vector3 localPosition = decorModelConnection.GetGameObjectToPlace().transform.localPosition;
+            localPosition.y = 0;
+            decorModelConnection.GetGameObjectToPlace().transform.localPosition = localPosition;
         }
     }
 
