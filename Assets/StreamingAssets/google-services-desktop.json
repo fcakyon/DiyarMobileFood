@@ -1,0 +1,37 @@
+{
+  "client": [
+    {
+      "services": {
+        "appinvite_service": {
+          "status": 0
+        }, 
+        "analytics_service": {
+          "status": 0
+        }
+      }, 
+      "oauth_client": [
+        {
+          "client_id": "966641733414-ehpth02tt5t3hr3t05vlufkdt3ul7ipe.apps.googleusercontent.com"
+        }
+      ], 
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5lqgRLMK-UfxYXw-eoBWdcTLljx5xj1o"
+        }
+      ], 
+      "client_info": {
+        "mobilesdk_app_id": "1:966641733414:ios:289a3b79bb9b3935", 
+        "android_client_info": {
+          "package_name": "com.diyar.food"
+        }
+      }
+    }
+  ], 
+  "configuration_version": "1", 
+  "project_info": {
+    "storage_bucket": "diyar-unity.appspot.com", 
+    "project_id": "diyar-unity", 
+    "firebase_url": "https://diyar-unity.firebaseio.com", 
+    "project_number": "966641733414"
+  }
+}
