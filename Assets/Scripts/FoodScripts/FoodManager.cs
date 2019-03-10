@@ -106,10 +106,7 @@ public class FoodManager : MonoBehaviour
 
     public void DestroyFoodModel()
     {
-        if (foodModelConnection != null)
-        {
-            foodModelConnection.DestroyFoodModel();
-        }
+        if (foodModelConnection != null) foodModelConnection.DestroyFoodModel();
     }
 
     public void RemoveFoodModelConnection()

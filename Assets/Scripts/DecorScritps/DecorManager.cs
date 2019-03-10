@@ -57,23 +57,6 @@ public class DecorManager : MonoBehaviour
         decorModelConnection.GetGameObjectToPlace().transform.position = Vector3.Lerp(decorModelConnection.GetGameObjectToPlace().transform.position, newPos, Time.deltaTime * modelLerpSpeed);
     }
 
-    //public void FixDecorPosition()
-    //{
-    //    if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
-    //    {
-    //        RaycastHit hit;
-    //        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-    //        if (Physics.Raycast(ray, out hit, 100.0f, LayerMask.GetMask("Surface")))
-    //        {
-    //            Debug.Log("ray zemine degdi");
-    //        }
-    //        else
-    //        {
-    //            Debug.Log("ray zemine degmedi");
-    //        }
-    //    }
-    //}
-
     public void FixDecorModelPlace()
     {
         if (decorModelConnection.hasDecorModelBeenPlaced == false)
@@ -87,24 +70,13 @@ public class DecorManager : MonoBehaviour
         }
     }
 
-    public void SetDecorModel(DecorModelConnection DecorModelConnectionScript)
+    public void SetDecorModelConnection(DecorModelConnection DecorModelConnectionScript)
     {
-        ShouldWeHideDecorModel();
+        DestroyDecorModel();
         this.decorModelConnection = DecorModelConnectionScript;
     }
 
-    public void ShouldWeHideDecorModel()
-    {
-        if (decorModelConnection != null)
-        {
-            if (decorModelConnection.hasDecorModelBeenPlaced == false)
-            {
-                HideDecorModel();
-            }
-        }
-    }
-
-    public void HideDecorModel()
+    public void DestroyDecorModel()
     {
         if (decorModelConnection != null) decorModelConnection.DestroyDecorModel();
     }
@@ -116,13 +88,13 @@ public class DecorManager : MonoBehaviour
 
     public void LoadDecorARScene()
     {
-        HideDecorModel();
+        DestroyDecorModel();
         SceneManager.LoadScene("DecorARScene");
     }
 
     public void LoadDecor3DScene()
     {
-        HideDecorModel();
+        DestroyDecorModel();
         SceneManager.LoadScene("Decor3DScene");
     }
 

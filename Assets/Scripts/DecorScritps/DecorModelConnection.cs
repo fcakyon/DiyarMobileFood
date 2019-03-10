@@ -44,7 +44,7 @@ public class DecorModelConnection : MonoBehaviour
     public void VanishDecorModel()
     {
         hasDecorModelBeenPlaced = false;
-        decorManager.HideDecorModel();
+        decorManager.DestroyDecorModel();
         decorManager.RemoveDecorModelConnection();
     }
 
