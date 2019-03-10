@@ -13,7 +13,7 @@ public class FoodModelConnection : MonoBehaviour
     [HideInInspector]
     public string assetBundleUrl;
     [HideInInspector]
-    public string prefabName;
+    public string prefabName = "model";
     [HideInInspector]
     public AssetBundle bundle;
     public AssetDownloader assetDownloader;
@@ -22,7 +22,7 @@ public class FoodModelConnection : MonoBehaviour
     void Start()
     {
         Button button = gameObject.GetComponent<Button>();
-        button.onClick.AddListener(ButtonClicked);
+        if(button != null) button.onClick.AddListener(ButtonClicked);
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class FoodModelConnection : MonoBehaviour
     public void ButtonClicked()
     {
         hasFoodModelBeenChanged = false;
-        assetDownloader.ModelButtonClickHandler(this);
+        assetDownloader.ModelSelectHandler(this);
     }
 
     public GameObject GetGameObjectToPlace()

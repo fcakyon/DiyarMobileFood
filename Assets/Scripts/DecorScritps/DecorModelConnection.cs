@@ -33,7 +33,7 @@ public class DecorModelConnection : MonoBehaviour
     public void ButtonClicked()
     {
         hasDecorModelBeenPlaced = false;
-        assetDownloader.ModelButtonClickHandler(this);
+        assetDownloader.ModelSelectHandler(this);
     }
 
     public GameObject GetGameObjectToPlace()

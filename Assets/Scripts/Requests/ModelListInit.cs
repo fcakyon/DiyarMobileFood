@@ -52,8 +52,6 @@ public class ModelListInit : MonoBehaviour {
             else
                 modelButton.GetComponent<FoodModelConnection>().assetBundleUrl = model.prefabLinks.ios;
 
-            modelButton.GetComponent<FoodModelConnection>().prefabName = "model";
-
             Transform content = modelButton.transform.Find("Content");
             Text text = content.Find("Text").GetComponent<Text>();
             text.text = model.name;

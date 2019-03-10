@@ -19,7 +19,7 @@ public class AssetDownloader : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {}
 
-    public void ModelButtonClickHandler(FoodModelConnection foodModelConnection)
+    public void ModelSelectHandler(FoodModelConnection foodModelConnection)
     {
         if(foodManager.foodModelConnection != foodModelConnection) {
             if (coroutine != null) StopCoroutine(coroutine);
@@ -32,7 +32,7 @@ public class AssetDownloader : MonoBehaviour {
         }
     }
 
-    public void ModelButtonClickHandler(DecorModelConnection decorModelConnection)
+    public void ModelSelectHandler(DecorModelConnection decorModelConnection)
     {
         if (decorManager.decorModelConnection != decorModelConnection)
         {
@@ -60,7 +60,7 @@ public class AssetDownloader : MonoBehaviour {
         request = UnityWebRequestAssetBundle.GetAssetBundle(decorModelConnection.assetBundleUrl, 0, 0);
         yield return request.SendWebRequest();
         decorModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
-        GameObject foodModelAsset = decorModelConnection.bundle.LoadAsset<GameObject>(decorModelConnection.prefabName);
-        decorModelConnection.decorModel = Instantiate(foodModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        GameObject decorModelAsset = decorModelConnection.bundle.LoadAsset<GameObject>(decorModelConnection.prefabName);
+        decorModelConnection.decorModel = Instantiate(decorModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
     }
 }
