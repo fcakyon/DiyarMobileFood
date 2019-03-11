@@ -931,7 +931,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00012207031}
-  m_SizeDelta: {x: 0, y: -1568.4694}
+  m_SizeDelta: {x: 0, y: -1571.7013}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &78512082
 MonoBehaviour:
@@ -1263,7 +1263,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00061035156}
-  m_SizeDelta: {x: 0, y: 156.53052}
+  m_SizeDelta: {x: 0, y: 153.29858}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &106873652
 MonoBehaviour:
@@ -2414,8 +2414,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 885.00006, y: -1818.4695}
-  m_SizeDelta: {x: 1770.0001, y: 1568.4695}
+  m_AnchoredPosition: {x: 885.00006, y: -1821.7014}
+  m_SizeDelta: {x: 1770.0001, y: 1571.7014}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &415444248
 MonoBehaviour:
@@ -4075,8 +4075,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 885.00006, y: -1818.4694}
-  m_SizeDelta: {x: 1770.0001, y: 1568.4694}
+  m_AnchoredPosition: {x: 885.00006, y: -1821.7013}
+  m_SizeDelta: {x: 1770.0001, y: 1571.7013}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &696831711
 MonoBehaviour:
@@ -4613,7 +4613,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   fixButton: {fileID: 0}
-  foodPositionSpeed: 4
+  resetButton: {fileID: 0}
+  modelLerpSpeed: 4
   isPlacing: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}
   is3DScene: 0
@@ -8474,7 +8475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchoredPosition: {x: 0, y: -99.999756}
   m_SizeDelta: {x: -100, y: -2235}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!95 &1527976623
@@ -10273,8 +10274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32b22da1b9334b7b842a5d82315cc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  assetDownloader: {fileID: 0}
+  debugger: {fileID: 2067681000}
+  assetDownloader: {fileID: 30107482}
 --- !u!1 &1861362252
 GameObject:
   m_ObjectHideFlags: 0
@@ -10885,13 +10886,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodModelConnection: {fileID: 0}
-  FoodPositionConnectionScript: {fileID: 0}
-  layerMask:
+  planeLayerMask:
     serializedVersion: 2
     m_Bits: 512
   fixButton: {fileID: 0}
-  foodPositionSpeed: 4
+  resetButton: {fileID: 0}
+  modelLerpSpeed: 4
   isPlacing: 0
+  isChanging: 0
+  hasFoodModelBeenPlaced: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}
   is3DScene: 1
 --- !u!1 &1925820590
@@ -11633,7 +11636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a44447c6a5b7f4709ad2b108a0071b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasFoodModelBeenChanged: 0
   foodModel: {fileID: 0}
   assetBundleUrl: 
   prefabName: model

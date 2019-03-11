@@ -21,13 +21,15 @@ public class AssetDownloader : MonoBehaviour {
 
     public void ModelSelectHandler(FoodModelConnection foodModelConnection)
     {
-        if(foodManager.foodModelConnection != foodModelConnection) {
+        if(foodManager.FoodModelConnection == null || 
+            foodManager.FoodModelConnection.assetBundleUrl != foodModelConnection.assetBundleUrl) 
+        {
             if (coroutine != null) StopCoroutine(coroutine);
             if (request != null && !request.isDone) request.Abort();
-            coroutine = DownloadAssetBundleAndSetFoodModel(foodModelConnection);
+            coroutine = DownloadAssetBundleAndSetFoodModel();
             foodManager.DestroyFoodModel();
             foodManager.RemoveFoodModelConnection();
-            foodManager.SetFoodModelConnection(foodModelConnection);
+            foodManager.FoodModelConnection = foodModelConnection;
             if (foodManager.hasFoodModelBeenPlaced == true)
             {
                 foodManager.isChanging = true;
@@ -50,13 +52,16 @@ public class AssetDownloader : MonoBehaviour {
         }
     }
 
-    IEnumerator DownloadAssetBundleAndSetFoodModel(FoodModelConnection foodModelConnection)
+    IEnumerator DownloadAssetBundleAndSetFoodModel()
     {
+        FoodModelConnection foodModelConnection = FoodManager.Instance.foodModelConnection;
         request = UnityWebRequestAssetBundle.GetAssetBundle(foodModelConnection.assetBundleUrl, 0, 0);
         yield return request.SendWebRequest();
         foodModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
         GameObject foodModelAsset = foodModelConnection.bundle.LoadAsset<GameObject>(foodModelConnection.prefabName);
-        foodModelConnection.foodModel = Instantiate(foodModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        GameObject foodModel = Instantiate(foodModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        DontDestroyOnLoad(foodModel);
+        foodModelConnection.foodModel = foodModel;
     }
 
     IEnumerator DownloadAssetBundleAndSetDecorModel(DecorModelConnection decorModelConnection)
