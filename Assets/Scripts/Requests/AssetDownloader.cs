@@ -61,10 +61,13 @@ public class AssetDownloader : MonoBehaviour {
 
     IEnumerator DownloadAssetBundleAndSetDecorModel(DecorModelConnection decorModelConnection)
     {
+        decorManager.onLoadingStarted.Invoke();
         request = UnityWebRequestAssetBundle.GetAssetBundle(decorModelConnection.assetBundleUrl, 0, 0);
         yield return request.SendWebRequest();
         decorModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
         GameObject decorModelAsset = decorModelConnection.bundle.LoadAsset<GameObject>(decorModelConnection.prefabName);
         decorModelConnection.decorModel = Instantiate(decorModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        decorManager.AddModelToDict(decorModelConnection.decorModel, decorModelConnection);
+        decorManager.onLoadingFinished.Invoke();
     }
 }
