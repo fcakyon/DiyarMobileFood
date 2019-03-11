@@ -75,6 +75,7 @@ public class TouchManagerARScene : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, 500f, modelLayerMask))
                 {
                     currentSelected = hit.collider.gameObject.transform.parent.gameObject;
+                    decorManager.SetDecorModelConnectionUsingModel(currentSelected);
                 }
             }
             else if (touch.phase == TouchPhase.Moved)
@@ -93,21 +94,19 @@ public class TouchManagerARScene : MonoBehaviour
         else if (Input.touchCount == 2)
         {
             Touch touch = Input.GetTouch(0);
-            Debug.Log(touch.phase); 
             if (touch.phase == TouchPhase.Moved)
             {
                 TouchMovementCalculator.Calculate();
                 RaycastHit hit;
-                Debug.Log(TouchMovementCalculator.avgTouchPosition);
                 Ray ray = Camera.main.ScreenPointToRay(TouchMovementCalculator.avgTouchPosition);
                 if (Physics.Raycast(ray, out hit, 500f, modelLayerMask))
                 {
                     currentSelected = hit.collider.gameObject.transform.parent.gameObject;
+                    decorManager.SetDecorModelConnectionUsingModel(currentSelected);
                 }
 
                 if (currentSelected != null)
                 {
-
                     if (currentSelected.activeSelf == true)
                     {
                         //if (scaleText.IsActive() == false)
@@ -149,11 +148,7 @@ public class TouchManagerARScene : MonoBehaviour
                         desiredRotation.z = 0;
 
                         currentSelected.transform.rotation = desiredRotation;
-
-
-
                     }
-
                 }
             }
             else
@@ -161,13 +156,6 @@ public class TouchManagerARScene : MonoBehaviour
                 //scaleText.enabled = false;
                 //currentSelected = null;
             }
-
-
-
-
-
         }
-
-
     }
 }

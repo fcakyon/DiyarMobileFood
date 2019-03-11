@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Experimental.XR;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -9,16 +10,30 @@ public class DecorManager : MonoBehaviour
     //[HideInInspector]
     public DecorModelConnection decorModelConnection;
     public LayerMask planeLayerMask;
+
+    public GameObject loadingCircle;
+    public GameObject toggleButton;
+    public GameObject addButton;
     public GameObject fixButton;
+    public GameObject deleteButton;
     public GameObject resetButton;
 
     public float modelLerpSpeed = 4f;
     public bool isPlacing = false;
     public Vector3 lastPlacementPos;
 
+    public UnityEvent onLoadingStarted;
+    public UnityEvent onLoadingFinished;
     GameObject surfacePlane;
+    public Dictionary<GameObject, DecorModelConnection> allModelsDict = new Dictionary<GameObject, DecorModelConnection>();
 
     public bool is3DScene;
+
+    private void OnEnable()
+    {
+        if (onLoadingStarted == null) onLoadingStarted = new UnityEvent();
+        if (onLoadingFinished == null) onLoadingFinished = new UnityEvent();
+    }
 
     private void Start()
     {
@@ -29,7 +44,7 @@ public class DecorManager : MonoBehaviour
 
     void Update()
     {
-        if (decorModelConnection != null && decorModelConnection.hasDecorModelBeenPlaced != true)
+        if (decorModelConnection != null && decorModelConnection.decorModel != null && decorModelConnection.hasDecorModelBeenPlaced != true)
         {
             AutoPlaceModel();
         }
@@ -63,7 +78,7 @@ public class DecorManager : MonoBehaviour
     {
         if (decorModelConnection.hasDecorModelBeenPlaced == false)
         {
-            HideFixButton();
+            UIIdleState();
             decorModelConnection.hasDecorModelBeenPlaced = true;
             decorModelConnection.GetGameObjectToPlace().transform.position = lastPlacementPos;
             Vector3 localPosition = decorModelConnection.GetGameObjectToPlace().transform.localPosition;
@@ -72,20 +87,31 @@ public class DecorManager : MonoBehaviour
         }
     }
 
-    public void SetDecorModelConnection(DecorModelConnection DecorModelConnectionScript)
+    public void SetDecorModelConnection(DecorModelConnection newDecorModelConnection)
     {
-        DestroyDecorModel();
-        this.decorModelConnection = DecorModelConnectionScript;
+        this.decorModelConnection = newDecorModelConnection;
+    }
+
+    public void SetDecorModelConnectionUsingModel(GameObject decorModel)
+    {
+        DecorModelConnection newDecorModelConnection = allModelsDict[decorModel];
+        SetDecorModelConnection(newDecorModelConnection);
     }
 
     public void DestroyDecorModel()
     {
         if (decorModelConnection != null) decorModelConnection.DestroyDecorModel();
+        RemoveDecorModelConnection();
     }
 
     public void RemoveDecorModelConnection()
     {
         decorModelConnection = null;
+    }
+
+    public void AddModelToDict(GameObject decorModel, DecorModelConnection decorModelConnection)
+    {
+        allModelsDict.Add(decorModel, decorModelConnection);
     }
 
     public void LoadDecorARScene()
@@ -100,14 +126,41 @@ public class DecorManager : MonoBehaviour
         SceneManager.LoadScene("Decor3DScene");
     }
 
-    public void ApearFixButton()
+    public void UILoadingState()
     {
-        fixButton.SetActive(true); ;
+        loadingCircle.SetActive(true);
+        toggleButton.SetActive(false);
+        addButton.SetActive(false);
+
+        if (is3DScene == false)
+        {
+            fixButton.SetActive(false);
+            deleteButton.SetActive(false);
+        }
     }
 
-    public void HideFixButton()
+    public void UIIdleState()
     {
-        fixButton.SetActive(false); ;
+        loadingCircle.SetActive(false);
+        toggleButton.SetActive(true);
+        addButton.SetActive(true);
+
+        if (is3DScene == false)
+        {
+            fixButton.SetActive(false);
+            deleteButton.SetActive(true);
+        }
     }
 
+    public void UIAutoPlaceState()
+    {
+        if (is3DScene == false)
+        {
+            loadingCircle.SetActive(false);
+            toggleButton.SetActive(false);
+            addButton.SetActive(false);
+            fixButton.SetActive(true);
+            deleteButton.SetActive(true);
+        }
+    }
 }

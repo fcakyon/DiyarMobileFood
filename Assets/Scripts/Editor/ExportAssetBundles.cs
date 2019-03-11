@@ -5,10 +5,10 @@ using System.IO;
 
 public class CreateAssetBundles
 {
-    [MenuItem("Assets/Build AssetBundles")]
-    static void BuildAllAssetBundles()
+    [MenuItem("Assets/Build IOS AssetBundles")]
+    static void BuildAllIOSAssetBundles()
     {
-        string assetBundleDirectory = "Assets/AssetBundles";
+        string assetBundleDirectory = "Assets/IOS_AssetBundles";
         if (!Directory.Exists(assetBundleDirectory))
         {
             Directory.CreateDirectory(assetBundleDirectory);
@@ -16,7 +16,17 @@ public class CreateAssetBundles
         BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.iOS);
     }
 
-//    [MenuItem("Assets/Clear Cache")]
+    [MenuItem("Assets/Build Android AssetBundles")]
+    static void BuildAllAndroidAssetBundles()
+    {
+        string assetBundleDirectory = "Assets/Android_AssetBundles";
+        if (!Directory.Exists(assetBundleDirectory))
+        {
+            Directory.CreateDirectory(assetBundleDirectory);
+        }
+        BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.Android);
+    }
+
     static void ClearCashe()
     {
     	Caching.ClearCache();
