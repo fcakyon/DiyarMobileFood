@@ -13,7 +13,7 @@ public class DecorDelete : MonoBehaviour, IClickable
                 gameObject.SetActive(true);
                 break;
             case (int)DecorManager.UIStatesEnum.Idle:
-                gameObject.SetActive(false);
+                gameObject.SetActive(true);
                 break;
             case (int)DecorManager.UIStatesEnum.Loading:
                 gameObject.SetActive(false);

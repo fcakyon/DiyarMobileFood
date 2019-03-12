@@ -75,7 +75,7 @@ public class TouchManagerARScene : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, 500f, modelLayerMask))
                 {
                     currentSelected = hit.collider.gameObject.transform.parent.gameObject;
-                    decorManager.SetDecorModelConnectionUsingModel(currentSelected);
+                    DecorManager.Instance.SetDecorModelConnectionUsingModel(currentSelected);
                 }
             }
             else if (touch.phase == TouchPhase.Moved)
@@ -102,7 +102,7 @@ public class TouchManagerARScene : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, 500f, modelLayerMask))
                 {
                     currentSelected = hit.collider.gameObject.transform.parent.gameObject;
-                    decorManager.SetDecorModelConnectionUsingModel(currentSelected);
+                    DecorManager.Instance.SetDecorModelConnectionUsingModel(currentSelected);
                 }
 
                 if (currentSelected != null)
