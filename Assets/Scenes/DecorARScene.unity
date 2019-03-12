@@ -486,7 +486,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00061035156}
-  m_SizeDelta: {x: 0, y: 151.39722}
+  m_SizeDelta: {x: 0, y: 898.8323}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &108186832
 MonoBehaviour:
@@ -2794,13 +2794,14 @@ GameObject:
   - component: {fileID: 482276248}
   - component: {fileID: 482276247}
   - component: {fileID: 482276246}
+  - component: {fileID: 482276252}
   m_Layer: 5
   m_Name: Fix
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &482276245
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2910,18 +2911,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 482276250}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1177153893}
-        m_MethodName: FixDecorModelPlace
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &482276250
@@ -2958,6 +2948,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 482276244}
   m_CullTransparentMesh: 0
+--- !u!114 &482276252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 482276244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb38fbffd20f40518a63a86366c4dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &487232407
 GameObject:
   m_ObjectHideFlags: 0
@@ -4600,8 +4601,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 885.00006, y: -1823.6028}
-  m_SizeDelta: {x: 1770.0001, y: 1573.6028}
+  m_AnchoredPosition: {x: 885.00006, y: -1076.1677}
+  m_SizeDelta: {x: 1770.0001, y: 826.1677}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &816587830
 MonoBehaviour:
@@ -5037,7 +5038,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00012207031}
-  m_SizeDelta: {x: 0, y: -1573.6027}
+  m_SizeDelta: {x: 0, y: -826.1676}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &828499689
 MonoBehaviour:
@@ -6509,7 +6510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1177153893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6521,52 +6522,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553f9a2616aa84e3f84a52b348345147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decorModelConnection: {fileID: 0}
   planeLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  loadingCircle: {fileID: 1990770917}
-  toggleButton: {fileID: 1957313314}
-  addButton: {fileID: 1873913509}
-  fixButton: {fileID: 482276244}
-  deleteButton: {fileID: 1241808734}
-  resetButton: {fileID: 1937418549}
   modelLerpSpeed: 4
   isPlacing: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}
-  onLoadingStarted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1177153893}
-        m_MethodName: UILoadingState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onLoadingFinished:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1177153893}
-        m_MethodName: UIAutoPlaceState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   is3DScene: 0
+  OnUIStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!4 &1177153894
 Transform:
   m_ObjectHideFlags: 0
@@ -6912,6 +6879,7 @@ GameObject:
   - component: {fileID: 1241808739}
   - component: {fileID: 1241808738}
   - component: {fileID: 1241808737}
+  - component: {fileID: 1241808736}
   m_Layer: 5
   m_Name: Delete
   m_TagString: Untagged
@@ -6938,6 +6906,17 @@ RectTransform:
   m_AnchoredPosition: {x: 238, y: 252}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1241808736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1241808734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc4115c929dc4f3ca8b0852bb0deaac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1241808737
 Animator:
   serializedVersion: 3
@@ -7027,18 +7006,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1241808741}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1177153893}
-        m_MethodName: DestroyDecorModel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1241808741
@@ -10494,6 +10462,7 @@ GameObject:
   - component: {fileID: 1873913513}
   - component: {fileID: 1873913512}
   - component: {fileID: 1873913511}
+  - component: {fileID: 1873913517}
   m_Layer: 5
   m_Name: Add
   m_TagString: Untagged
@@ -10657,6 +10626,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1873913509}
   m_CullTransparentMesh: 0
+--- !u!114 &1873913517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1873913509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc508e73f9494103a56f880ee11cbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1890687465
 GameObject:
   m_ObjectHideFlags: 0
@@ -10902,14 +10882,17 @@ MonoBehaviour:
   planeLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  fixButton: {fileID: 482276244}
-  resetButton: {fileID: 0}
   modelLerpSpeed: 4
   isPlacing: 0
   isChanging: 0
   hasFoodModelBeenPlaced: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}
   is3DScene: 0
+  OnUIStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1937418549
 GameObject:
   m_ObjectHideFlags: 0
@@ -10925,6 +10908,7 @@ GameObject:
   - component: {fileID: 1937418553}
   - component: {fileID: 1937418552}
   - component: {fileID: 1937418558}
+  - component: {fileID: 1937418551}
   m_Layer: 5
   m_Name: Reset
   m_TagString: Untagged
@@ -10951,6 +10935,17 @@ RectTransform:
   m_AnchoredPosition: {x: -783, y: 349.99997}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1937418551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1937418549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 657bca256274740c29778d91384dbde4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1937418552
 Animator:
   serializedVersion: 3
@@ -11040,29 +11035,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1937418556}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1937418558}
-        m_MethodName: ButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1924173900}
-        m_MethodName: HideFoodModel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1937418556
@@ -11112,7 +11085,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasFoodPositionBeenPlaced: 0
   foodPositionModel: {fileID: 2101428302}
-  foodManager: {fileID: 0}
 --- !u!1 &1942322365
 GameObject:
   m_ObjectHideFlags: 0
@@ -11265,6 +11237,7 @@ GameObject:
   - component: {fileID: 1957313318}
   - component: {fileID: 1957313317}
   - component: {fileID: 1957313316}
+  - component: {fileID: 1957313322}
   m_Layer: 5
   m_Name: Toogle
   m_TagString: Untagged
@@ -11380,18 +11353,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1957313320}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1177153893}
-        m_MethodName: LoadDecor3DScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Popup Panel In
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1957313320
@@ -11428,6 +11390,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1957313314}
   m_CullTransparentMesh: 0
+--- !u!114 &1957313322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957313314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e79372362024fec9c6d98ace3b6b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1982871084
 GameObject:
   m_ObjectHideFlags: 0
@@ -11493,13 +11466,14 @@ GameObject:
   - component: {fileID: 1990770919}
   - component: {fileID: 1990770918}
   - component: {fileID: 1990770921}
+  - component: {fileID: 1990770922}
   m_Layer: 5
   m_Name: Loading Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1990770918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11562,6 +11536,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdcd0bba3d70344f4945fa0abba77968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1990770922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1990770917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec5afd4ee75c469eb6c8b8bd24847b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2015474517
@@ -11804,8 +11789,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c139742919a314864b5f0661d73e07ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodManager: {fileID: 1924173900}
-  decorManager: {fileID: 1177153893}
 --- !u!4 &2042436136
 Transform:
   m_ObjectHideFlags: 0
@@ -12061,7 +12044,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasDecorModelBeenPlaced: 0
   decorModel: {fileID: 0}
-  decorManager: {fileID: 0}
   assetBundleUrl: 
   prefabName: 
   bundle: {fileID: 0}
@@ -12295,8 +12277,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 885.00006, y: -1823.6027}
-  m_SizeDelta: {x: 1770.0001, y: 1573.6027}
+  m_AnchoredPosition: {x: 885.00006, y: -1076.1676}
+  m_SizeDelta: {x: 1770.0001, y: 826.1676}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2143995223
 MonoBehaviour:

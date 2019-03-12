@@ -8,44 +8,25 @@ public class DecorModelConnection : MonoBehaviour
     
     public bool hasDecorModelBeenPlaced = false;
     public GameObject decorModel;
-    public DecorManager decorManager;
     public string assetBundleUrl;
     [HideInInspector]
-    public string prefabName;
+    public string prefabName = "model";
     [HideInInspector]
     public AssetBundle bundle;
     public AssetDownloader assetDownloader;
 
-    // Use this for initialization
     void Start()
     {
         Button button = gameObject.GetComponent<Button>();
-        button.onClick.AddListener(ButtonClicked);
-
+        if (button != null) button.onClick.AddListener(ButtonClicked);
     }
 
-    // Update is called once per frame
     void Update()
-    {
-
-    }
+    {}
 
     public void ButtonClicked()
     {
-        hasDecorModelBeenPlaced = false;
         assetDownloader.ModelSelectHandler(this);
-    }
-
-    public GameObject GetGameObjectToPlace()
-    {
-        return decorModel;
-    }
-
-    public void VanishDecorModel()
-    {
-        hasDecorModelBeenPlaced = false;
-        decorManager.DestroyDecorModel();
-        decorManager.RemoveDecorModelConnection();
     }
 
     public void DestroyDecorModel()
@@ -54,6 +35,7 @@ public class DecorModelConnection : MonoBehaviour
         {
             bundle.Unload(true);
             Destroy(decorModel);
+            Destroy(gameObject);
         }
     }
 }

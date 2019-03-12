@@ -16,14 +16,12 @@ public class FoodModelConnection : MonoBehaviour
     public AssetBundle bundle;
     public AssetDownloader assetDownloader;
 
-    // Use this for initialization
     void Start()
     {
         Button button = gameObject.GetComponent<Button>();
         if(button != null) button.onClick.AddListener(ButtonClicked);
     }
 
-    // Update is called once per frame
     void Update()
     {}
 
@@ -32,17 +30,13 @@ public class FoodModelConnection : MonoBehaviour
         assetDownloader.ModelSelectHandler(this);
     }
 
-    public GameObject GetGameObjectToPlace()
-    {
-        return foodModel;
-    }
-
-    public void DestroyFoodModel()
+    public void DestroyGameObject()
     {
         if (bundle != null)
         {
             bundle.Unload(true);
             Destroy(foodModel);
+            Destroy(gameObject);
         }
     }
 }

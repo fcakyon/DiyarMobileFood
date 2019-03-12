@@ -5,74 +5,71 @@ using UnityEngine.Networking;
 
 public class AssetDownloader : MonoBehaviour {
 
-    public FoodManager foodManager;
-    public DecorManager decorManager;
     private IEnumerator coroutine;
-    UnityWebRequest request;
+    private UnityWebRequest request;
 
-
-    // Use this for initialization
     void Start () {
         Caching.ClearCache();
     }
 	
-	// Update is called once per frame
 	void Update () {}
 
     public void ModelSelectHandler(FoodModelConnection foodModelConnection)
     {
-        if(foodManager.FoodModelConnection == null || 
-            foodManager.FoodModelConnection.assetBundleUrl != foodModelConnection.assetBundleUrl) 
+        if(FoodManager.Instance.FoodModelConnection == null ||
+            FoodManager.Instance.FoodModelConnection.assetBundleUrl != foodModelConnection.assetBundleUrl) 
         {
             if (coroutine != null) StopCoroutine(coroutine);
             if (request != null && !request.isDone) request.Abort();
             coroutine = DownloadAssetBundleAndSetFoodModel();
-            foodManager.DestroyFoodModel();
-            foodManager.RemoveFoodModelConnection();
-            foodManager.FoodModelConnection = foodModelConnection;
-            if (foodManager.hasFoodModelBeenPlaced == true)
-            {
-                foodManager.isChanging = true;
-            }
+            FoodManager.Instance.RemoveConnection();
+            FoodManager.Instance.FoodModelConnection = foodModelConnection;
+            if (FoodManager.Instance.hasFoodModelBeenPlaced == true)
+                FoodManager.Instance.isChanging = true;
             StartCoroutine(coroutine);
         }
     }
 
     public void ModelSelectHandler(DecorModelConnection decorModelConnection)
     {
-        if (decorManager.decorModelConnection != decorModelConnection)
+        if (DecorManager.Instance.DecorModelConnection == null ||
+            DecorManager.Instance.DecorModelConnection.assetBundleUrl != decorModelConnection.assetBundleUrl)
         {
             if (coroutine != null) StopCoroutine(coroutine);
             if (request != null && !request.isDone) request.Abort();
-            coroutine = DownloadAssetBundleAndSetDecorModel(decorModelConnection);
-            if (decorManager.is3DScene == true) decorManager.DestroyDecorModel();
-            decorManager.RemoveDecorModelConnection();
-            decorManager.SetDecorModelConnection(decorModelConnection);
+            coroutine = DownloadAssetBundleAndSetDecorModel();
+            if (DecorManager.Instance.is3DScene == true) DecorManager.Instance.RemoveConnection();
+            DecorManager.Instance.DecorModelConnection = decorModelConnection;
             StartCoroutine(coroutine);
         }
     }
 
     IEnumerator DownloadAssetBundleAndSetFoodModel()
     {
-        FoodModelConnection foodModelConnection = FoodManager.Instance.foodModelConnection;
-        request = UnityWebRequestAssetBundle.GetAssetBundle(foodModelConnection.assetBundleUrl, 0, 0);
+        FoodManager.Instance.UiState = (int)FoodManager.UIStatesEnum.Loading;
+        request = UnityWebRequestAssetBundle.GetAssetBundle(FoodManager.Instance.FoodModelConnection.assetBundleUrl, 0, 0);
         yield return request.SendWebRequest();
-        foodModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
-        GameObject foodModelAsset = foodModelConnection.bundle.LoadAsset<GameObject>(foodModelConnection.prefabName);
+        FoodManager.Instance.FoodModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
+        GameObject foodModelAsset = FoodManager.Instance.FoodModelConnection.bundle.LoadAsset<GameObject>(FoodManager.Instance.FoodModelConnection.prefabName);
         GameObject foodModel = Instantiate(foodModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         DontDestroyOnLoad(foodModel);
-        foodModelConnection.foodModel = foodModel;
+        FoodManager.Instance.FoodModelConnection.foodModel = foodModel;
+        if(FoodManager.Instance.is3DScene) FoodManager.Instance.UiState = (int)FoodManager.UIStatesEnum.Idle;
+        else FoodManager.Instance.UiState = (int)FoodManager.UIStatesEnum.AutoPlace;
     }
 
-    IEnumerator DownloadAssetBundleAndSetDecorModel(DecorModelConnection decorModelConnection)
+    IEnumerator DownloadAssetBundleAndSetDecorModel()
     {
-        decorManager.onLoadingStarted.Invoke();
-        request = UnityWebRequestAssetBundle.GetAssetBundle(decorModelConnection.assetBundleUrl, 0, 0);
+        DecorManager.Instance.UiState = (int)DecorManager.UIStatesEnum.Loading;
+        request = UnityWebRequestAssetBundle.GetAssetBundle(DecorManager.Instance.DecorModelConnection.assetBundleUrl, 0, 0);
         yield return request.SendWebRequest();
-        decorModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
-        GameObject decorModelAsset = decorModelConnection.bundle.LoadAsset<GameObject>(decorModelConnection.prefabName);
-        decorModelConnection.decorModel = Instantiate(decorModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        decorManager.AddModelToDict(decorModelConnection.decorModel, decorModelConnection);
-        decorManager.onLoadingFinished.Invoke();
+        DecorManager.Instance.DecorModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
+        GameObject decorModelAsset = DecorManager.Instance.DecorModelConnection.bundle.LoadAsset<GameObject>(DecorManager.Instance.DecorModelConnection.prefabName);
+        GameObject decorModel = Instantiate(decorModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        DontDestroyOnLoad(decorModel);
+        DecorManager.Instance.DecorModelConnection.decorModel = decorModel;
+        DecorManager.Instance.AddModelToDict(DecorManager.Instance.DecorModelConnection.decorModel, DecorManager.Instance.DecorModelConnection);
+        if (DecorManager.Instance.is3DScene) DecorManager.Instance.UiState = (int)DecorManager.UIStatesEnum.Idle;
+        else DecorManager.Instance.UiState = (int)DecorManager.UIStatesEnum.AutoPlace;
     }
 }

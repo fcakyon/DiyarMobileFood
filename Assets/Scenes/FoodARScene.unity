@@ -738,6 +738,75 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 142366790}
   m_CullTransparentMesh: 0
+--- !u!1 &158954440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 158954441}
+  - component: {fileID: 158954443}
+  - component: {fileID: 158954442}
+  m_Layer: 5
+  m_Name: Progress
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &158954441
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 158954440}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 642212024}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.010131836, y: -0.0024871826}
+  m_SizeDelta: {x: -0.02681613, y: -0.028580666}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &158954442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 158954440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: a8cbcdbafadfe46abafb35588afb0c5b, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 0.1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &158954443
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 158954440}
+  m_CullTransparentMesh: 0
 --- !u!1 &164794799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,6 +1594,7 @@ GameObject:
   - component: {fileID: 289779758}
   - component: {fileID: 289779757}
   - component: {fileID: 289779756}
+  - component: {fileID: 289779762}
   m_Layer: 5
   m_Name: Toogle
   m_TagString: Untagged
@@ -1641,7 +1711,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1924173900}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadFood3DScene
         m_Mode: 1
         m_Arguments:
@@ -1688,6 +1758,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 289779754}
   m_CullTransparentMesh: 0
+--- !u!114 &289779762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 289779754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cb4ed51c18043a8984a453d2d186a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &291663453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2902,13 +2983,14 @@ GameObject:
   - component: {fileID: 482276248}
   - component: {fileID: 482276247}
   - component: {fileID: 482276246}
+  - component: {fileID: 482276252}
   m_Layer: 5
   m_Name: Fix
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &482276245
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3017,29 +3099,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 482276250}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1924173900}
-        m_MethodName: FixFoodModelPlace
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1924173900}
-        m_MethodName: ApearResetButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &482276250
@@ -3076,6 +3136,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 482276244}
   m_CullTransparentMesh: 0
+--- !u!114 &482276252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 482276244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e78bafd458314f67bb7321a3aa717d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &509711745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3768,6 +3839,100 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 584491642}
+  m_CullTransparentMesh: 0
+--- !u!1 &642212023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 642212024}
+  - component: {fileID: 642212028}
+  - component: {fileID: 642212027}
+  - component: {fileID: 642212026}
+  - component: {fileID: 642212025}
+  m_Layer: 5
+  m_Name: Loading Circle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &642212024
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 642212023}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 5.000011, y: 5.000011, z: 5.000011}
+  m_Children:
+  - {fileID: 158954441}
+  m_Father: {fileID: 1845219689}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 19.999968, y: 270.00003}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &642212025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 642212023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28cac6c05a3834fb584221d29290d9c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &642212026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 642212023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcd0bba3d70344f4945fa0abba77968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &642212027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 642212023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: a8cbcdbafadfe46abafb35588afb0c5b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &642212028
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 642212023}
   m_CullTransparentMesh: 0
 --- !u!1 &646518693
 GameObject:
@@ -9261,7 +9426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26eb0591e6a0e451280c0358ab467a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodManager: {fileID: 1924173900}
+  foodManager: {fileID: 0}
   decorManager: {fileID: 0}
 --- !u!4 &1711672237
 Transform:
@@ -9274,7 +9439,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1717987921
 GameObject:
@@ -10107,8 +10272,9 @@ RectTransform:
   - {fileID: 1942322366}
   - {fileID: 557076344}
   - {fileID: 2035805120}
+  - {fileID: 642212024}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10254,6 +10420,7 @@ GameObject:
   - component: {fileID: 1873913513}
   - component: {fileID: 1873913512}
   - component: {fileID: 1873913511}
+  - component: {fileID: 1873913517}
   m_Layer: 5
   m_Name: Add
   m_TagString: Untagged
@@ -10417,6 +10584,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1873913509}
   m_CullTransparentMesh: 0
+--- !u!114 &1873913517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1873913509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be46ea85e93f476a9f681695768ffac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1890687465
 GameObject:
   m_ObjectHideFlags: 0
@@ -10618,57 +10796,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1917610189}
   m_CullTransparentMesh: 0
---- !u!1 &1924173897
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1924173898}
-  - component: {fileID: 1924173900}
-  m_Layer: 0
-  m_Name: FoodManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1924173898
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1924173897}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1924173900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1924173897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc87445288815433f9a9ce4fe0d25ff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  planeLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  fixButton: {fileID: 482276244}
-  resetButton: {fileID: 1937418549}
-  modelLerpSpeed: 4
-  isPlacing: 0
-  isChanging: 0
-  hasFoodModelBeenPlaced: 0
-  lastPlacementPos: {x: 0, y: 0, z: 0}
-  is3DScene: 0
 --- !u!1 &1937418549
 GameObject:
   m_ObjectHideFlags: 0
@@ -10683,13 +10810,14 @@ GameObject:
   - component: {fileID: 1937418554}
   - component: {fileID: 1937418553}
   - component: {fileID: 1937418552}
+  - component: {fileID: 1937418551}
   m_Layer: 5
   m_Name: Reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1937418550
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10709,6 +10837,17 @@ RectTransform:
   m_AnchoredPosition: {x: -783, y: 349.99997}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1937418551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1937418549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5759c7724092f48d4be25153fbf36a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &1937418552
 Animator:
   serializedVersion: 3
@@ -10798,18 +10937,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1937418556}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1924173900}
-        m_MethodName: Reset
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1937418556
@@ -11065,16 +11193,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553f9a2616aa84e3f84a52b348345147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decorModelConnection: {fileID: 0}
   planeLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  fixButton: {fileID: 0}
-  resetButton: {fileID: 0}
   modelLerpSpeed: 4
   isPlacing: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}
   is3DScene: 0
+  OnUIStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!4 &2008100160
 Transform:
   m_ObjectHideFlags: 0
@@ -11086,7 +11216,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2015474517
 GameObject:
@@ -11334,8 +11464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c139742919a314864b5f0661d73e07ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodManager: {fileID: 1924173900}
-  decorManager: {fileID: 2008100157}
 --- !u!4 &2042436136
 Transform:
   m_ObjectHideFlags: 0
@@ -11347,7 +11475,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2067781161
 GameObject:
@@ -11514,7 +11642,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1924173900}
+      - m_Target: {fileID: 0}
         m_MethodName: ApearFixButton
         m_Mode: 1
         m_Arguments:
@@ -11623,7 +11751,7 @@ RectTransform:
   m_Children:
   - {fileID: 1803680800}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

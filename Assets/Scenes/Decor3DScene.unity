@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 10475132}
   - component: {fileID: 10475131}
   - component: {fileID: 10475130}
+  - component: {fileID: 10475136}
   m_Layer: 5
   m_Name: Add
   m_TagString: Untagged
@@ -432,6 +433,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 10475128}
   m_CullTransparentMesh: 0
+--- !u!114 &10475136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 10475128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc508e73f9494103a56f880ee11cbc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &12583146
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,8 +759,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c139742919a314864b5f0661d73e07ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodManager: {fileID: 1924173900}
-  decorManager: {fileID: 655157764}
 --- !u!4 &30107483
 Transform:
   m_ObjectHideFlags: 0
@@ -1038,8 +1048,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00024414062}
-  m_SizeDelta: {x: 0, y: -1573.6027}
+  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_SizeDelta: {x: 0, y: -826.1676}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &78512082
 MonoBehaviour:
@@ -1371,7 +1381,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00061035156}
-  m_SizeDelta: {x: 0, y: 151.39722}
+  m_SizeDelta: {x: 0, y: 898.8323}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &106873652
 MonoBehaviour:
@@ -1768,6 +1778,7 @@ GameObject:
   - component: {fileID: 149347977}
   - component: {fileID: 149347976}
   - component: {fileID: 149347975}
+  - component: {fileID: 149347981}
   m_Layer: 5
   m_Name: Toogle
   m_TagString: Untagged
@@ -1931,6 +1942,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 149347973}
   m_CullTransparentMesh: 0
+--- !u!114 &149347981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 149347973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e79372362024fec9c6d98ace3b6b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &152484674
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,13 +2326,14 @@ GameObject:
   - component: {fileID: 318764930}
   - component: {fileID: 318764929}
   - component: {fileID: 318764928}
+  - component: {fileID: 318764931}
   m_Layer: 5
   m_Name: Loading Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &318764927
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2375,6 +2398,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 318764926}
   m_CullTransparentMesh: 0
+--- !u!114 &318764931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 318764926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec5afd4ee75c469eb6c8b8bd24847b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &323299152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2900,8 +2934,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 885.00006, y: -1823.6028}
-  m_SizeDelta: {x: 1770.0001, y: 1573.6028}
+  m_AnchoredPosition: {x: 885.00006, y: -1076.1677}
+  m_SizeDelta: {x: 1770.0001, y: 826.1677}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &415444248
 MonoBehaviour:
@@ -3984,52 +4018,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553f9a2616aa84e3f84a52b348345147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decorModelConnection: {fileID: 0}
   planeLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  loadingCircle: {fileID: 318764926}
-  toggleButton: {fileID: 149347973}
-  addButton: {fileID: 10475128}
-  fixButton: {fileID: 0}
-  deleteButton: {fileID: 0}
-  resetButton: {fileID: 0}
   modelLerpSpeed: 4
   isPlacing: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}
-  onLoadingStarted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 655157764}
-        m_MethodName: UILoadingState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onLoadingFinished:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 655157764}
-        m_MethodName: UIIdleState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   is3DScene: 1
+  OnUIStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!4 &655157767
 Transform:
   m_ObjectHideFlags: 0
@@ -4572,8 +4572,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 885.00006, y: -1823.6027}
-  m_SizeDelta: {x: 1770.0001, y: 1573.6027}
+  m_AnchoredPosition: {x: 885.00006, y: -1076.1676}
+  m_SizeDelta: {x: 1770.0001, y: 826.1676}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &696831711
 MonoBehaviour:
@@ -5663,7 +5663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -20.000061}
+  m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &892062252
@@ -6523,6 +6523,7 @@ GameObject:
   - component: {fileID: 1093094136}
   - component: {fileID: 1093094135}
   - component: {fileID: 1093094134}
+  - component: {fileID: 1093094141}
   m_Layer: 5
   m_Name: Reset
   m_TagString: Untagged
@@ -6562,7 +6563,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasFoodPositionBeenPlaced: 0
   foodPositionModel: {fileID: 0}
-  foodManager: {fileID: 0}
 --- !u!95 &1093094135
 Animator:
   serializedVersion: 3
@@ -6711,6 +6711,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1093094132}
   m_CullTransparentMesh: 0
+--- !u!114 &1093094141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1093094132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 657bca256274740c29778d91384dbde4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1100674362
 GameObject:
   m_ObjectHideFlags: 0
@@ -8020,6 +8031,7 @@ GameObject:
   - component: {fileID: 1317442514}
   - component: {fileID: 1317442513}
   - component: {fileID: 1317442512}
+  - component: {fileID: 1317442518}
   m_Layer: 5
   m_Name: Fix
   m_TagString: Untagged
@@ -8184,6 +8196,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1317442510}
   m_CullTransparentMesh: 0
+--- !u!114 &1317442518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1317442510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb38fbffd20f40518a63a86366c4dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1321938871
 GameObject:
   m_ObjectHideFlags: 0
@@ -11043,14 +11066,17 @@ MonoBehaviour:
   planeLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  fixButton: {fileID: 0}
-  resetButton: {fileID: 0}
   modelLerpSpeed: 4
   isPlacing: 0
   isChanging: 0
   hasFoodModelBeenPlaced: 0
   lastPlacementPos: {x: 0, y: 0, z: 0}
   is3DScene: 1
+  OnUIStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1925820590
 GameObject:
   m_ObjectHideFlags: 0
@@ -11711,7 +11737,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasDecorModelBeenPlaced: 0
   decorModel: {fileID: 0}
-  decorManager: {fileID: 655157764}
   assetBundleUrl: 
   prefabName: 
   bundle: {fileID: 0}
