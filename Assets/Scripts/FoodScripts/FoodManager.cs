@@ -147,7 +147,7 @@ public class FoodManager : MonoBehaviour
     public void LoadARScene()
     {
         DontDestroyOnLoad(Instance.FoodModelConnection);
-        DontDestroyOnLoad(Instance.FoodModelConnection.foodModel);
+        DontDestroyOnLoad(Instance.FoodModelConnection.FoodModel);
         SceneManager.LoadScene("FoodARScene");
         is3DScene = false;
         if(Instance.foodModelConnection != null)
