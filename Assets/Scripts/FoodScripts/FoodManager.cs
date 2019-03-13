@@ -62,7 +62,6 @@ public class FoodManager : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("STATE: " + uiState);
         if (FoodModelConnection != null && FoodModelConnection.foodModel != null && hasFoodModelBeenPlaced != true)
         {
             AutoPlaceModel();
@@ -111,6 +110,19 @@ public class FoodManager : MonoBehaviour
             FoodModelConnection.foodModel.transform.position = lastPlacementPos;
             FoodModelConnection.foodModel.transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli
             isChanging = false;
+        }
+    }
+
+    public void ChangeStateAfterLoading()
+    {
+        if (is3DScene)
+            Instance.UiState = (int)UIStatesEnum.Idle;
+        else
+        {
+            if(hasFoodModelBeenPlaced)
+                Instance.UiState = (int)UIStatesEnum.Fixed;
+            else
+                Instance.UiState = (int)UIStatesEnum.AutoPlace;
         }
     }
 

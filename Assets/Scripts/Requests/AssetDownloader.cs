@@ -11,8 +11,8 @@ public class AssetDownloader : MonoBehaviour {
     void Start () {
         Caching.ClearCache();
     }
-	
-	void Update () {}
+    
+    void Update () {}
 
     public void ModelSelectHandler(FoodModelConnection foodModelConnection)
     {
@@ -54,8 +54,7 @@ public class AssetDownloader : MonoBehaviour {
         GameObject foodModel = Instantiate(foodModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         DontDestroyOnLoad(foodModel);
         FoodManager.Instance.FoodModelConnection.foodModel = foodModel;
-        if(FoodManager.Instance.is3DScene) FoodManager.Instance.UiState = (int)FoodManager.UIStatesEnum.Idle;
-        else FoodManager.Instance.UiState = (int)FoodManager.UIStatesEnum.AutoPlace;
+        FoodManager.Instance.ChangeStateAfterLoading();
     }
 
     IEnumerator DownloadAssetBundleAndSetDecorModel()
@@ -69,7 +68,6 @@ public class AssetDownloader : MonoBehaviour {
         DontDestroyOnLoad(decorModel);
         DecorManager.Instance.DecorModelConnection.decorModel = decorModel;
         DecorManager.Instance.AddModelToDict(DecorManager.Instance.DecorModelConnection.decorModel, DecorManager.Instance.DecorModelConnection);
-        if (DecorManager.Instance.is3DScene) DecorManager.Instance.UiState = (int)DecorManager.UIStatesEnum.Idle;
-        else DecorManager.Instance.UiState = (int)DecorManager.UIStatesEnum.AutoPlace;
+        DecorManager.Instance.ChangeStateAfterLoading();
     }
 }

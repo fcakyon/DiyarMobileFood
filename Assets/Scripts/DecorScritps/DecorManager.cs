@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.Experimental.XR;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System;
 
 public class DecorManager : MonoBehaviour
 {
@@ -67,7 +68,6 @@ public class DecorManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("STATE: " + uiState);
         if (DecorModelConnection != null && DecorModelConnection.decorModel != null && DecorModelConnection.hasDecorModelBeenPlaced != true)
         {
             AutoPlaceModel();
@@ -110,6 +110,14 @@ public class DecorManager : MonoBehaviour
             localPosition.y = 0;
             DecorModelConnection.decorModel.transform.localPosition = localPosition;
         }
+    }
+
+    public void ChangeStateAfterLoading()
+    {
+        if (is3DScene)
+            Instance.UiState = (int)UIStatesEnum.Idle;
+        else
+            Instance.UiState = (int)UIStatesEnum.AutoPlace;
     }
 
     public void SetDecorModelConnectionUsingModel(GameObject decorModel)
