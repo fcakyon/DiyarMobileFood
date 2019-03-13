@@ -1049,7 +1049,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -830.0502}
+  m_SizeDelta: {x: 0, y: -1576.3732}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &78512082
 MonoBehaviour:
@@ -1381,7 +1381,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00061035156}
-  m_SizeDelta: {x: 0, y: 894.9497}
+  m_SizeDelta: {x: 0, y: 148.62671}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &106873652
 MonoBehaviour:
@@ -2912,8 +2912,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 885.00006, y: -1080.0503}
-  m_SizeDelta: {x: 1770.0001, y: 830.0503}
+  m_AnchoredPosition: {x: 885.00006, y: -1826.3733}
+  m_SizeDelta: {x: 1770.0001, y: 1576.3733}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &415444248
 MonoBehaviour:
@@ -4550,8 +4550,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 885.00006, y: -1080.0502}
-  m_SizeDelta: {x: 1770.0001, y: 830.0502}
+  m_AnchoredPosition: {x: 885.00006, y: -1826.3732}
+  m_SizeDelta: {x: 1770.0001, y: 1576.3732}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &696831711
 MonoBehaviour:
@@ -6500,7 +6500,6 @@ GameObject:
   - component: {fileID: 1093094137}
   - component: {fileID: 1093094136}
   - component: {fileID: 1093094135}
-  - component: {fileID: 1093094134}
   - component: {fileID: 1093094141}
   m_Layer: 5
   m_Name: Reset
@@ -6528,19 +6527,6 @@ RectTransform:
   m_AnchoredPosition: {x: -783, y: 349.99997}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1093094134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1093094132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed9ddda94a4be4443a499f0a17a7ee6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasFoodPositionBeenPlaced: 0
-  foodPositionModel: {fileID: 0}
 --- !u!95 &1093094135
 Animator:
   serializedVersion: 3
@@ -6630,29 +6616,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1093094139}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1093094134}
-        m_MethodName: ButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: HideFoodModel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1093094139
