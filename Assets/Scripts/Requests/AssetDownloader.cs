@@ -52,7 +52,6 @@ public class AssetDownloader : MonoBehaviour {
         FoodManager.Instance.FoodModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
         GameObject foodModelAsset = FoodManager.Instance.FoodModelConnection.bundle.LoadAsset<GameObject>(FoodManager.Instance.FoodModelConnection.prefabName);
         GameObject foodModel = Instantiate(foodModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        DontDestroyOnLoad(foodModel);
         FoodManager.Instance.FoodModelConnection.foodModel = foodModel;
         FoodManager.Instance.ChangeStateAfterLoading();
     }
@@ -65,7 +64,6 @@ public class AssetDownloader : MonoBehaviour {
         DecorManager.Instance.DecorModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
         GameObject decorModelAsset = DecorManager.Instance.DecorModelConnection.bundle.LoadAsset<GameObject>(DecorManager.Instance.DecorModelConnection.prefabName);
         GameObject decorModel = Instantiate(decorModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        DontDestroyOnLoad(decorModel);
         DecorManager.Instance.DecorModelConnection.decorModel = decorModel;
         DecorManager.Instance.AddModelToDict(DecorManager.Instance.DecorModelConnection.decorModel, DecorManager.Instance.DecorModelConnection);
         DecorManager.Instance.ChangeStateAfterLoading();

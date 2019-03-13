@@ -31,7 +31,6 @@ public class DecorManager : MonoBehaviour
             if (value != null)
             {
                 DecorModelConnection decorModelConnectionGameObject = Instantiate(value);
-                DontDestroyOnLoad(decorModelConnectionGameObject);
                 Instance.decorModelConnection = decorModelConnectionGameObject;
             }
         }
@@ -139,6 +138,8 @@ public class DecorManager : MonoBehaviour
 
     public void LoadARScene()
     {
+        DontDestroyOnLoad(Instance.DecorModelConnection);
+        DontDestroyOnLoad(Instance.DecorModelConnection.decorModel);
         SceneManager.LoadScene("DecorARScene");
         is3DScene = false;
         if (Instance.decorModelConnection != null)
@@ -148,6 +149,11 @@ public class DecorManager : MonoBehaviour
     public void Load3DScene()
     {
         UiState = (int)UIStatesEnum.Idle;
+        Instance.DecorModelConnection.decorModel.transform.SetParent(null);
+        Destroy(surfacePlane);
+        DontDestroyOnLoad(Instance.DecorModelConnection);
+        DontDestroyOnLoad(Instance.DecorModelConnection.decorModel);
+        Instance.DecorModelConnection.decorModel.transform.position = Vector3.zero;
         SceneManager.LoadScene("Decor3DScene");
         is3DScene = true;
     }
