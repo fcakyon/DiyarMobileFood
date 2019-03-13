@@ -34,6 +34,6 @@ public class FoodToggle : MonoBehaviour, IClickable {
         gameObject.GetComponent<Button>().onClick.AddListener(ClickHandler);
         FoodManager.Instance.OnUIStateChange.AddListener(ChangeVisibility);
     }
-	
+
 	void Update () {}
 }

@@ -56,13 +56,13 @@ public class FoodManager : MonoBehaviour
     {
         surfacePlane = GameObject.Find("Plane");
         //Application.targetFrameRate = 60;
-        if (is3DScene == true) lastPlacementPos = new Vector3(0, 0, 0);
+        if (is3DScene == true) lastPlacementPos = Vector3.zero;
     }
 
 
     void Update()
     {
-        Debug.Log("STATE: " + uiState);
+        //Debug.Log("STATE: " + uiState);
         if (FoodModelConnection != null && FoodModelConnection.foodModel != null && hasFoodModelBeenPlaced != true)
         {
             AutoPlaceModel();
@@ -144,6 +144,10 @@ public class FoodManager : MonoBehaviour
     public void Load3DScene()
     {
         UiState = (int)UIStatesEnum.Idle;
+        Instance.FoodModelConnection.foodModel.transform.SetParent(null);
+        Destroy(surfacePlane);
+        DontDestroyOnLoad(Instance.FoodModelConnection.foodModel);
+        Instance.FoodModelConnection.foodModel.transform.position = Vector3.zero;
         SceneManager.LoadScene("Food3DScene");
         is3DScene = true;
     }

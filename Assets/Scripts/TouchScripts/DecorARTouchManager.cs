@@ -6,22 +6,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.Experimental.XR;
 using UnityEngine.UI;
 
-public class TouchManagerARScene : MonoBehaviour
+public class DecorARTouchManager : MonoBehaviour
 {
 
-    public DecorManager decorManager;
     public GameObject currentSelected;
-
     public LayerMask modelLayerMask;
     public LayerMask planeLayerMask;
 
-    //public Text scaleText;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
+    void Start() {}
 
     bool IsUITouch()
     {
@@ -37,16 +29,9 @@ public class TouchManagerARScene : MonoBehaviour
             {
                 return true;
             }
-            else
-            {
                 return false;
-            }
-
         }
-        else
-        {
             return false;
-        }
     }
 
     // Update is called once per frame
@@ -59,10 +44,8 @@ public class TouchManagerARScene : MonoBehaviour
         //}
 
         bool isUITouch = IsUITouch();
-        if (isUITouch == true)
-        {
-            return;
-        }
+        if (isUITouch == true) return;
+        
 
         if (Input.touchCount == 1)
         {
