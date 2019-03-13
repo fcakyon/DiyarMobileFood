@@ -62,7 +62,7 @@ public class FoodManager : MonoBehaviour
 
     void Update()
     {
-        if (FoodModelConnection != null && FoodModelConnection.foodModel != null && hasFoodModelBeenPlaced != true)
+        if (FoodModelConnection != null && FoodModelConnection.FoodModel != null && hasFoodModelBeenPlaced != true)
         {
             AutoPlaceModel();
         }
@@ -80,35 +80,35 @@ public class FoodManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 500.0f, planeLayerMask))
         {
             PlaceFoodModel(hit.point);
-            FoodModelConnection.foodModel.transform.rotation = new Quaternion(0, 0, 0, 0);
+            FoodModelConnection.FoodModel.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
     }
 
     public void PlaceFoodModel(Vector3 newPos)
     {
         lastPlacementPos = newPos;
-        FoodModelConnection.foodModel.SetActive(true);
-        FoodModelConnection.foodModel.transform.SetParent(null);
+        FoodModelConnection.FoodModel.SetActive(true);
+        FoodModelConnection.FoodModel.transform.SetParent(null);
         if (is3DScene == false)
         {
             if (surfacePlane == null) surfacePlane = GameObject.Find("Plane");
-            FoodModelConnection.foodModel.transform.SetParent(surfacePlane.transform);
+            FoodModelConnection.FoodModel.transform.SetParent(surfacePlane.transform);
         }
-        FoodModelConnection.foodModel.transform.position = Vector3.Lerp(FoodModelConnection.foodModel.transform.position, newPos, Time.deltaTime * modelLerpSpeed);
+        FoodModelConnection.FoodModel.transform.position = Vector3.Lerp(FoodModelConnection.FoodModel.transform.position, newPos, Time.deltaTime * modelLerpSpeed);
     }
 
     public void ChangeFoodModel()
     {
-        if (FoodModelConnection != null && FoodModelConnection.foodModel != null)
+        if (FoodModelConnection != null && FoodModelConnection.FoodModel != null)
         {
-            FoodModelConnection.foodModel.SetActive(true);
-            FoodModelConnection.foodModel.transform.SetParent(null);
+            FoodModelConnection.FoodModel.SetActive(true);
+            FoodModelConnection.FoodModel.transform.SetParent(null);
             if (is3DScene == false)
             {
-                FoodModelConnection.foodModel.transform.SetParent(surfacePlane.transform);
+                FoodModelConnection.FoodModel.transform.SetParent(surfacePlane.transform);
             }
-            FoodModelConnection.foodModel.transform.position = lastPlacementPos;
-            FoodModelConnection.foodModel.transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli
+            FoodModelConnection.FoodModel.transform.position = lastPlacementPos;
+            FoodModelConnection.FoodModel.transform.rotation = new Quaternion(0, 0, 0, 0); // bu gerekli
             isChanging = false;
         }
     }
@@ -132,10 +132,10 @@ public class FoodManager : MonoBehaviour
         {
             UiState = (int)UIStatesEnum.Fixed;
             hasFoodModelBeenPlaced = true;
-            FoodModelConnection.foodModel.transform.position = lastPlacementPos;
-            Vector3 localPosition = FoodModelConnection.foodModel.transform.localPosition;
+            FoodModelConnection.FoodModel.transform.position = lastPlacementPos;
+            Vector3 localPosition = FoodModelConnection.FoodModel.transform.localPosition;
             localPosition.y = 0;
-            FoodModelConnection.foodModel.transform.localPosition = localPosition;
+            FoodModelConnection.FoodModel.transform.localPosition = localPosition;
         }
     }
 
@@ -156,10 +156,10 @@ public class FoodManager : MonoBehaviour
     public void Load3DScene()
     {
         UiState = (int)UIStatesEnum.Idle;
-        Instance.FoodModelConnection.foodModel.transform.SetParent(null);
+        Instance.FoodModelConnection.FoodModel.transform.SetParent(null);
         Destroy(surfacePlane);
-        DontDestroyOnLoad(Instance.FoodModelConnection.foodModel);
-        Instance.FoodModelConnection.foodModel.transform.position = Vector3.zero;
+        DontDestroyOnLoad(Instance.FoodModelConnection.FoodModel);
+        Instance.FoodModelConnection.FoodModel.transform.position = Vector3.zero;
         SceneManager.LoadScene("Food3DScene");
         is3DScene = true;
     }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class FoodModelConnection : MonoBehaviour
 {
     //[HideInInspector]
-    public GameObject foodModel;
+    private GameObject foodModel;
     [HideInInspector]
     public string assetBundleUrl;
     [HideInInspector]
@@ -15,6 +15,25 @@ public class FoodModelConnection : MonoBehaviour
     [HideInInspector]
     public AssetBundle bundle;
     public AssetDownloader assetDownloader;
+
+    public GameObject FoodModel
+    {
+        get {return foodModel; }
+
+        set
+        {
+            foodModel = value;
+            if (FoodManager.Instance.is3DScene) 
+            {   
+                ModelScaleTransformer.ModelScaler3D(foodModel);
+            }
+            else
+            {
+                ModelScaleTransformer.ModelScalerAR(foodModel, 15);
+            }
+
+        }
+    }
 
     void Start()
     {
@@ -35,7 +54,7 @@ public class FoodModelConnection : MonoBehaviour
         if (bundle != null)
         {
             bundle.Unload(true);
-            Destroy(foodModel);
+            Destroy(FoodModel);
             Destroy(gameObject);
         }
     }

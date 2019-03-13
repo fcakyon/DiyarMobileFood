@@ -53,7 +53,7 @@ public class AssetDownloader : MonoBehaviour {
         GameObject foodModelAsset = FoodManager.Instance.FoodModelConnection.bundle.LoadAsset<GameObject>(FoodManager.Instance.FoodModelConnection.prefabName);
         GameObject foodModel = Instantiate(foodModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
         DontDestroyOnLoad(foodModel);
-        FoodManager.Instance.FoodModelConnection.foodModel = foodModel;
+        FoodManager.Instance.FoodModelConnection.FoodModel = foodModel;
         FoodManager.Instance.ChangeStateAfterLoading();
     }
 
