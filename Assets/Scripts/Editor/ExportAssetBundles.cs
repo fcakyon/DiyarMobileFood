@@ -8,7 +8,7 @@ public class CreateAssetBundles
     [MenuItem("Assets/Build IOS AssetBundles")]
     static void BuildAllIOSAssetBundles()
     {
-        string assetBundleDirectory = "Assets/IOS_AssetBundles";
+        string assetBundleDirectory = "Assets/AssetBundles/IOS_AssetBundles";
         if (!Directory.Exists(assetBundleDirectory))
         {
             Directory.CreateDirectory(assetBundleDirectory);
@@ -19,12 +19,19 @@ public class CreateAssetBundles
     [MenuItem("Assets/Build Android AssetBundles")]
     static void BuildAllAndroidAssetBundles()
     {
-        string assetBundleDirectory = "Assets/Android_AssetBundles";
+        string assetBundleDirectory = "Assets/AssetBundles/Android_AssetBundles";
         if (!Directory.Exists(assetBundleDirectory))
         {
             Directory.CreateDirectory(assetBundleDirectory);
         }
         BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.Android);
+    }
+
+    [MenuItem("Assets/Build IOS&Android AssetBundles")]
+    static void BuildAllIOSAndAndroidAssetBundles()
+    {
+        BuildAllIOSAssetBundles();
+        BuildAllAndroidAssetBundles();
     }
 
     static void ClearCashe()
