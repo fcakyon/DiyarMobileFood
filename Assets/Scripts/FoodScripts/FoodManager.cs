@@ -147,8 +147,10 @@ public class FoodManager : MonoBehaviour
 
     public void LoadARScene()
     {
-        DontDestroyOnLoad(Instance.FoodModelConnection);
-        DontDestroyOnLoad(Instance.FoodModelConnection.FoodModel);
+        if(Instance.FoodModelConnection != null && Instance.FoodModelConnection.FoodModel != null) { 
+            DontDestroyOnLoad(Instance.FoodModelConnection);
+            DontDestroyOnLoad(Instance.FoodModelConnection.FoodModel);
+        }
         SceneManager.LoadScene("FoodARScene");
         is3DScene = false;
         if(Instance.foodModelConnection != null)
@@ -160,8 +162,10 @@ public class FoodManager : MonoBehaviour
         UiState = (int)UIStates.Idle;
         Instance.FoodModelConnection.FoodModel.transform.SetParent(null);
         Destroy(surfacePlane);
-        DontDestroyOnLoad(Instance.FoodModelConnection);
-        DontDestroyOnLoad(Instance.FoodModelConnection.FoodModel);
+        if (Instance.FoodModelConnection != null && Instance.FoodModelConnection.FoodModel != null) { 
+            DontDestroyOnLoad(Instance.FoodModelConnection);
+            DontDestroyOnLoad(Instance.FoodModelConnection.FoodModel);
+        }
         Instance.FoodModelConnection.FoodModel.transform.position = Vector3.zero;
         SceneManager.LoadScene("Food3DScene");
         is3DScene = true;
