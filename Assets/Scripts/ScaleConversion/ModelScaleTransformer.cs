@@ -11,9 +11,9 @@ public class ModelScaleTransformer : MonoBehaviour {
         Debug.Log("scaledUnitySize: " + scaledUnitySize);
 
         // calculate scale factor
-        float unityUnitToCm = 109;
+        float unityUnitToCm = 100;
         float desiredUnityHeight = desiredRealWorldHeight / unityUnitToCm;
-        float scaleFactor = desiredUnityHeight / scaledUnitySize.z;
+        float scaleFactor = desiredUnityHeight / scaledUnitySize.y;
         Debug.Log("scaleFactor: " + scaleFactor);
 
         //change model scale

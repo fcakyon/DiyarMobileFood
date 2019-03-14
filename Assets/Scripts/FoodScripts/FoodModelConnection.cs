@@ -29,7 +29,7 @@ public class FoodModelConnection : MonoBehaviour
             }
             else
             {
-                ModelScaleTransformer.ModelScalerAR(foodModel, 15);
+                ModelScaleTransformer.ModelScalerAR(foodModel, 30);
             }
 
         }
