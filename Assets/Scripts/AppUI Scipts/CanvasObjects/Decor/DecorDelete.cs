@@ -9,13 +9,13 @@ public class DecorDelete : MonoBehaviour, IClickable
     {
         switch (DecorManager.Instance.UiState)
         {
-            case (int)DecorManager.UIStatesEnum.AutoPlace:
+            case DecorManager.UIStates.AutoPlace:
                 gameObject.SetActive(true);
                 break;
-            case (int)DecorManager.UIStatesEnum.Idle:
+            case DecorManager.UIStates.Idle:
                 gameObject.SetActive(true);
                 break;
-            case (int)DecorManager.UIStatesEnum.Loading:
+            case DecorManager.UIStates.Loading:
                 gameObject.SetActive(false);
                 break;
         }

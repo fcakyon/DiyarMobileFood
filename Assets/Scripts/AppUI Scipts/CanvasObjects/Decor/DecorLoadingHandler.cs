@@ -11,7 +11,7 @@ public class DecorLoadingHandler : MonoBehaviour {
 
     void ChangeVisibility()
     {
-        if (DecorManager.Instance.UiState == (int)DecorManager.UIStatesEnum.Loading)
+        if (DecorManager.Instance.UiState == DecorManager.UIStates.Loading)
             gameObject.SetActive(true);
         else gameObject.SetActive(false);
     }

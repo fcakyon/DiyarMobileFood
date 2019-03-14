@@ -16,8 +16,8 @@ public class FoodManager : MonoBehaviour
     public Vector3 lastPlacementPos;
     GameObject surfacePlane;
     public bool is3DScene;
-    public enum UIStatesEnum { Idle, Loading, AutoPlace, Fixed};
-    private int uiState; // Set to Idle Initially
+    public enum UIStates { Idle, Loading, AutoPlace, Fixed};
+    private UIStates uiState; // Set to Idle Initially
     public UnityEvent OnUIStateChange = new UnityEvent();
 
     public FoodModelConnection FoodModelConnection
@@ -31,7 +31,7 @@ public class FoodManager : MonoBehaviour
         }
     }
 
-    public int UiState
+    public UIStates UiState
     {
         get { return Instance.uiState; }
         set {
@@ -61,6 +61,7 @@ public class FoodManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("State: " + uiState);
         if (FoodModelConnection != null && FoodModelConnection.FoodModel != null && hasFoodModelBeenPlaced != true)
         {
             AutoPlaceModel();
@@ -115,13 +116,13 @@ public class FoodManager : MonoBehaviour
     public void ChangeStateAfterLoading()
     {
         if (is3DScene)
-            Instance.UiState = (int)UIStatesEnum.Idle;
+            Instance.UiState = (int)UIStates.Idle;
         else
         {
             if(hasFoodModelBeenPlaced)
-                Instance.UiState = (int)UIStatesEnum.Fixed;
+                Instance.UiState = UIStates.Fixed;
             else
-                Instance.UiState = (int)UIStatesEnum.AutoPlace;
+                Instance.UiState = UIStates.AutoPlace;
         }
     }
 
@@ -129,7 +130,7 @@ public class FoodManager : MonoBehaviour
     {
         if (hasFoodModelBeenPlaced == false)
         {
-            UiState = (int)UIStatesEnum.Fixed;
+            UiState = UIStates.Fixed;
             hasFoodModelBeenPlaced = true;
             FoodModelConnection.FoodModel.transform.position = lastPlacementPos;
             Vector3 localPosition = FoodModelConnection.FoodModel.transform.localPosition;
@@ -151,12 +152,12 @@ public class FoodManager : MonoBehaviour
         SceneManager.LoadScene("FoodARScene");
         is3DScene = false;
         if(Instance.foodModelConnection != null)
-            UiState = (int)UIStatesEnum.AutoPlace;
+            UiState = UIStates.AutoPlace;
     }
 
     public void Load3DScene()
     {
-        UiState = (int)UIStatesEnum.Idle;
+        UiState = (int)UIStates.Idle;
         Instance.FoodModelConnection.FoodModel.transform.SetParent(null);
         Destroy(surfacePlane);
         DontDestroyOnLoad(Instance.FoodModelConnection);
@@ -170,7 +171,7 @@ public class FoodManager : MonoBehaviour
     {
         hasFoodModelBeenPlaced = false;
         RemoveConnection();
-        UiState = (int)UIStatesEnum.Idle;
+        UiState = (int)UIStates.Idle;
     }
 
 }

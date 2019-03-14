@@ -19,8 +19,8 @@ public class DecorManager : MonoBehaviour
     GameObject surfacePlane;
     public Dictionary<GameObject, DecorModelConnection> allModelsDict = new Dictionary<GameObject, DecorModelConnection>();
     public bool is3DScene;
-    public enum UIStatesEnum { Idle, Loading, AutoPlace };
-    private int uiState; // Set to Idle Initially
+    public enum UIStates { Idle, Loading, AutoPlace };
+    private UIStates uiState; // Set to Idle Initially
     public UnityEvent OnUIStateChange = new UnityEvent();
 
     public DecorModelConnection DecorModelConnection
@@ -36,7 +36,7 @@ public class DecorManager : MonoBehaviour
         }
     }
 
-    public int UiState
+    public UIStates UiState
     {
         get { return Instance.uiState; }
         set
@@ -67,6 +67,7 @@ public class DecorManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("State: " + uiState);
         if (DecorModelConnection != null && DecorModelConnection.decorModel != null && DecorModelConnection.hasDecorModelBeenPlaced != true)
         {
             AutoPlaceModel();
@@ -102,7 +103,7 @@ public class DecorManager : MonoBehaviour
     {
         if (DecorModelConnection.hasDecorModelBeenPlaced == false)
         {
-            UiState = (int)UIStatesEnum.Idle;
+            UiState = (int)UIStates.Idle;
             DecorModelConnection.hasDecorModelBeenPlaced = true;
             DecorModelConnection.decorModel.transform.position = lastPlacementPos;
             Vector3 localPosition = DecorModelConnection.decorModel.transform.localPosition;
@@ -114,9 +115,9 @@ public class DecorManager : MonoBehaviour
     public void ChangeStateAfterLoading()
     {
         if (is3DScene)
-            Instance.UiState = (int)UIStatesEnum.Idle;
+            Instance.UiState = UIStates.Idle;
         else
-            Instance.UiState = (int)UIStatesEnum.AutoPlace;
+            Instance.UiState = UIStates.AutoPlace;
     }
 
     public void SetDecorModelConnectionUsingModel(GameObject decorModel)
@@ -143,12 +144,12 @@ public class DecorManager : MonoBehaviour
         SceneManager.LoadScene("DecorARScene");
         is3DScene = false;
         if (Instance.decorModelConnection != null)
-            UiState = (int)UIStatesEnum.AutoPlace;
+            UiState = UIStates.AutoPlace;
     }
 
     public void Load3DScene()
     {
-        UiState = (int)UIStatesEnum.Idle;
+        UiState = (int)UIStates.Idle;
         Instance.DecorModelConnection.decorModel.transform.SetParent(null);
         Destroy(surfacePlane);
         DontDestroyOnLoad(Instance.DecorModelConnection);

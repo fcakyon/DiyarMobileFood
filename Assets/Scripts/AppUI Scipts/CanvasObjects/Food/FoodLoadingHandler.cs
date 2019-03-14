@@ -11,7 +11,7 @@ public class FoodLoadingHandler : MonoBehaviour {
 
     void ChangeVisibility()
     {
-        if (FoodManager.Instance.UiState == (int)FoodManager.UIStatesEnum.Loading)
+        if (FoodManager.Instance.UiState == FoodManager.UIStates.Loading)
             gameObject.SetActive(true);
         else gameObject.SetActive(false);
     }

@@ -8,16 +8,16 @@ public class FoodAdd : MonoBehaviour, IClickable {
     {
         switch (FoodManager.Instance.UiState)
         {
-            case (int)FoodManager.UIStatesEnum.AutoPlace:
+            case FoodManager.UIStates.AutoPlace:
                 gameObject.SetActive(false);
                 break;
-            case (int)FoodManager.UIStatesEnum.Idle:
+            case FoodManager.UIStates.Idle:
                 gameObject.SetActive(true);
                 break;
-            case (int)FoodManager.UIStatesEnum.Loading:
+            case FoodManager.UIStates.Loading:
                 gameObject.SetActive(false);
                 break;
-            case (int)FoodManager.UIStatesEnum.Fixed:
+            case FoodManager.UIStates.Fixed:
                 gameObject.SetActive(true);
                 break;
         }

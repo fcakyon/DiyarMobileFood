@@ -9,13 +9,13 @@ public class DecorReset : MonoBehaviour, IClickable {
     {
         switch (DecorManager.Instance.UiState)
         {
-            case (int)DecorManager.UIStatesEnum.AutoPlace:
+            case DecorManager.UIStates.AutoPlace:
                 gameObject.SetActive(false);
                 break;
-            case (int)DecorManager.UIStatesEnum.Idle:
+            case DecorManager.UIStates.Idle:
                 gameObject.SetActive(false);
                 break;
-            case (int)DecorManager.UIStatesEnum.Loading:
+            case DecorManager.UIStates.Loading:
                 gameObject.SetActive(false);
                 break;
         }

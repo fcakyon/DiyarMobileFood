@@ -46,7 +46,7 @@ public class AssetDownloader : MonoBehaviour {
 
     IEnumerator DownloadAssetBundleAndSetFoodModel()
     {
-        FoodManager.Instance.UiState = (int)FoodManager.UIStatesEnum.Loading;
+        FoodManager.Instance.UiState = FoodManager.UIStates.Loading;
         request = UnityWebRequestAssetBundle.GetAssetBundle(FoodManager.Instance.FoodModelConnection.assetBundleUrl, 0, 0);
         yield return request.SendWebRequest();
         FoodManager.Instance.FoodModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
@@ -58,7 +58,7 @@ public class AssetDownloader : MonoBehaviour {
 
     IEnumerator DownloadAssetBundleAndSetDecorModel()
     {
-        DecorManager.Instance.UiState = (int)DecorManager.UIStatesEnum.Loading;
+        DecorManager.Instance.UiState = DecorManager.UIStates.Loading;
         request = UnityWebRequestAssetBundle.GetAssetBundle(DecorManager.Instance.DecorModelConnection.assetBundleUrl, 0, 0);
         yield return request.SendWebRequest();
         DecorManager.Instance.DecorModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
