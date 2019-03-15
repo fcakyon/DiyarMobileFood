@@ -15,6 +15,7 @@ public class FoodModelConnection : MonoBehaviour
     [HideInInspector]
     public AssetBundle bundle;
     public AssetDownloader assetDownloader;
+    public float height;
 
     public GameObject FoodModel
     {
@@ -29,7 +30,7 @@ public class FoodModelConnection : MonoBehaviour
             }
             else
             {
-                ModelScaleTransformer.ModelScalerAR(foodModel, 30);
+                ModelScaleTransformer.ModelScalerAR(foodModel, height);
             }
 
         }

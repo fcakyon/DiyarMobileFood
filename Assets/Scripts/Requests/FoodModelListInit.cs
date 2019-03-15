@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class ModelListInit : MonoBehaviour {
+public class FoodModelListInit : MonoBehaviour {
 
     public GameObject modelButtonPrefab;
 
@@ -15,6 +15,7 @@ public class ModelListInit : MonoBehaviour {
         public string category;
         public PrefabLinks prefabLinks;
         public string imageUrl;
+        public float height;
     }
 
     [System.Serializable]
@@ -51,6 +52,8 @@ public class ModelListInit : MonoBehaviour {
                 modelButton.GetComponent<FoodModelConnection>().assetBundleUrl = model.prefabLinks.android;
             else
                 modelButton.GetComponent<FoodModelConnection>().assetBundleUrl = model.prefabLinks.ios;
+
+            modelButton.GetComponent<DecorModelConnection>().height = model.height;
 
             Transform content = modelButton.transform.Find("Content");
             Text text = content.Find("Text").GetComponent<Text>();

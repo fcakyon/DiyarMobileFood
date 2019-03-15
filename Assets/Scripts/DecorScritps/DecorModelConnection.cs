@@ -14,6 +14,7 @@ public class DecorModelConnection : MonoBehaviour
     [HideInInspector]
     public AssetBundle bundle;
     public AssetDownloader assetDownloader;
+    public float height;
 
     void Start()
     {

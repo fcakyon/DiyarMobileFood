@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class ModelListInit2 : MonoBehaviour {
+public class DecorModelListInit : MonoBehaviour {
 
     public GameObject modelButtonPrefab;
 
@@ -15,6 +15,7 @@ public class ModelListInit2 : MonoBehaviour {
         public string category;
         public PrefabLinks prefabLinks;
         public string imageUrl;
+        public float height;
     }
 
     [System.Serializable]
@@ -52,7 +53,7 @@ public class ModelListInit2 : MonoBehaviour {
             else
                 modelButton.GetComponent<DecorModelConnection>().assetBundleUrl = model.prefabLinks.ios;
 
-            modelButton.GetComponent<DecorModelConnection>().prefabName = "model";
+            modelButton.GetComponent<DecorModelConnection>().height = model.height;
 
             Transform content = modelButton.transform.Find("Content");
             Text text = content.Find("Text").GetComponent<Text>();
