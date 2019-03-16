@@ -13,7 +13,8 @@ public class CreateAssetBundles
         {
             Directory.CreateDirectory(assetBundleDirectory);
         }
-        BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.iOS);
+                BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.iOS);
+                //BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.UncompressedAssetBundle, BuildTarget.iOS);
     }
 
     [MenuItem("Assets/Build Android AssetBundles")]
@@ -25,6 +26,7 @@ public class CreateAssetBundles
             Directory.CreateDirectory(assetBundleDirectory);
         }
         BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.Android);
+        //BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.UncompressedAssetBundle, BuildTarget.Android);
     }
 
     [MenuItem("Assets/Build IOS&Android AssetBundles")]
