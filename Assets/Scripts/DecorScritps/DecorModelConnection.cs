@@ -9,7 +9,7 @@ public class DecorModelConnection : MonoBehaviour
     public bool hasDecorModelBeenPlaced = false;
     public GameObject decorModel;
     public string assetBundleUrl;
-    [HideInInspector]
+    //[HideInInspector]
     public string prefabName = "model";
     [HideInInspector]
     public AssetBundle bundle;
@@ -58,7 +58,7 @@ public class DecorModelConnection : MonoBehaviour
         if (bundle != null)
         {
             bundle.Unload(true);
-            Destroy(decorModel);
+            Destroy(DecorModel);
             Destroy(gameObject);
         }
     }

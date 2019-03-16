@@ -14,10 +14,10 @@ public class Decor3DTouchManager : MonoBehaviour {
     {
         if (DecorManager.Instance.DecorModelConnection != null)
         {
-            if (DecorManager.Instance.DecorModelConnection.decorModel != null)
+            if (DecorManager.Instance.DecorModelConnection.DecorModel != null)
             {
                 if (Input.touchCount == 0)
-                    DecorManager.Instance.DecorModelConnection.decorModel.transform.Rotate(0f, 15 * Time.deltaTime, 0f);
+                    DecorManager.Instance.DecorModelConnection.DecorModel.transform.Rotate(0f, 15 * Time.deltaTime, 0f);
 
 
                 else
@@ -26,7 +26,7 @@ public class Decor3DTouchManager : MonoBehaviour {
                     if (touch0.phase == TouchPhase.Moved)
                     {
                         var angleY = -0.4f * touch0.deltaPosition.x;
-                        DecorManager.Instance.DecorModelConnection.decorModel.transform.Rotate(0f, angleY, 0f);
+                        DecorManager.Instance.DecorModelConnection.DecorModel.transform.Rotate(0f, angleY, 0f);
                     }
                 }
             }

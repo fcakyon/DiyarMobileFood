@@ -10,7 +10,7 @@ public class FoodModelConnection : MonoBehaviour
     private GameObject foodModel;
     [HideInInspector]
     public string assetBundleUrl;
-    [HideInInspector]
+    //[HideInInspector]
     public string prefabName = "model";
     [HideInInspector]
     public AssetBundle bundle;
