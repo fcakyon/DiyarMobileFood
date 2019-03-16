@@ -2847,7 +2847,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d44dfab7fb3e6486397017d102682578, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da3706778e09c434caf59143671b3352, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5094,7 +5094,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -1574.2994}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &828499689
@@ -9720,7 +9720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1732610538
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12092,6 +12092,7 @@ MonoBehaviour:
   prefabName: model
   bundle: {fileID: 0}
   assetDownloader: {fileID: 2042436135}
+  height: 0
 --- !u!114 &2082436484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12109,6 +12110,7 @@ MonoBehaviour:
   prefabName: 
   bundle: {fileID: 0}
   assetDownloader: {fileID: 2042436135}
+  height: 0
 --- !u!1 &2101428302
 GameObject:
   m_ObjectHideFlags: 0
