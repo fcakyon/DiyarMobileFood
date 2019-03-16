@@ -12107,7 +12107,7 @@ MonoBehaviour:
   hasDecorModelBeenPlaced: 0
   decorModel: {fileID: 0}
   assetBundleUrl: 
-  prefabName: 
+  prefabName: model
   bundle: {fileID: 0}
   assetDownloader: {fileID: 2042436135}
   height: 0
