@@ -53,7 +53,7 @@ public class FoodModelListInit : MonoBehaviour {
             else
                 modelButton.GetComponent<FoodModelConnection>().assetBundleUrl = model.prefabLinks.ios;
 
-            modelButton.GetComponent<DecorModelConnection>().height = model.height;
+            modelButton.GetComponent<FoodModelConnection>().height = model.height;
 
             Transform content = modelButton.transform.Find("Content");
             Text text = content.Find("Text").GetComponent<Text>();
