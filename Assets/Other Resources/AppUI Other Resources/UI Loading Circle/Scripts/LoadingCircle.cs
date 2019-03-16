@@ -3,7 +3,7 @@
 public class LoadingCircle : MonoBehaviour
 {
     private RectTransform rectComponent;
-    private float rotateSpeed = 200f;
+    private float rotateSpeed = 400f;
 
     private void Start()
     {

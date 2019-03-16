@@ -153,7 +153,8 @@ public class FoodManager : MonoBehaviour
         }
         SceneManager.LoadScene("FoodARScene");
         is3DScene = false;
-        if(Instance.foodModelConnection != null)
+        foodModelConnection.SetModelScale();
+        if (Instance.foodModelConnection != null)
             UiState = UIStates.AutoPlace;
     }
 
@@ -169,6 +170,7 @@ public class FoodManager : MonoBehaviour
         Instance.FoodModelConnection.FoodModel.transform.position = Vector3.zero;
         SceneManager.LoadScene("Food3DScene");
         is3DScene = true;
+        foodModelConnection.SetModelScale();
     }
 
     public void Reset()

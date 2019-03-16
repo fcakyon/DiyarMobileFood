@@ -145,6 +145,7 @@ public class DecorManager : MonoBehaviour
         }
         SceneManager.LoadScene("DecorARScene");
         is3DScene = false;
+        decorModelConnection.SetModelScale();
         if (Instance.decorModelConnection != null)
             UiState = UIStates.AutoPlace;
     }
@@ -162,6 +163,7 @@ public class DecorManager : MonoBehaviour
         Instance.DecorModelConnection.decorModel.transform.position = Vector3.zero;
         SceneManager.LoadScene("Decor3DScene");
         is3DScene = true;
+        decorModelConnection.SetModelScale();
     }
 
 }

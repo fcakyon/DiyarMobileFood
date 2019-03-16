@@ -16,6 +16,17 @@ public class DecorModelConnection : MonoBehaviour
     public AssetDownloader assetDownloader;
     public float height;
 
+    public GameObject DecorModel
+    {
+        get { return decorModel; }
+
+        set
+        {
+            decorModel = value;
+            SetModelScale();
+        }
+    }
+
     void Start()
     {
         Button button = gameObject.GetComponent<Button>();
@@ -24,6 +35,18 @@ public class DecorModelConnection : MonoBehaviour
 
     void Update()
     {}
+
+    public void SetModelScale()
+    {
+        if (DecorManager.Instance.is3DScene)
+        {
+            ModelScaleTransformer.ModelScaler3D(decorModel);
+        }
+        else
+        {
+            ModelScaleTransformer.ModelScalerAR(decorModel, height);
+        }
+    }
 
     public void ButtonClicked()
     {

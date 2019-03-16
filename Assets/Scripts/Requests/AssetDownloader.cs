@@ -64,7 +64,7 @@ public class AssetDownloader : MonoBehaviour {
         DecorManager.Instance.DecorModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
         GameObject decorModelAsset = DecorManager.Instance.DecorModelConnection.bundle.LoadAsset<GameObject>(DecorManager.Instance.DecorModelConnection.prefabName);
         GameObject decorModel = Instantiate(decorModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        DecorManager.Instance.DecorModelConnection.decorModel = decorModel;
+        DecorManager.Instance.DecorModelConnection.DecorModel = decorModel;
         DecorManager.Instance.AddModelToDict(DecorManager.Instance.DecorModelConnection.decorModel, DecorManager.Instance.DecorModelConnection);
         DecorManager.Instance.ChangeStateAfterLoading();
     }
