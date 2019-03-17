@@ -20,6 +20,11 @@ public class DecorToggle : MonoBehaviour, IClickable {
         }
     }
 
+    void OnLevelWasLoaded()
+    {
+        ChangeVisibility();
+    }
+
     public void ClickHandler()
     {
         if(DecorManager.Instance.is3DScene)
