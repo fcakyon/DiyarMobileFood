@@ -122,8 +122,8 @@ public class DecorManager : MonoBehaviour
 
     public void SetDecorModelConnectionUsingModel(GameObject decorModel)
     {
-        DecorModelConnection newDecorModelConnection = allModelsDict[decorModel];
-        Instance.DecorModelConnection = newDecorModelConnection;
+        if (Instance.DecorModelConnection.DecorModel != decorModel)
+            Instance.decorModelConnection = allModelsDict[decorModel];
     }
 
     public void RemoveConnection()

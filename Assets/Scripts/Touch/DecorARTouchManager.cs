@@ -74,10 +74,11 @@ public class DecorARTouchManager : MonoBehaviour
                 }
             }
         }
+
         else if (Input.touchCount == 2)
         {
             Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Moved)
+            if (touch.phase == TouchPhase.Began)
             {
                 TouchMovementCalculator.Calculate();
                 RaycastHit hit;
@@ -87,7 +88,9 @@ public class DecorARTouchManager : MonoBehaviour
                     currentSelected = hit.collider.gameObject.transform.parent.gameObject;
                     DecorManager.Instance.SetDecorModelConnectionUsingModel(currentSelected);
                 }
-
+            }
+            else if (touch.phase == TouchPhase.Moved)
+            {
                 if (currentSelected != null)
                 {
                     if (currentSelected.activeSelf == true)
