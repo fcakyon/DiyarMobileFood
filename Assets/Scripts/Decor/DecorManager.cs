@@ -142,14 +142,14 @@ public class DecorManager : MonoBehaviour
     {
         is3DScene = false;
 
-        if (Instance.DecorModelConnection != null && Instance.DecorModelConnection.DecorModel != null) {
+        SceneManager.LoadScene("DecorARScene");
+        if (Instance.DecorModelConnection != null && Instance.DecorModelConnection.DecorModel != null)
+        {
             Instance.DecorModelConnection.hasDecorModelBeenPlaced = false;
             decorModelConnection.SetModelScale();
             DontDestroyOnLoad(Instance.DecorModelConnection);
             DontDestroyOnLoad(Instance.DecorModelConnection.DecorModel);
         }
-
-        SceneManager.LoadScene("DecorARScene");
         if (Instance.decorModelConnection != null)
             UiState = UIStates.AutoPlace;
     }
@@ -157,11 +157,11 @@ public class DecorManager : MonoBehaviour
     public void Load3DScene()
     {
         is3DScene = true;
-        DecorModelConnection.SetModelScale();
 
         Destroy(surfacePlane);
         if (Instance.DecorModelConnection != null && Instance.DecorModelConnection.DecorModel != null)
         {
+            DecorModelConnection.SetModelScale();
             Instance.DecorModelConnection.transform.SetParent(null);
             Instance.DecorModelConnection.DecorModel.transform.SetParent(null);
             DontDestroyOnLoad(Instance.DecorModelConnection);
