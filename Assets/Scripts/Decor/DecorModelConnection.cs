@@ -62,4 +62,12 @@ public class DecorModelConnection : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnDestroy()
+    {
+        if (bundle != null)
+        {
+            bundle.Unload(true);
+        }
+    }
 }
