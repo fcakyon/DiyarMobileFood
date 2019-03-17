@@ -9,7 +9,7 @@ public class DecorToggle : MonoBehaviour, IClickable {
         switch (DecorManager.Instance.UiState)
         {
             case DecorManager.UIStates.AutoPlace:
-                gameObject.SetActive(true);
+                gameObject.SetActive(false);
                 break;
             case DecorManager.UIStates.Idle:
                 gameObject.SetActive(true);

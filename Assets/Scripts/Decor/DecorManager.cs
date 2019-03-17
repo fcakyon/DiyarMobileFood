@@ -101,14 +101,14 @@ public class DecorManager : MonoBehaviour
 
     public void FixDecorModelPlace()
     {
-        if (DecorModelConnection.hasDecorModelBeenPlaced == false)
+        if (Instance.DecorModelConnection.hasDecorModelBeenPlaced == false)
         {
             UiState = (int)UIStates.Idle;
-            DecorModelConnection.hasDecorModelBeenPlaced = true;
-            DecorModelConnection.DecorModel.transform.position = lastPlacementPos;
-            Vector3 localPosition = DecorModelConnection.DecorModel.transform.localPosition;
+            Instance.DecorModelConnection.hasDecorModelBeenPlaced = true;
+            Instance.DecorModelConnection.DecorModel.transform.position = lastPlacementPos;
+            Vector3 localPosition = Instance.DecorModelConnection.DecorModel.transform.localPosition;
             localPosition.y = 0;
-            DecorModelConnection.DecorModel.transform.localPosition = localPosition;
+            Instance.DecorModelConnection.DecorModel.transform.localPosition = localPosition;
         }
     }
 
@@ -145,6 +145,7 @@ public class DecorManager : MonoBehaviour
         }
         SceneManager.LoadScene("DecorARScene");
         is3DScene = false;
+        Instance.DecorModelConnection.hasDecorModelBeenPlaced = false;
         decorModelConnection.SetModelScale();
         if (Instance.decorModelConnection != null)
             UiState = UIStates.AutoPlace;
