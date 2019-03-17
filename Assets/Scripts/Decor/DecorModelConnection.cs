@@ -34,7 +34,9 @@ public class DecorModelConnection : MonoBehaviour
     }
 
     void Update()
-    {}
+    {
+
+    }
 
     public void SetModelScale()
     {

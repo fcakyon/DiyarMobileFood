@@ -6,6 +6,9 @@ public class ModelScaleTransformer : MonoBehaviour {
 
     public static void ModelScalerAR(GameObject model, float desiredRealWorldHeight) 
     {
+        // reset parent scale
+        model.transform.localScale = new Vector3(1, 1, 1);
+
         // calculate model size in unity units
         Vector3 scaledUnitySize = model.transform.GetChild(0).GetComponent<BoxCollider>().bounds.size;
         Debug.Log("scaledUnitySize: " + scaledUnitySize);
@@ -14,16 +17,20 @@ public class ModelScaleTransformer : MonoBehaviour {
         float unityUnitToCm = 100;
         float desiredUnityHeight = desiredRealWorldHeight / unityUnitToCm;
         float scaleFactor = desiredUnityHeight / scaledUnitySize.y;
+        Debug.Log("desiredRealWorldHeight: " + desiredRealWorldHeight);
+        Debug.Log("desiredUnityHeight: " + desiredUnityHeight);
         Debug.Log("scaleFactor: " + scaleFactor);
 
-        //change model scale
-        Vector3 presentScale = model.transform.localScale;
-        Vector3 desiredScale = presentScale * scaleFactor;
+        // update parent scale
+        Vector3 desiredScale = model.transform.localScale * scaleFactor;
         model.transform.localScale = desiredScale;
     }
 
     public static void ModelScaler3D(GameObject model)
     {
+        // reset parent scale
+        model.transform.localScale = new Vector3(1, 1, 1);
+
         // calculate model size in unity units
         Vector3 scaledUnitySize = model.transform.GetChild(0).GetComponent<BoxCollider>().bounds.size;
         Debug.Log("scaledUnitySize: " + scaledUnitySize);
@@ -34,9 +41,8 @@ public class ModelScaleTransformer : MonoBehaviour {
         float scaleFactor = Mathf.Min(unitySizeRatio.x, unitySizeRatio.y, unitySizeRatio.z);
         Debug.Log("scaleFactor: "+ scaleFactor);
 
-        //change model scale
-        Vector3 presentScale = model.transform.localScale;
-        Vector3 desiredScale = presentScale * scaleFactor;
+        // update parent scale
+        Vector3 desiredScale = model.transform.localScale * scaleFactor;
         model.transform.localScale = desiredScale;
     }
 
