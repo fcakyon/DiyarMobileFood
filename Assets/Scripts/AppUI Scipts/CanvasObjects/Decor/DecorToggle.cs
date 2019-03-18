@@ -20,22 +20,16 @@ public class DecorToggle : MonoBehaviour, IClickable {
         }
     }
 
-    void OnLevelWasLoaded()
-    {
-        ChangeVisibility();
-    }
-
     public void ClickHandler()
     {
-        if(DecorManager.Instance.is3DScene)
-            DecorManager.Instance.LoadARScene();
-        else DecorManager.Instance.Load3DScene();
+        DecorManager.Instance.ToggleScene();
     }
 
     void Start () {
         gameObject.GetComponent<Button>().onClick.AddListener(ClickHandler);
         DecorManager.Instance.OnUIStateChange.AddListener(ChangeVisibility);
-    }
+        ChangeVisibility();
+     }
 	
 	void Update () {}
 }

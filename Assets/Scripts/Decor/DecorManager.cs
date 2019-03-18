@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 using UnityEngine.Experimental.XR;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,7 @@ public class DecorManager : MonoBehaviour
     public static DecorManager Instance { get; private set; }
 
     //[HideInInspector]
-    private DecorModelConnection decorModelConnection;
+    public DecorModelConnection decorModelConnection;
     public LayerMask planeLayerMask;
     public float modelLerpSpeed = 4f;
     public bool isPlacing;
@@ -62,7 +63,7 @@ public class DecorManager : MonoBehaviour
     {
         surfacePlane = GameObject.Find("Plane");
         //Application.targetFrameRate = 60;
-        if (is3DScene == true) lastPlacementPos = new Vector3(0, 0, 0);
+        if (is3DScene) lastPlacementPos = new Vector3(0, 0, 0);
     }
 
     void Update()
@@ -91,7 +92,7 @@ public class DecorManager : MonoBehaviour
         lastPlacementPos = newPos;
         DecorModelConnection.DecorModel.SetActive(true);
         DecorModelConnection.DecorModel.transform.SetParent(null);
-        if (is3DScene == false)
+        if (!is3DScene)
         {
             if (surfacePlane == null) surfacePlane = GameObject.Find("Plane");
             DecorModelConnection.DecorModel.transform.SetParent(surfacePlane.transform);
@@ -102,9 +103,9 @@ public class DecorManager : MonoBehaviour
 
     public void FixDecorModelPlace()
     {
-        if (Instance.DecorModelConnection.hasDecorModelBeenPlaced == false)
+        if (!Instance.DecorModelConnection.hasDecorModelBeenPlaced)
         {
-            UiState = (int)UIStates.Idle;
+            UiState = UIStates.Idle;
             Instance.DecorModelConnection.hasDecorModelBeenPlaced = true;
             Instance.DecorModelConnection.DecorModel.transform.position = lastPlacementPos;
             Vector3 localPosition = Instance.DecorModelConnection.DecorModel.transform.localPosition;
@@ -138,39 +139,50 @@ public class DecorManager : MonoBehaviour
         allModelsDict.Add(decorModel, decorModelConnection);
     }
 
-    public void LoadARScene()
-    {
-        is3DScene = false;
-
-        SceneManager.LoadScene("DecorARScene");
-        if (Instance.DecorModelConnection != null && Instance.DecorModelConnection.DecorModel != null)
-        {
-            Instance.DecorModelConnection.hasDecorModelBeenPlaced = false;
-            decorModelConnection.SetModelScale();
-            DontDestroyOnLoad(Instance.DecorModelConnection);
-            DontDestroyOnLoad(Instance.DecorModelConnection.DecorModel);
-        }
-        if (Instance.decorModelConnection != null)
-            UiState = UIStates.AutoPlace;
+    public void ToggleScene() {
+        StartCoroutine(LoadScene());
     }
 
-    public void Load3DScene()
+    IEnumerator LoadScene()
     {
-        is3DScene = true;
-
-        Destroy(surfacePlane);
-        if (Instance.DecorModelConnection != null && Instance.DecorModelConnection.DecorModel != null)
+        bool hasConnectionAndModel = Instance.DecorModelConnection != null && Instance.DecorModelConnection.DecorModel != null;
+        UiState = UIStates.Loading;
+        if (is3DScene)
         {
-            DecorModelConnection.SetModelScale();
-            Instance.DecorModelConnection.transform.SetParent(null);
-            Instance.DecorModelConnection.DecorModel.transform.SetParent(null);
-            DontDestroyOnLoad(Instance.DecorModelConnection);
-            DontDestroyOnLoad(Instance.DecorModelConnection.DecorModel);
-            Instance.DecorModelConnection.DecorModel.transform.position = Vector3.zero;
+            if (hasConnectionAndModel)
+            {
+                DontDestroyOnLoad(Instance.DecorModelConnection);
+                DontDestroyOnLoad(Instance.DecorModelConnection.DecorModel);
+            }
+            yield return SceneManager.LoadSceneAsync("DecorARScene");
+            if (hasConnectionAndModel)
+            {
+                Instance.DecorModelConnection.hasDecorModelBeenPlaced = false;
+                DecorModelConnection.SetModelScale();
+            }
+            is3DScene = false;
+            if (Instance.DecorModelConnection != null) UiState = UIStates.AutoPlace;
+            else UiState = UIStates.Idle;
         }
-
-        SceneManager.LoadScene("Decor3DScene");
-        UiState = (int)UIStates.Idle;
+        else
+        {
+            if (hasConnectionAndModel)
+            {
+                DontDestroyOnLoad(Instance.DecorModelConnection);
+                DontDestroyOnLoad(Instance.DecorModelConnection.DecorModel);
+            }
+            yield return SceneManager.LoadSceneAsync("Decor3DScene");
+            Destroy(surfacePlane);
+            if (hasConnectionAndModel)
+            {
+                DecorModelConnection.SetModelScale();
+                Instance.DecorModelConnection.transform.SetParent(null);
+                Instance.DecorModelConnection.DecorModel.transform.SetParent(null);
+                Instance.DecorModelConnection.DecorModel.transform.position = Vector3.zero;
+            }
+            is3DScene = true;
+            UiState = UIStates.Idle;
+        }
     }
 
 }

@@ -9,7 +9,7 @@ public class FoodToggle : MonoBehaviour, IClickable {
         switch (FoodManager.Instance.UiState)
         {
             case FoodManager.UIStates.AutoPlace:
-                gameObject.SetActive(true);
+                gameObject.SetActive(false);
                 break;
             case FoodManager.UIStates.Idle:
                 gameObject.SetActive(true);
@@ -25,14 +25,13 @@ public class FoodToggle : MonoBehaviour, IClickable {
 
     public void ClickHandler()
     {
-        if(FoodManager.Instance.is3DScene)
-            FoodManager.Instance.LoadARScene();
-        else FoodManager.Instance.Load3DScene();
+        FoodManager.Instance.ToogleScene();
     }
 
     void Start () {
         gameObject.GetComponent<Button>().onClick.AddListener(ClickHandler);
         FoodManager.Instance.OnUIStateChange.AddListener(ChangeVisibility);
+        ChangeVisibility();
     }
 
 	void Update () {}

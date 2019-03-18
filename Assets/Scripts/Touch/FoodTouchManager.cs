@@ -12,12 +12,12 @@ public class FoodTouchManager : MonoBehaviour {
 
     public void OneFingerRotate()
     {
-        if (FoodManager.Instance.foodModelConnection != null)
+        if (FoodManager.Instance.FoodModelConnection != null)
         {
-            if (FoodManager.Instance.foodModelConnection.FoodModel != null)
+            if (FoodManager.Instance.FoodModelConnection.FoodModel != null)
             {
                 if (Input.touchCount == 0)
-                    FoodManager.Instance.foodModelConnection.FoodModel.transform.Rotate(0f, 15 * Time.deltaTime, 0f);
+                    FoodManager.Instance.FoodModelConnection.FoodModel.transform.Rotate(0f, 15 * Time.deltaTime, 0f);
                 else
                 {
                     Touch touch0 = Input.GetTouch(0);

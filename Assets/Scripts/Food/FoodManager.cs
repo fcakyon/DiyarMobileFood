@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using System.Collections;
 
 public class FoodManager : MonoBehaviour
 {
@@ -145,32 +146,46 @@ public class FoodManager : MonoBehaviour
             FoodModelConnection.DestroyGameObject();
     }
 
-    public void LoadARScene()
+    public void ToogleScene()
     {
-        if(Instance.FoodModelConnection != null && Instance.FoodModelConnection.FoodModel != null) { 
-            DontDestroyOnLoad(Instance.FoodModelConnection);
-            DontDestroyOnLoad(Instance.FoodModelConnection.FoodModel);
-            FoodModelConnection.SetModelScale();
-        }
-        SceneManager.LoadScene("FoodARScene");
-        is3DScene = false;
-        if (Instance.foodModelConnection != null)
-            UiState = UIStates.AutoPlace;
+        StartCoroutine(LoadScene());
     }
 
-    public void Load3DScene()
+    IEnumerator LoadScene()
     {
-        UiState = (int)UIStates.Idle;
-        Destroy(surfacePlane);
-        if (Instance.FoodModelConnection != null && Instance.FoodModelConnection.FoodModel != null) { 
-            Instance.FoodModelConnection.FoodModel.transform.SetParent(null);
-            DontDestroyOnLoad(Instance.FoodModelConnection);
-            DontDestroyOnLoad(Instance.FoodModelConnection.FoodModel);
-            Instance.FoodModelConnection.FoodModel.transform.position = Vector3.zero;
-            FoodModelConnection.SetModelScale();
+        bool hasConnectionAndModel = Instance.FoodModelConnection != null && Instance.FoodModelConnection.FoodModel != null;
+        UiState = UIStates.Loading;
+        if (is3DScene)
+        {
+            if (hasConnectionAndModel)
+            {
+                DontDestroyOnLoad(Instance.FoodModelConnection);
+                DontDestroyOnLoad(Instance.FoodModelConnection.FoodModel);
+            }
+            yield return SceneManager.LoadSceneAsync("FoodARScene");
+            if (hasConnectionAndModel) FoodModelConnection.SetModelScale();
+            is3DScene = false;
+            if (hasConnectionAndModel) UiState = UIStates.AutoPlace;
+            else UiState = UIStates.Idle;
         }
-        SceneManager.LoadScene("Food3DScene");
-        is3DScene = true;
+        else
+        {
+            if (hasConnectionAndModel)
+            {
+                DontDestroyOnLoad(Instance.FoodModelConnection);
+                DontDestroyOnLoad(Instance.FoodModelConnection.FoodModel);
+            }
+            yield return SceneManager.LoadSceneAsync("Food3DScene");
+            Destroy(surfacePlane);
+            if (hasConnectionAndModel)
+            {
+                Instance.FoodModelConnection.FoodModel.transform.SetParent(null);
+                Instance.FoodModelConnection.FoodModel.transform.position = Vector3.zero;
+                FoodModelConnection.SetModelScale();
+            }
+            is3DScene = true;
+            UiState = UIStates.Idle;
+        }
     }
 
     public void Reset()
