@@ -17,6 +17,7 @@ public class DecorManager : MonoBehaviour
     public float modelLerpSpeed = 4f;
     public bool isPlacing;
     public Vector3 lastPlacementPos;
+    public bool shouldSurfaceBeUpdated = true;
     GameObject surfacePlane;
     public Dictionary<GameObject, DecorModelConnection> allModelsDict = new Dictionary<GameObject, DecorModelConnection>();
     public bool is3DScene;
@@ -101,7 +102,15 @@ public class DecorManager : MonoBehaviour
         DecorModelConnection.DecorModel.transform.position = Vector3.Lerp(DecorModelConnection.DecorModel.transform.position, newPos, Time.deltaTime * modelLerpSpeed);
     }
 
-    public void FixDecorModelPlace()
+    public void ChangeStateAfterLoading()
+    {
+        if (is3DScene)
+            Instance.UiState = UIStates.Idle;
+        else
+            Instance.UiState = UIStates.AutoPlace;
+    }
+
+    public void Fix()
     {
         if (!Instance.DecorModelConnection.hasDecorModelBeenPlaced)
         {
@@ -111,21 +120,20 @@ public class DecorManager : MonoBehaviour
             Vector3 localPosition = Instance.DecorModelConnection.DecorModel.transform.localPosition;
             localPosition.y = 0;
             Instance.DecorModelConnection.DecorModel.transform.localPosition = localPosition;
+            shouldSurfaceBeUpdated = false;
         }
-    }
-
-    public void ChangeStateAfterLoading()
-    {
-        if (is3DScene)
-            Instance.UiState = UIStates.Idle;
-        else
-            Instance.UiState = UIStates.AutoPlace;
     }
 
     public void SetDecorModelConnectionUsingModel(GameObject decorModel)
     {
         if (Instance.DecorModelConnection.DecorModel != decorModel)
             Instance.decorModelConnection = allModelsDict[decorModel];
+    }
+
+    public void Delete()
+    {
+        Instance.UiState = UIStates.Idle;
+        RemoveConnection();
     }
 
     public void RemoveConnection()
@@ -155,15 +163,16 @@ public class DecorManager : MonoBehaviour
                 DontDestroyOnLoad(Instance.DecorModelConnection.DecorModel);
             }
             yield return SceneManager.LoadSceneAsync("DecorARScene");
+            is3DScene = false;
             if (hasConnectionAndModel)
             {
                 Instance.DecorModelConnection.hasDecorModelBeenPlaced = false;
                 DecorModelConnection.SetModelScale();
             }
-            is3DScene = false;
             if (Instance.DecorModelConnection != null) UiState = UIStates.AutoPlace;
             else UiState = UIStates.Idle;
-        }
+            shouldSurfaceBeUpdated = true;
+}
         else
         {
             if (hasConnectionAndModel)
@@ -183,6 +192,17 @@ public class DecorManager : MonoBehaviour
             is3DScene = true;
             UiState = UIStates.Idle;
         }
+    }
+
+    public void Reset()
+    {
+        foreach (var connection in allModelsDict.Values)
+        {
+            connection.DestroyDecorModel();
+        }
+        allModelsDict.Clear();
+        shouldSurfaceBeUpdated = true;
+        Instance.UiState = UIStates.Idle;
     }
 
 }

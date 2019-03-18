@@ -13,7 +13,7 @@ public class DecorReset : MonoBehaviour, IClickable {
                 gameObject.SetActive(false);
                 break;
             case DecorManager.UIStates.Idle:
-                gameObject.SetActive(false);
+                gameObject.SetActive(true);
                 break;
             case DecorManager.UIStates.Loading:
                 gameObject.SetActive(false);
@@ -23,7 +23,7 @@ public class DecorReset : MonoBehaviour, IClickable {
 
     public void ClickHandler()
     {
-        //DecorManager.Instance.Reset(); //TODO No Reset function in DecorManager
+        DecorManager.Instance.Reset();
     }
 
     void Start () {

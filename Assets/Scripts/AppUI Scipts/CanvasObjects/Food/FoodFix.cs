@@ -25,7 +25,7 @@ public class FoodFix : MonoBehaviour, IClickable {
 
     public void ClickHandler()
     {
-        FoodManager.Instance.FixFoodModelPlace();
+        FoodManager.Instance.Fix();
     }
 
     void Start ()

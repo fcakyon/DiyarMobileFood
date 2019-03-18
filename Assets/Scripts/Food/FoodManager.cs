@@ -15,6 +15,7 @@ public class FoodManager : MonoBehaviour
     public bool isChanging;
     public bool hasFoodModelBeenPlaced;
     public Vector3 lastPlacementPos;
+    public bool shouldSurfaceBeUpdated = true;
     GameObject surfacePlane;
     public bool is3DScene;
     public enum UIStates { Idle, Loading, AutoPlace, Fixed};
@@ -127,7 +128,7 @@ public class FoodManager : MonoBehaviour
         }
     }
 
-    public void FixFoodModelPlace()
+    public void Fix()
     {
         if (hasFoodModelBeenPlaced == false)
         {
@@ -137,6 +138,7 @@ public class FoodManager : MonoBehaviour
             Vector3 localPosition = FoodModelConnection.FoodModel.transform.localPosition;
             localPosition.y = 0;
             FoodModelConnection.FoodModel.transform.localPosition = localPosition;
+            shouldSurfaceBeUpdated = false;
         }
     }
 
@@ -163,10 +165,12 @@ public class FoodManager : MonoBehaviour
                 DontDestroyOnLoad(Instance.FoodModelConnection.FoodModel);
             }
             yield return SceneManager.LoadSceneAsync("FoodARScene");
-            if (hasConnectionAndModel) FoodModelConnection.SetModelScale();
             is3DScene = false;
+            if (hasConnectionAndModel) FoodModelConnection.SetModelScale();
+
             if (hasConnectionAndModel) UiState = UIStates.AutoPlace;
             else UiState = UIStates.Idle;
+            shouldSurfaceBeUpdated = true;
         }
         else
         {
@@ -179,9 +183,9 @@ public class FoodManager : MonoBehaviour
             Destroy(surfacePlane);
             if (hasConnectionAndModel)
             {
+                FoodModelConnection.SetModelScale();
                 Instance.FoodModelConnection.FoodModel.transform.SetParent(null);
                 Instance.FoodModelConnection.FoodModel.transform.position = Vector3.zero;
-                FoodModelConnection.SetModelScale();
             }
             is3DScene = true;
             UiState = UIStates.Idle;
@@ -192,6 +196,7 @@ public class FoodManager : MonoBehaviour
     {
         hasFoodModelBeenPlaced = false;
         RemoveConnection();
+        shouldSurfaceBeUpdated = true;
         UiState = (int)UIStates.Idle;
     }
 

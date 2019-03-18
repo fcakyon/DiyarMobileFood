@@ -23,7 +23,7 @@ public class DecorDelete : MonoBehaviour, IClickable
 
     public void ClickHandler()
     {
-        DecorManager.Instance.RemoveConnection();
+        DecorManager.Instance.Delete();
     }
 
     void Start()
