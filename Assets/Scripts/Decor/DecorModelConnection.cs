@@ -57,19 +57,19 @@ public class DecorModelConnection : MonoBehaviour
 
     public void DestroyDecorModel()
     {
-        if (bundle != null)
-        {
-            bundle.Unload(true);
-            Destroy(DecorModel);
-            Destroy(gameObject);
-        }
+        OnDestroy();
+        Destroy(DecorModel);
+        Destroy(gameObject);
     }
 
     private void OnDestroy()
     {
+
+        if(DecorManager.Instance.allModelsDict.ContainsKey(decorModel))
+            DecorManager.Instance.allModelsDict.Remove(decorModel);
         if (bundle != null)
         {
-            bundle.Unload(true);
+            bundle.Unload(false);
         }
     }
 }

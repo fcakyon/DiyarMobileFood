@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class AssetDownloader : MonoBehaviour {
 
     private IEnumerator coroutine;
     private UnityWebRequest request;
+    public Text progressPercentage;
 
     void Start () {
         Caching.ClearCache();
     }
     
-    void Update () {}
+    void Update () {
+    }
 
     public void ModelSelectHandler(FoodModelConnection foodModelConnection)
     {
@@ -32,8 +35,9 @@ public class AssetDownloader : MonoBehaviour {
 
     public void ModelSelectHandler(DecorModelConnection decorModelConnection)
     {
-        if (DecorManager.Instance.DecorModelConnection == null ||
-            DecorManager.Instance.DecorModelConnection.assetBundleUrl != decorModelConnection.assetBundleUrl)
+        if (!DecorManager.Instance.is3DScene
+            || DecorManager.Instance.DecorModelConnection == null
+            || decorModelConnection.assetBundleUrl != DecorManager.Instance.DecorModelConnection.assetBundleUrl)
         {
             if (coroutine != null) StopCoroutine(coroutine);
             if (request != null && !request.isDone) request.Abort();
@@ -42,13 +46,20 @@ public class AssetDownloader : MonoBehaviour {
             DecorManager.Instance.DecorModelConnection = decorModelConnection;
             StartCoroutine(coroutine);
         }
+
     }
 
     IEnumerator DownloadAssetBundleAndSetFoodModel()
     {
         FoodManager.Instance.UiState = FoodManager.UIStates.Loading;
         request = UnityWebRequestAssetBundle.GetAssetBundle(FoodManager.Instance.FoodModelConnection.assetBundleUrl, 0, 0);
-        yield return request.SendWebRequest();
+        request.SendWebRequest();
+        while (!request.isDone)
+        {
+            float progressPercentageFloat = Mathf.Min(request.downloadProgress * 100 / 4 * 5, 100);
+            progressPercentage.text = progressPercentageFloat.ToString("n0") + "%";
+            yield return null;
+        }
         FoodManager.Instance.FoodModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
         GameObject foodModelAsset = FoodManager.Instance.FoodModelConnection.bundle.LoadAsset<GameObject>(FoodManager.Instance.FoodModelConnection.prefabName);
         GameObject foodModel = Instantiate(foodModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
@@ -58,13 +69,33 @@ public class AssetDownloader : MonoBehaviour {
 
     IEnumerator DownloadAssetBundleAndSetDecorModel()
     {
+        bool hasBundleLoadedBefore = false;
         DecorManager.Instance.UiState = DecorManager.UIStates.Loading;
-        request = UnityWebRequestAssetBundle.GetAssetBundle(DecorManager.Instance.DecorModelConnection.assetBundleUrl, 0, 0);
-        yield return request.SendWebRequest();
-        DecorManager.Instance.DecorModelConnection.bundle = DownloadHandlerAssetBundle.GetContent(request);
-        GameObject decorModelAsset = DecorManager.Instance.DecorModelConnection.bundle.LoadAsset<GameObject>(DecorManager.Instance.DecorModelConnection.prefabName);
-        GameObject decorModel = Instantiate(decorModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
-        DecorManager.Instance.DecorModelConnection.DecorModel = decorModel;
+        foreach (DecorModelConnection connection in DecorManager.Instance.allModelsDict.Values)
+        {
+            if (connection.assetBundleUrl == DecorManager.Instance.DecorModelConnection.assetBundleUrl)
+            {
+                hasBundleLoadedBefore = true;
+                DecorManager.Instance.DecorModelConnection.DecorModel = Instantiate(connection.DecorModel);
+                break;
+            }
+        }
+        if (!hasBundleLoadedBefore)
+        {
+            request = UnityWebRequestAssetBundle.GetAssetBundle(DecorManager.Instance.DecorModelConnection.assetBundleUrl, 0, 0);
+            request.SendWebRequest();
+            while (!request.isDone)
+            {
+                float progressPercentageFloat = Mathf.Min(request.downloadProgress * 100 / 4 * 5, 100); 
+                progressPercentage.text = progressPercentageFloat.ToString("n0") + "%";
+                yield return null;
+            }
+            AssetBundle downloadedBundle = DownloadHandlerAssetBundle.GetContent(request);
+            DecorManager.Instance.DecorModelConnection.bundle = downloadedBundle;
+            GameObject decorModelAsset = DecorManager.Instance.DecorModelConnection.bundle.LoadAsset<GameObject>(DecorManager.Instance.DecorModelConnection.prefabName);
+            DecorManager.Instance.DecorModelConnection.DecorModel = Instantiate(decorModelAsset, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        }
+
         DecorManager.Instance.AddModelToDict(DecorManager.Instance.DecorModelConnection.DecorModel, DecorManager.Instance.DecorModelConnection);
         DecorManager.Instance.ChangeStateAfterLoading();
     }

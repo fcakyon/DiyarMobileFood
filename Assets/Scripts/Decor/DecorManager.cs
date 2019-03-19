@@ -69,7 +69,7 @@ public class DecorManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("State: " + uiState);
+        //Debug.Log("State: " + uiState);
         if (DecorModelConnection != null && DecorModelConnection.DecorModel != null && DecorModelConnection.hasDecorModelBeenPlaced != true)
         {
             AutoPlaceModel();
@@ -93,13 +93,13 @@ public class DecorManager : MonoBehaviour
         lastPlacementPos = newPos;
         DecorModelConnection.DecorModel.SetActive(true);
         DecorModelConnection.DecorModel.transform.SetParent(null);
+        DecorModelConnection.DecorModel.transform.position = Vector3.Lerp(DecorModelConnection.DecorModel.transform.position, newPos, Time.deltaTime * modelLerpSpeed);
         if (!is3DScene)
         {
             if (surfacePlane == null) surfacePlane = GameObject.Find("Plane");
             DecorModelConnection.DecorModel.transform.SetParent(surfacePlane.transform);
             DecorModelConnection.transform.SetParent(surfacePlane.transform);
         }
-        DecorModelConnection.DecorModel.transform.position = Vector3.Lerp(DecorModelConnection.DecorModel.transform.position, newPos, Time.deltaTime * modelLerpSpeed);
     }
 
     public void ChangeStateAfterLoading()
@@ -172,11 +172,13 @@ public class DecorManager : MonoBehaviour
             if (Instance.DecorModelConnection != null) UiState = UIStates.AutoPlace;
             else UiState = UIStates.Idle;
             shouldSurfaceBeUpdated = true;
-}
+        }
         else
         {
             if (hasConnectionAndModel)
             {
+                Instance.DecorModelConnection.transform.SetParent(null);
+                Instance.DecorModelConnection.DecorModel.transform.SetParent(null);
                 DontDestroyOnLoad(Instance.DecorModelConnection);
                 DontDestroyOnLoad(Instance.DecorModelConnection.DecorModel);
             }
@@ -192,6 +194,8 @@ public class DecorManager : MonoBehaviour
             is3DScene = true;
             UiState = UIStates.Idle;
         }
+
+        Debug.Log("Current scene is: " + SceneManager.GetActiveScene().name);
     }
 
     public void Reset()
