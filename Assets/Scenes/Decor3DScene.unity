@@ -580,12 +580,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 2
-  m_Color1: {r: 0, g: 0, b: 0, a: 1}
+  m_Color1: {r: 0.0152634485, g: 0.4368665, b: 0.46226418, a: 1}
   m_Color2: {r: 1, g: 1, b: 1, a: 1}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
   m_Rotation: -85
-  m_Offset1: -0.47
+  m_Offset1: -0.05
   m_Offset2: 0
   m_GradientStyle: 0
   m_ColorSpace: -1
