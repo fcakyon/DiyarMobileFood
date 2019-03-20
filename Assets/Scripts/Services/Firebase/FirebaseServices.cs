@@ -57,7 +57,7 @@ public class FirebaseServices : MonoBehaviour {
 
     IEnumerator GetModelData(string modelId)
     {
-        UnityWebRequest request = UnityWebRequest.Get(Api.ModelUrl + modelId);
+        UnityWebRequest request = UnityWebRequest.Get(Api.AllModels + modelId);
         yield return request.SendWebRequest();
         Model model = JsonUtility.FromJson<Model>(request.downloadHandler.text);
         gameObject.AddComponent<FoodModelConnection>();
