@@ -183,6 +183,7 @@ public class DecorManager : MonoBehaviour
                 DontDestroyOnLoad(Instance.DecorModelConnection.DecorModel);
             }
             yield return SceneManager.LoadSceneAsync("Decor3DScene");
+            is3DScene = true;
             Destroy(surfacePlane);
             if (hasConnectionAndModel)
             {
@@ -191,7 +192,6 @@ public class DecorManager : MonoBehaviour
                 Instance.DecorModelConnection.DecorModel.transform.SetParent(null);
                 Instance.DecorModelConnection.DecorModel.transform.position = Vector3.zero;
             }
-            is3DScene = true;
             UiState = UIStates.Idle;
         }
 
