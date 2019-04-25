@@ -41,7 +41,8 @@ public class DecorModelListInit : MonoBehaviour {
 
     IEnumerator GetModelsAndCreateButtons()
     {
-        UnityWebRequest request = UnityWebRequest.Get(Api.DecorModels);
+        UnityWebRequest request = UnityWebRequest.Get(Api.AllModels);
+        //UnityWebRequest request = UnityWebRequest.Get(Api.DecorModels);
         yield return request.SendWebRequest();
         ModelsObjectArray modelsObjectArray = JsonUtility.FromJson<ModelsObjectArray>("{\"models\":" + request.downloadHandler.text + "}");
         foreach(Model model in modelsObjectArray.models)

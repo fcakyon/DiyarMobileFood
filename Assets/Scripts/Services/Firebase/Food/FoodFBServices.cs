@@ -6,7 +6,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class FirebaseServices : MonoBehaviour {
+public class FoodFBServices : MonoBehaviour {
 
     public Text debugger;
     public AssetDownloader assetDownloader;
@@ -30,7 +30,7 @@ public class FirebaseServices : MonoBehaviour {
             switch (queryParams["menu"])
             {
                 case "food":
-                    if (queryParams.ContainsKey("menu"))
+                    if (queryParams.ContainsKey("model"))
                     {
                        string modelId = queryParams["model"];
                        StartCoroutine(GetModelData(modelId));
