@@ -16,13 +16,37 @@ MonoBehaviour:
   - beta
   channel: release
   installedChannel: release
-  version: 10.1.7.520
+  version: 11.0.3.519
   autoUpdate: 0
   autoUpdateSec: 3600
   updateTimeoutSec: 25
   downloadTimeoutSec: 600
   updateAvailable: 0
   releaseNotes:
+  - id: 11
+    notes: '## Release 11
+
+
+      ### 8th Wall Web
+
+      New Features:
+
+      - Added support for Image Targets.
+
+      - Added support for BabylonJS.
+
+      - Reduced JS binary size to 1MB.
+
+      - Added support running 8th Wall Web inside a cross-origin iframe.
+
+      - Minor API additions.
+
+
+      ### 8th Wall XR for Unity
+
+      Fixes:
+
+      - Allow continuous ARKit image tracking on iOS 12.0 when image targets are provided'
   - id: 10.1
     notes: "## Release 10.1\n\n### 8th Wall Web\nNew Features:\n- Added support for
       A-Frame 0.9.0.\n\nFixes:\n- Fixed error when providing `includedTypes` to XrController.hitTest().\n-
@@ -133,12 +157,3 @@ MonoBehaviour:
       on 720p iPads\n  * Fix issue where surface meshes are allocated but not destroyed
       \ \n  * Fixed crash when attempting Image Detection on iOS devices running 11.2.x
       or below"
-  - id: 7
-    notes: "## Release 7\n\n* New Features:\n  * Image detection API, supporting iOS
-      11.3+ devices with ARKit.\n  * Vertical surface detection, supporting iOS 11.3+
-      devices with ARKit.\n  * Camera Autofocus toggle on Android + iOS.\n  * World
-      point detection on all devices.\n  * Hit test API supported on all devices.\n
-      \ * Ambient color estimation and display for iOS ARKit.\n* Enhancements and
-      Fixes:\n  * 3x rendering performance speedup for iOS ARKit.\n  * 1080p high
-      resolution camera feed for iOS ARKit.\n  * Improved performance and stability
-      for instant surface tracking.\n  * Miscellaneous bug fixes and improvements."
