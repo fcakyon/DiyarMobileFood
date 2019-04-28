@@ -41,7 +41,8 @@ public class FoodModelListInit : MonoBehaviour {
 
     IEnumerator GetModelsAndCreateButtons()
     {
-        UnityWebRequest request = UnityWebRequest.Get(Api.FoodModels);
+        UnityWebRequest request = UnityWebRequest.Get(Api.AllModels);
+        //UnityWebRequest request = UnityWebRequest.Get(Api.FoodModels);
         yield return request.SendWebRequest();
         ModelsObjectArray modelsObjectArray = JsonUtility.FromJson<ModelsObjectArray>("{\"models\":" + request.downloadHandler.text + "}");
         foreach(Model model in modelsObjectArray.models)
