@@ -20,7 +20,7 @@ public class PanelManager : MonoBehaviour {
     private Animator currentPanelAnimator;
     private Animator nextPanelAnimator;
 
-    void Start ()
+    void Awake ()
     {
         currentPanel = panels[currentPanelIndex];
         currentPanelAnimator = currentPanel.GetComponent<Animator>();

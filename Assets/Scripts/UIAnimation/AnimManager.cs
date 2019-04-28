@@ -6,6 +6,7 @@ public class AnimManager : MonoBehaviour {
 
     public GameObject cameraMask;
     public GameObject subColorMask;
+    public GameObject mainColorPanel;
     public GameObject planeNotificationBox;
     public GameObject arPlaneIcon;
     public GameObject decorz3dLogo;
@@ -14,6 +15,7 @@ public class AnimManager : MonoBehaviour {
 
     Animator cameraMaskAnimator;
     Animator subColorMaskAnimator;
+    Animator mainColorPanelAnimator;
     Animator planeNotificationBoxAnimator;
     Animator arPlaneIconAnimator;
     Animator decorz3dLogoAnimator;
@@ -25,15 +27,20 @@ public class AnimManager : MonoBehaviour {
     {
         cameraMaskAnimator = cameraMask.GetComponent<Animator>();
         subColorMaskAnimator = subColorMask.GetComponent<Animator>();
+        mainColorPanelAnimator = mainColorPanel.GetComponent<Animator>();
         planeNotificationBoxAnimator = planeNotificationBox.GetComponent<Animator>();
         arPlaneIconAnimator = arPlaneIcon.GetComponent<Animator>();
         decorz3dLogoAnimator = decorz3dLogo.GetComponent<Animator>();
         foodz3dLogoAnimator = foodz3dLogo.GetComponent<Animator>();
-        circularPlaneAnimator = circularPlane.GetComponent<Animator>();
+        if (circularPlane != null)
+        {
+            circularPlaneAnimator = circularPlane.GetComponent<Animator>();
+        }
     }
 
     public void Full2None()
     {
+        mainColorPanelAnimator.Play("MainColor2Black");
         cameraMaskAnimator.Play("Full2None");
         subColorMaskAnimator.Play("Full2None");
         decorz3dLogoAnimator.Play("IconDisappear");
@@ -41,6 +48,7 @@ public class AnimManager : MonoBehaviour {
 
     public void Full2Border()
     {
+        mainColorPanelAnimator.Play("MainColor2Black");
         StartCoroutine(Full2Border_Coroutine());
     }
 
@@ -62,6 +70,7 @@ public class AnimManager : MonoBehaviour {
 
     IEnumerator Border2None_Coroutine()
     {
+        mainColorPanelAnimator.Play("SetColor2Black");
         arPlaneIconAnimator.Play("IconDisappear");
         arPlaneIcon.SetActive(false);
         planeNotificationBoxAnimator.Play("PlaneNotificationDisappear");
@@ -71,13 +80,38 @@ public class AnimManager : MonoBehaviour {
         cameraMaskAnimator.Play("Border2None");
     }
 
+    public void None2Border()
+    {
+        StartCoroutine(None2Border_Coroutine());
+    }
+
+    IEnumerator None2Border_Coroutine()
+    {
+        mainColorPanelAnimator.Play("SetColor2Black");
+        decorz3dLogoAnimator.Play("IconDisappear");
+        yield return new WaitForSeconds(animationInterval);
+        subColorMaskAnimator.Play("None2Border");
+        cameraMaskAnimator.Play("None2Border");
+        planeNotificationBoxAnimator.Play("PlaneNotificationAppear");
+        arPlaneIcon.SetActive(true);
+        arPlaneIconAnimator.Play("IconAppear");
+        arPlaneIconAnimator.Play("ARPlaneIconMovement");
+    }
+
     public void None2Full()
     {
+        mainColorPanelAnimator.Play("Black2MainColor");
         decorz3dLogoAnimator.Play("IconAppear");
         decorz3dLogo.SetActive(true);
         cameraMaskAnimator.Play("None2Full");
         subColorMaskAnimator.Play("None2Full");
     }
+
+    public void SilentInit()
+    {
+        cameraMaskAnimator.Play("SilentInit");
+        subColorMaskAnimator.Play("SilentInit");
+    }   
 
     public void CircularPlaneAnim()
     {
