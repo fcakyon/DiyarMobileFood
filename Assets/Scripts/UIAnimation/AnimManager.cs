@@ -54,12 +54,12 @@ public class AnimManager : MonoBehaviour {
 
     public void Full2Border()
     {
-        mainColorPanelAnimator.Play("MainColor2Black");
         StartCoroutine(Full2Border_Coroutine());
     }
 
     IEnumerator Full2Border_Coroutine()
     {
+        mainColorPanelAnimator.Play("MainColor2Black");
         cameraMaskAnimator.Play("Full2Border");
         subColorMaskAnimator.Play("Full2Border");
         decorz3dLogoAnimator.Play("IconDisappear");

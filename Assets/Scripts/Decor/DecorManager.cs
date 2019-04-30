@@ -175,7 +175,7 @@ public class DecorManager : MonoBehaviour
             }
             yield return StartCoroutine(animManager.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("DecorARScene");
-            animManager.None2Border();
+            animManager.Full2Border();
             //xrController = GameObject.Find("XRController").GetComponent<XRController>();
             is3DScene = false;
             if (hasConnectionAndModel)
