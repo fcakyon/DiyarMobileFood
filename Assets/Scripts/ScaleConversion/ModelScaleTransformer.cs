@@ -11,15 +11,15 @@ public class ModelScaleTransformer : MonoBehaviour {
 
         // calculate model size in unity units
         Vector3 scaledUnitySize = model.transform.GetChild(0).GetComponent<BoxCollider>().bounds.size;
-        Debug.Log("scaledUnitySize: " + scaledUnitySize);
+        //Debug.Log("scaledUnitySize: " + scaledUnitySize);
 
         // calculate scale factor
         float unityUnitToCm = 100;
         float desiredUnityHeight = desiredRealWorldHeight / unityUnitToCm;
         float scaleFactor = desiredUnityHeight / scaledUnitySize.y;
-        Debug.Log("desiredRealWorldHeight: " + desiredRealWorldHeight);
-        Debug.Log("desiredUnityHeight: " + desiredUnityHeight);
-        Debug.Log("scaleFactor: " + scaleFactor);
+        //Debug.Log("desiredRealWorldHeight: " + desiredRealWorldHeight);
+        //Debug.Log("desiredUnityHeight: " + desiredUnityHeight);
+        //Debug.Log("scaleFactor: " + scaleFactor);
 
         // update parent scale
         Vector3 desiredScale = model.transform.localScale * scaleFactor;

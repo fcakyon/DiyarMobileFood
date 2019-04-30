@@ -238,6 +238,7 @@ public class XRSurfaceController : MonoBehaviour {
 
   // Returns true if surface was updated
   private bool UpdateSurface() {
+    //Debug.Log("Surface is UPDATED!");
     long activeSurfaceId = xr.GetActiveSurfaceId();
     XRSurface activeSurface = xr.GetSurface(activeSurfaceId);
 

@@ -23,8 +23,14 @@ public class AnimManager : MonoBehaviour {
     Animator circularPlaneAnimator;
     const float animationInterval = 0.3f;
 
+    public AnimationStates cameraMaskStates;
+    public AnimationStates mainColorPanelStates;
+    public AnimationStates decorz3dLogoStates;
+    public AnimationStates subColorMaskStates;
+
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         cameraMaskAnimator = cameraMask.GetComponent<Animator>();
         subColorMaskAnimator = subColorMask.GetComponent<Animator>();
         mainColorPanelAnimator = mainColorPanel.GetComponent<Animator>();
@@ -82,10 +88,10 @@ public class AnimManager : MonoBehaviour {
 
     public void None2Border()
     {
-        StartCoroutine(None2Border_Coroutine());
+        StartCoroutine(None2BorderCoroutine());
     }
 
-    IEnumerator None2Border_Coroutine()
+    public IEnumerator None2BorderCoroutine()
     {
         mainColorPanelAnimator.Play("SetColor2Black");
         decorz3dLogoAnimator.Play("IconDisappear");
@@ -106,6 +112,34 @@ public class AnimManager : MonoBehaviour {
         cameraMaskAnimator.Play("None2Full");
         subColorMaskAnimator.Play("None2Full");
     }
+
+    public IEnumerator None2FullCoroutine()     {         mainColorPanelAnimator.Play("Black2MainColor");
+        decorz3dLogoAnimator.Play("IconAppear");
+        decorz3dLogo.SetActive(true);
+        cameraMaskAnimator.Play("None2Full");
+        subColorMaskAnimator.Play("None2Full");
+         bool isPlaying = false;
+
+        // Play does not work instantly, so hasEnded flag is not false here.
+        // First check if it is started then check if it is ended. 
+        while(!isPlaying)
+        {
+            isPlaying = !mainColorPanelStates.hasEnded ||
+                !decorz3dLogoStates.hasEnded ||
+                !cameraMaskStates.hasEnded ||
+                !subColorMaskStates.hasEnded;
+            yield return null;
+        }
+
+        while (isPlaying)
+        {
+            isPlaying = !(mainColorPanelStates.hasEnded &&
+                decorz3dLogoStates.hasEnded &&
+                cameraMaskStates.hasEnded &&
+                subColorMaskStates.hasEnded);
+            yield return null;
+        }
+        yield return null;     }
 
     public void SilentInit()
     {

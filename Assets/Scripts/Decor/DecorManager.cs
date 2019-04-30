@@ -11,8 +11,11 @@ public class DecorManager : MonoBehaviour
 {
     public static DecorManager Instance { get; private set; }
 
-    //[HideInInspector]
+    [HideInInspector]
     public DecorModelConnection decorModelConnection;
+    public AnimManager animManager;
+    //[HideInInspector]
+    //public XRController xrController;
     public LayerMask planeLayerMask;
     public float modelLerpSpeed = 4f;
     public bool isPlacing;
@@ -23,7 +26,41 @@ public class DecorManager : MonoBehaviour
     public bool is3DScene;
     public enum UIStates { Idle, Loading, AutoPlace };
     private UIStates uiState; // Set to Idle Initially
+    [HideInInspector]
     public UnityEvent OnUIStateChange = new UnityEvent();
+
+
+    private void Awake()
+    {
+        //xrController = GameObject.Find("XRController").GetComponent<XRController>();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        //surfacePlane = GameObject.Find("Plane");
+        //Application.targetFrameRate = 60;
+        if (is3DScene) lastPlacementPos = new Vector3(0, 0, 0);
+
+        animManager.Full2None();
+    }
+
+    void Update()
+    {
+        //Debug.Log("State: " + uiState);
+        if (DecorModelConnection != null && DecorModelConnection.DecorModel != null && DecorModelConnection.hasDecorModelBeenPlaced != true)
+        {
+            AutoPlaceModel();
+        }
+    }
 
     public DecorModelConnection DecorModelConnection
     {
@@ -45,34 +82,6 @@ public class DecorManager : MonoBehaviour
         {
             Instance.uiState = value;
             Instance.OnUIStateChange.Invoke();
-        }
-    }
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private void Start()
-    {
-        surfacePlane = GameObject.Find("Plane");
-        //Application.targetFrameRate = 60;
-        if (is3DScene) lastPlacementPos = new Vector3(0, 0, 0);
-    }
-
-    void Update()
-    {
-        //Debug.Log("State: " + uiState);
-        if (DecorModelConnection != null && DecorModelConnection.DecorModel != null && DecorModelConnection.hasDecorModelBeenPlaced != true)
-        {
-            AutoPlaceModel();
         }
     }
 
@@ -121,6 +130,8 @@ public class DecorManager : MonoBehaviour
             localPosition.y = 0;
             Instance.DecorModelConnection.DecorModel.transform.localPosition = localPosition;
             shouldSurfaceBeUpdated = false;
+            //xrController.enableSurfaces = false;
+            //xrController.ConfigureXR();
         }
     }
 
@@ -154,7 +165,7 @@ public class DecorManager : MonoBehaviour
     IEnumerator LoadScene()
     {
         bool hasConnectionAndModel = Instance.DecorModelConnection != null && Instance.DecorModelConnection.DecorModel != null;
-        UiState = UIStates.Loading;
+        //UiState = UIStates.Loading;
         if (is3DScene)
         {
             if (hasConnectionAndModel)
@@ -162,7 +173,10 @@ public class DecorManager : MonoBehaviour
                 DontDestroyOnLoad(Instance.DecorModelConnection);
                 DontDestroyOnLoad(Instance.DecorModelConnection.DecorModel);
             }
+            yield return StartCoroutine(animManager.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("DecorARScene");
+            animManager.None2Border();
+            //xrController = GameObject.Find("XRController").GetComponent<XRController>();
             is3DScene = false;
             if (hasConnectionAndModel)
             {
@@ -172,6 +186,8 @@ public class DecorManager : MonoBehaviour
             if (Instance.DecorModelConnection != null) UiState = UIStates.AutoPlace;
             else UiState = UIStates.Idle;
             shouldSurfaceBeUpdated = true;
+            //xrController.enableSurfaces = true;
+            //xrController.ConfigureXR();
         }
         else
         {
@@ -182,7 +198,10 @@ public class DecorManager : MonoBehaviour
                 DontDestroyOnLoad(Instance.DecorModelConnection);
                 DontDestroyOnLoad(Instance.DecorModelConnection.DecorModel);
             }
+            yield return StartCoroutine(animManager.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("Decor3DScene");
+            animManager.Full2None();
+            //xrController = GameObject.Find("XRController").GetComponent<XRController>();
             is3DScene = true;
             Destroy(surfacePlane);
             if (hasConnectionAndModel)
@@ -194,8 +213,6 @@ public class DecorManager : MonoBehaviour
             }
             UiState = UIStates.Idle;
         }
-
-        Debug.Log("Current scene is: " + SceneManager.GetActiveScene().name);
     }
 
     public void Reset()
@@ -206,7 +223,8 @@ public class DecorManager : MonoBehaviour
         }
         allModelsDict.Clear();
         shouldSurfaceBeUpdated = true;
+        //xrController.enableSurfaces = true;
+        //xrController.ConfigureXR();
         Instance.UiState = UIStates.Idle;
     }
-
 }
