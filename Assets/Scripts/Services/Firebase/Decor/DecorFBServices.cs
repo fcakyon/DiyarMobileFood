@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 
 public class DecorFBServices : MonoBehaviour
 {
-    public Text debugger;
+    //public Text debugger;
     public AssetDownloader assetDownloader;
 
     // Use this for initialization
@@ -21,8 +21,8 @@ public class DecorFBServices : MonoBehaviour
     void OnDynamicLink(object sender, EventArgs args)
     {
         var dynamicLinkEventArgs = args as ReceivedDynamicLinkEventArgs;
-        debugger.text += "Received dynamic link: " +
-                       dynamicLinkEventArgs.ReceivedDynamicLink.Url.OriginalString;
+        //debugger.text += "Received dynamic link: " +
+                       //dynamicLinkEventArgs.ReceivedDynamicLink.Url.OriginalString;
 
         Dictionary<string, string> queryParams = QueryParser(dynamicLinkEventArgs.ReceivedDynamicLink.Url);
         if (queryParams.ContainsKey("menu"))

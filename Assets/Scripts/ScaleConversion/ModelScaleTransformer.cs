@@ -33,13 +33,13 @@ public class ModelScaleTransformer : MonoBehaviour {
 
         // calculate model size in unity units
         Vector3 scaledUnitySize = model.transform.GetChild(0).GetComponent<BoxCollider>().bounds.size;
-        Debug.Log("scaledUnitySize: " + scaledUnitySize);
+        //Debug.Log("scaledUnitySize: " + scaledUnitySize);
 
         // calculate scale factor
         Vector3 maxUnitySize = new Vector3(0.22147614f, 0.22358226f, 0.332977946f);
         Vector3 unitySizeRatio = Vector3.Scale(new Vector3(1/ scaledUnitySize.x, 1/ scaledUnitySize.y, 1/ scaledUnitySize.z), maxUnitySize);
         float scaleFactor = Mathf.Min(unitySizeRatio.x, unitySizeRatio.y, unitySizeRatio.z);
-        Debug.Log("scaleFactor: "+ scaleFactor);
+        //Debug.Log("scaleFactor: "+ scaleFactor);
 
         // update parent scale
         Vector3 desiredScale = model.transform.localScale * scaleFactor;

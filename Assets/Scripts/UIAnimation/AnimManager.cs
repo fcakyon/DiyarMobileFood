@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AnimManager : MonoBehaviour {
 
+    public static AnimManager Instance { get; private set; }
+    const float animationInterval = 0.3f;
     public GameObject cameraMask;
     public GameObject subColorMask;
     public GameObject mainColorPanel;
@@ -12,7 +14,6 @@ public class AnimManager : MonoBehaviour {
     public GameObject decorz3dLogo;
     public GameObject foodz3dLogo;
     public GameObject circularPlane;
-
     Animator cameraMaskAnimator;
     Animator subColorMaskAnimator;
     Animator mainColorPanelAnimator;
@@ -21,16 +22,22 @@ public class AnimManager : MonoBehaviour {
     Animator decorz3dLogoAnimator;
     Animator foodz3dLogoAnimator;
     Animator circularPlaneAnimator;
-    const float animationInterval = 0.3f;
-
-    public AnimationStates cameraMaskStates;
-    public AnimationStates mainColorPanelStates;
-    public AnimationStates decorz3dLogoStates;
-    public AnimationStates subColorMaskStates;
+    AnimationStates cameraMaskStates;
+    AnimationStates mainColorPanelStates;
+    AnimationStates decorz3dLogoStates;
+    AnimationStates subColorMaskStates;
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         cameraMaskAnimator = cameraMask.GetComponent<Animator>();
         subColorMaskAnimator = subColorMask.GetComponent<Animator>();
         mainColorPanelAnimator = mainColorPanel.GetComponent<Animator>();
@@ -38,6 +45,12 @@ public class AnimManager : MonoBehaviour {
         arPlaneIconAnimator = arPlaneIcon.GetComponent<Animator>();
         decorz3dLogoAnimator = decorz3dLogo.GetComponent<Animator>();
         foodz3dLogoAnimator = foodz3dLogo.GetComponent<Animator>();
+
+        cameraMaskStates = cameraMask.GetComponent<AnimationStates>();
+        mainColorPanelStates = mainColorPanel.GetComponent<AnimationStates>();
+        decorz3dLogoStates = decorz3dLogo.GetComponent<AnimationStates>();
+        subColorMaskStates = subColorMask.GetComponent<AnimationStates>();
+
         if (circularPlane != null)
         {
             circularPlaneAnimator = circularPlane.GetComponent<Animator>();
