@@ -199,14 +199,20 @@ public class XRSurfaceController : MonoBehaviour {
       return;
     }
 
-    bool surfaceUpdated = UpdateSurface();
+        if (DecorManager.Instance.shouldSurfaceBeUpdated)
+        {
+            bool surfaceUpdated = UpdateSurface();
 
-    if (!surfaceUpdated && surfaceFound) {
-      transform.position = centerMap[surfaceId];
-      if (deformToSurface) {
-        DeformMesh(xr.GetSurface(surfaceId).mesh);
-      }
-    }
+            if (!surfaceUpdated && surfaceFound)
+            {
+                transform.position = centerMap[surfaceId];
+                if (deformToSurface)
+                {
+                    DeformMesh(xr.GetSurface(surfaceId).mesh);
+                }
+            }
+        }
+
   }
 
   private void UpdateForDisplayImmediatelyGroundOnly() {

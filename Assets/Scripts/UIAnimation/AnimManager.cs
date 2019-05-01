@@ -15,17 +15,17 @@ public class AnimManager : MonoBehaviour {
     public GameObject decorz3dLogo;
     public GameObject foodz3dLogo;
     private GameObject circularPlane;
+
     Animator cameraMaskAnimator;
     Animator subColorMaskAnimator;
     Animator mainColorPanelAnimator;
     Animator planeNotificationBoxAnimator;
     Animator arPlaneIconAnimator;
-    Animator decorz3dLogoAnimator;
-    Animator foodz3dLogoAnimator;
+    Animator appLogoAnimator;
     Animator circularPlaneAnimator;
     AnimationStates cameraMaskStates;
     AnimationStates mainColorPanelStates;
-    AnimationStates decorz3dLogoStates;
+    AnimationStates appLogoStates;
     AnimationStates subColorMaskStates;
 
     private void Awake()
@@ -44,12 +44,11 @@ public class AnimManager : MonoBehaviour {
         mainColorPanelAnimator = mainColorPanel.GetComponent<Animator>();
         planeNotificationBoxAnimator = planeNotificationBox.GetComponent<Animator>();
         arPlaneIconAnimator = arPlaneIcon.GetComponent<Animator>();
-        decorz3dLogoAnimator = decorz3dLogo.GetComponent<Animator>();
-        foodz3dLogoAnimator = foodz3dLogo.GetComponent<Animator>();
+        appLogoAnimator = appLogo.GetComponent<Animator>();
 
         cameraMaskStates = cameraMask.GetComponent<AnimationStates>();
         mainColorPanelStates = mainColorPanel.GetComponent<AnimationStates>();
-        decorz3dLogoStates = decorz3dLogo.GetComponent<AnimationStates>();
+        appLogoStates = appLogo.GetComponent<AnimationStates>();
         subColorMaskStates = subColorMask.GetComponent<AnimationStates>();
 
         if (CircularPlane != null)
@@ -73,7 +72,7 @@ public class AnimManager : MonoBehaviour {
         mainColorPanelAnimator.Play("MainColor2Black");
         cameraMaskAnimator.Play("Full2None");
         subColorMaskAnimator.Play("Full2None");
-        decorz3dLogoAnimator.Play("IconDisappear");
+        appLogoAnimator.Play("IconDisappear");
     }
 
     public void Full2Border()
@@ -86,7 +85,7 @@ public class AnimManager : MonoBehaviour {
         mainColorPanelAnimator.Play("MainColor2Black");
         cameraMaskAnimator.Play("Full2Border");
         subColorMaskAnimator.Play("Full2Border");
-        decorz3dLogoAnimator.Play("IconDisappear");
+        appLogoAnimator.Play("IconDisappear");
         yield return new WaitForSeconds(animationInterval);
         planeNotificationBoxAnimator.Play("PlaneNotificationAppear");
         arPlaneIcon.SetActive(true);
@@ -118,7 +117,7 @@ public class AnimManager : MonoBehaviour {
     public IEnumerator None2BorderCoroutine()
     {
         mainColorPanelAnimator.Play("SetColor2Black");
-        decorz3dLogoAnimator.Play("IconDisappear");
+        appLogoAnimator.Play("IconDisappear");
         yield return new WaitForSeconds(animationInterval);
         subColorMaskAnimator.Play("None2Border");
         cameraMaskAnimator.Play("None2Border");
@@ -131,15 +130,15 @@ public class AnimManager : MonoBehaviour {
     public void None2Full()
     {
         mainColorPanelAnimator.Play("Black2MainColor");
-        decorz3dLogoAnimator.Play("IconAppear");
-        decorz3dLogo.SetActive(true);
+        appLogoAnimator.Play("IconAppear");
+        appLogo.SetActive(true);
         cameraMaskAnimator.Play("None2Full");
         subColorMaskAnimator.Play("None2Full");
     }
 
     public IEnumerator None2FullCoroutine()     {         mainColorPanelAnimator.Play("Black2MainColor");
-        decorz3dLogoAnimator.Play("IconAppear");
-        decorz3dLogo.SetActive(true);
+        appLogoAnimator.Play("IconAppear");
+        appLogo.SetActive(true);
         cameraMaskAnimator.Play("None2Full");
         subColorMaskAnimator.Play("None2Full");
          bool isPlaying = false;
@@ -149,7 +148,7 @@ public class AnimManager : MonoBehaviour {
         while(!isPlaying)
         {
             isPlaying = !mainColorPanelStates.hasEnded ||
-                !decorz3dLogoStates.hasEnded ||
+                !appLogoStates.hasEnded ||
                 !cameraMaskStates.hasEnded ||
                 !subColorMaskStates.hasEnded;
             yield return null;
@@ -158,7 +157,7 @@ public class AnimManager : MonoBehaviour {
         while (isPlaying)
         {
             isPlaying = !(mainColorPanelStates.hasEnded &&
-                decorz3dLogoStates.hasEnded &&
+                appLogoStates.hasEnded &&
                 cameraMaskStates.hasEnded &&
                 subColorMaskStates.hasEnded);
             yield return null;
