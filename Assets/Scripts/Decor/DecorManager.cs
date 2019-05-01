@@ -2,10 +2,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
-using UnityEngine.Experimental.XR;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using System;
+using System.Linq;
 
 public class DecorManager : MonoBehaviour
 {
@@ -164,7 +162,6 @@ public class DecorManager : MonoBehaviour
             yield return StartCoroutine(AnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("DecorARScene");
             AnimManager.Instance.Full2Border();
-            //xrController = GameObject.Find("XRController").GetComponent<XRController>();
             is3DScene = false;
             if (hasConnectionAndModel)
             {
@@ -202,9 +199,9 @@ public class DecorManager : MonoBehaviour
 
     public void Reset()
     {
-        foreach (var connection in allModelsDict.Values)
+        foreach (GameObject key in allModelsDict.Keys.ToList())
         {
-            connection.DestroyDecorModel();
+            allModelsDict[key].DestroyDecorModel();
         }
         allModelsDict.Clear();
         shouldSurfaceBeUpdated = true;
