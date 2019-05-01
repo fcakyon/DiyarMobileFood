@@ -20,6 +20,7 @@ public class FoodManager : MonoBehaviour
     private UIStates uiState; // Set to Idle Initially
     public UnityEvent OnUIStateChange = new UnityEvent();
     private XRSurfaceController xRSurfaceController;
+    public bool hasConnectionAndModel;
 
     private void Awake()
     {
@@ -94,6 +95,7 @@ public class FoodManager : MonoBehaviour
         if (!is3DScene)
         {
             if (surfacePlane == null) surfacePlane = GameObject.Find("Plane");
+            FoodModelConnection.transform.SetParent(surfacePlane.transform);
             FoodModelConnection.FoodModel.transform.SetParent(surfacePlane.transform);
         }
         FoodModelConnection.FoodModel.transform.position = Vector3.Lerp(FoodModelConnection.FoodModel.transform.position, newPos, Time.deltaTime * modelLerpSpeed);
@@ -155,7 +157,7 @@ public class FoodManager : MonoBehaviour
 
     IEnumerator LoadScene()
     {
-        bool hasConnectionAndModel = FoodModelConnection != null && FoodModelConnection.FoodModel != null;
+        hasConnectionAndModel = FoodModelConnection != null && FoodModelConnection.FoodModel != null;
         if (is3DScene)
         {
             if (hasConnectionAndModel)
@@ -165,20 +167,22 @@ public class FoodManager : MonoBehaviour
             }
             yield return StartCoroutine(AnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("FoodARScene");
+            if (hasConnectionAndModel) {
+                FoodModelConnection.FoodModel.transform.localScale = new Vector3(0, 0, 0);
+                UiState = UIStates.AutoPlace;
+            } else UiState = UIStates.Idle;
             AnimManager.Instance.Full2Border();
             AnimManager.Instance.CircularPlane = GameObject.Find("Plane/CircularPlane");
             is3DScene = false;
             xRSurfaceController = GameObject.Find("Plane").GetComponent<XRSurfaceController>();
-            if (hasConnectionAndModel) FoodModelConnection.SetModelScale();
-
-            if (hasConnectionAndModel) UiState = UIStates.AutoPlace;
-            else UiState = UIStates.Idle;
             xRSurfaceController.shouldSurfaceBeUpdated = true;
         }
         else
         {
             if (hasConnectionAndModel)
             {
+                FoodModelConnection.transform.SetParent(null);
+                FoodModelConnection.FoodModel.transform.SetParent(null);
                 DontDestroyOnLoad(FoodModelConnection);
                 DontDestroyOnLoad(FoodModelConnection.FoodModel);
             }

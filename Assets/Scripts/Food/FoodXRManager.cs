@@ -10,6 +10,9 @@ public class FoodXRManager : MonoBehaviour {
     {
         AnimManager.Instance.Border2None();
         AnimManager.Instance.CircularPlaneAnim();
+        if (FoodManager.Instance.hasConnectionAndModel) {
+            FoodManager.Instance.FoodModelConnection.SetModelScale();
+        }
         canvas.SetActive(true);
     }
 

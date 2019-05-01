@@ -22,6 +22,7 @@ public class DecorManager : MonoBehaviour
     [HideInInspector]
     public UnityEvent OnUIStateChange = new UnityEvent();
     private XRSurfaceController xRSurfaceController;
+    public bool hasConnectionAndModel;
 
     private void Awake()
     {
@@ -151,7 +152,7 @@ public class DecorManager : MonoBehaviour
 
     IEnumerator LoadScene()
     {
-        bool hasConnectionAndModel = DecorModelConnection != null && DecorModelConnection.DecorModel != null;
+        hasConnectionAndModel = DecorModelConnection != null && DecorModelConnection.DecorModel != null;
         if (is3DScene)
         {
             if (hasConnectionAndModel)
@@ -161,15 +162,15 @@ public class DecorManager : MonoBehaviour
             }
             yield return StartCoroutine(AnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("DecorARScene");
+            if (hasConnectionAndModel)
+            {
+                DecorModelConnection.DecorModel.transform.localScale = new Vector3(0, 0, 0);
+                DecorModelConnection.hasDecorModelBeenPlaced = false;
+            }
             AnimManager.Instance.Full2Border();
             AnimManager.Instance.CircularPlane = GameObject.Find("Plane/CircularPlane");
             is3DScene = false;
             xRSurfaceController = GameObject.Find("Plane").GetComponent<XRSurfaceController>();
-            if (hasConnectionAndModel)
-            {
-                DecorModelConnection.hasDecorModelBeenPlaced = false;
-                DecorModelConnection.SetModelScale();
-            }
             if (DecorModelConnection != null) UiState = UIStates.AutoPlace;
             else UiState = UIStates.Idle;
             xRSurfaceController.shouldSurfaceBeUpdated = true;

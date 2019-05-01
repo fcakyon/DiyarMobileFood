@@ -10,6 +10,9 @@ public class DecorXRManager : MonoBehaviour {
     {
         AnimManager.Instance.Border2None();
         AnimManager.Instance.CircularPlaneAnim();
+        if (DecorManager.Instance.hasConnectionAndModel) {
+            DecorManager.Instance.DecorModelConnection.SetModelScale();
+        }
         canvas.SetActive(true);
     }
 
