@@ -749,7 +749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deformToSurface: 0
-  displayImmediately: 1
+  displayImmediately: 0
   groundOnly: 0
   lockToFirstSurface: 0
   onSurfaceReady:

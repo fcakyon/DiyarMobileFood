@@ -14,7 +14,6 @@ public class DecorManager : MonoBehaviour
     public float modelLerpSpeed = 4f;
     public bool isPlacing;
     public Vector3 lastPlacementPos;
-    public bool shouldSurfaceBeUpdated = true;
     GameObject surfacePlane;
     public Dictionary<GameObject, DecorModelConnection> allModelsDict = new Dictionary<GameObject, DecorModelConnection>();
     public bool is3DScene;
@@ -22,6 +21,7 @@ public class DecorManager : MonoBehaviour
     private UIStates uiState; // Set to Idle Initially
     [HideInInspector]
     public UnityEvent OnUIStateChange = new UnityEvent();
+    private XRSurfaceController xRSurfaceController;
 
     private void Awake()
     {
@@ -118,7 +118,7 @@ public class DecorManager : MonoBehaviour
             Vector3 localPosition = DecorModelConnection.DecorModel.transform.localPosition;
             localPosition.y = 0;
             DecorModelConnection.DecorModel.transform.localPosition = localPosition;
-            shouldSurfaceBeUpdated = false;
+            xRSurfaceController.shouldSurfaceBeUpdated = false;
         }
     }
 
@@ -151,7 +151,7 @@ public class DecorManager : MonoBehaviour
 
     IEnumerator LoadScene()
     {
-        bool hasConnectionAndModel = Instance.DecorModelConnection != null && Instance.DecorModelConnection.DecorModel != null;
+        bool hasConnectionAndModel = DecorModelConnection != null && DecorModelConnection.DecorModel != null;
         if (is3DScene)
         {
             if (hasConnectionAndModel)
@@ -164,6 +164,7 @@ public class DecorManager : MonoBehaviour
             AnimManager.Instance.Full2Border();
             AnimManager.Instance.CircularPlane = GameObject.Find("Plane/CircularPlane");
             is3DScene = false;
+            xRSurfaceController = GameObject.Find("Plane").GetComponent<XRSurfaceController>();
             if (hasConnectionAndModel)
             {
                 DecorModelConnection.hasDecorModelBeenPlaced = false;
@@ -171,7 +172,7 @@ public class DecorManager : MonoBehaviour
             }
             if (DecorModelConnection != null) UiState = UIStates.AutoPlace;
             else UiState = UIStates.Idle;
-            shouldSurfaceBeUpdated = true;
+            xRSurfaceController.shouldSurfaceBeUpdated = true;
         }
         else
         {
@@ -205,7 +206,7 @@ public class DecorManager : MonoBehaviour
             allModelsDict[key].DestroyDecorModel();
         }
         allModelsDict.Clear();
-        shouldSurfaceBeUpdated = true;
+        xRSurfaceController.shouldSurfaceBeUpdated = true;
         UiState = UIStates.Idle;
     }
 }

@@ -6,11 +6,13 @@ using System.Collections.Generic;
 
 public class XRSurfaceController : MonoBehaviour {
 
+  // This parts belongs to DIYAR
+  public bool shouldSurfaceBeUpdated = true;
+
   private const float GROUND_DISTANCE_GUESS = 1.2f; // ~4ft
   private const float MIN_GROUND_DISTANCE_FROM_PHONE = 0.5f;
   //New potential ground surface must be at least 8 inches below current ground surface
   private const float MIN_GROUND_CHANGE_DISTANCE = 0.2f; // ~8in
-
   private const float COMPATIBILITY_SURFACE_HALF_SIZE = 100.0f;
 
   // If true, XRSurfaceController will update the rendered mesh and the collider mesh of the surface
@@ -199,20 +201,19 @@ public class XRSurfaceController : MonoBehaviour {
       return;
     }
 
-        if (DecorManager.Instance.shouldSurfaceBeUpdated)
-        {
-            bool surfaceUpdated = UpdateSurface();
+    if (shouldSurfaceBeUpdated)
+    {
+        bool surfaceUpdated = UpdateSurface();
 
-            if (!surfaceUpdated && surfaceFound)
+        if (!surfaceUpdated && surfaceFound)
+        {
+            transform.position = centerMap[surfaceId];
+            if (deformToSurface)
             {
-                transform.position = centerMap[surfaceId];
-                if (deformToSurface)
-                {
-                    DeformMesh(xr.GetSurface(surfaceId).mesh);
-                }
+                DeformMesh(xr.GetSurface(surfaceId).mesh);
             }
         }
-
+    }
   }
 
   private void UpdateForDisplayImmediatelyGroundOnly() {
