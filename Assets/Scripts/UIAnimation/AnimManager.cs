@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimManager : MonoBehaviour {
 
     public static AnimManager Instance { get; private set; }
+
     const float animationInterval = 0.3f;
     public GameObject cameraMask;
     public GameObject subColorMask;
@@ -13,7 +14,7 @@ public class AnimManager : MonoBehaviour {
     public GameObject arPlaneIcon;
     public GameObject decorz3dLogo;
     public GameObject foodz3dLogo;
-    public GameObject circularPlane;
+    private GameObject circularPlane;
     Animator cameraMaskAnimator;
     Animator subColorMaskAnimator;
     Animator mainColorPanelAnimator;
@@ -51,9 +52,19 @@ public class AnimManager : MonoBehaviour {
         decorz3dLogoStates = decorz3dLogo.GetComponent<AnimationStates>();
         subColorMaskStates = subColorMask.GetComponent<AnimationStates>();
 
-        if (circularPlane != null)
+        if (CircularPlane != null)
         {
-            circularPlaneAnimator = circularPlane.GetComponent<Animator>();
+            circularPlaneAnimator = CircularPlane.GetComponent<Animator>();
+        }
+    }
+
+    public GameObject CircularPlane
+    {
+        get { return circularPlane; }
+        set
+        {
+            circularPlane = value;
+            circularPlaneAnimator = CircularPlane.GetComponent<Animator>();
         }
     }
 

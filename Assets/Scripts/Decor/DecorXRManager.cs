@@ -8,7 +8,13 @@ public class DecorXRManager : MonoBehaviour {
 
     public void OnSurfaceAttach()
     {
-        GameObject.Find("AnimationManager").GetComponent<AnimManager>().Border2None();
+        AnimManager.Instance.Border2None();
+        AnimManager.Instance.CircularPlaneAnim();
         canvas.SetActive(true);
+    }
+
+    public void OnSurfaceSwitch()
+    {
+        AnimManager.Instance.CircularPlaneAnim();
     }
 }

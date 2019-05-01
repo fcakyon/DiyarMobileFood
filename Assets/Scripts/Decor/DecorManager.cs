@@ -162,6 +162,7 @@ public class DecorManager : MonoBehaviour
             yield return StartCoroutine(AnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("DecorARScene");
             AnimManager.Instance.Full2Border();
+            AnimManager.Instance.CircularPlane = GameObject.Find("Plane/CircularPlane");
             is3DScene = false;
             if (hasConnectionAndModel)
             {
