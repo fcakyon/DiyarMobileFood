@@ -12,10 +12,8 @@ public class AnimManager : MonoBehaviour {
     public GameObject mainColorPanel;
     public GameObject planeNotificationBox;
     public GameObject arPlaneIcon;
-    public GameObject decorz3dLogo;
-    public GameObject foodz3dLogo;
     private GameObject circularPlane;
-
+    public GameObject appLogo;
     Animator cameraMaskAnimator;
     Animator subColorMaskAnimator;
     Animator mainColorPanelAnimator;
