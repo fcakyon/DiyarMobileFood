@@ -23,6 +23,7 @@ public class DecorManager : MonoBehaviour
     public UnityEvent OnUIStateChange = new UnityEvent();
     private XRSurfaceController xRSurfaceController;
     public bool hasConnectionAndModel;
+    public bool hasSurfaceFound;
 
     private void Awake()
     {
@@ -160,8 +161,10 @@ public class DecorManager : MonoBehaviour
                 DontDestroyOnLoad(DecorModelConnection);
                 DontDestroyOnLoad(DecorModelConnection.DecorModel);
             }
+            AnimManager.Instance.dummyToggle.SetActive(false);
             yield return StartCoroutine(AnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("DecorARScene");
+            // Setting model invisible after scene change till surface is found
             if (hasConnectionAndModel)
             {
                 DecorModelConnection.DecorModel.transform.localScale = new Vector3(0, 0, 0);
@@ -210,4 +213,5 @@ public class DecorManager : MonoBehaviour
         xRSurfaceController.shouldSurfaceBeUpdated = true;
         UiState = UIStates.Idle;
     }
+
 }
