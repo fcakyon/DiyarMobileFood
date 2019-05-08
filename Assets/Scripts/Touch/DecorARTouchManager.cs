@@ -25,7 +25,9 @@ public class DecorARTouchManager : MonoBehaviour
             List<RaycastResult> raycastResults = new List<RaycastResult>();
             EventSystem.current.RaycastAll(pointer, raycastResults);
 
-            if (raycastResults.Count > 0)
+            Debug.Log(raycastResults.Count);
+
+            if (raycastResults.Count > 4) //number of border panel elements
             {
                 return true;
             }
@@ -44,11 +46,12 @@ public class DecorARTouchManager : MonoBehaviour
         //}
 
         bool isUITouch = IsUITouch();
+        Debug.Log(isUITouch);
         if (isUITouch == true) return;
-        
 
         if (Input.touchCount == 1)
         {
+
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
             {
@@ -67,6 +70,7 @@ public class DecorARTouchManager : MonoBehaviour
                 {
                     RaycastHit hit;
                     Ray ray = Camera.main.ScreenPointToRay(touch.position);
+
                     if (Physics.Raycast(ray, out hit, 500f, planeLayerMask))
                     {
                         currentSelected.transform.position = hit.point;

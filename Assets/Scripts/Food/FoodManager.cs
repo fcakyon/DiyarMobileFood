@@ -169,6 +169,7 @@ public class FoodManager : MonoBehaviour
             yield return SceneManager.LoadSceneAsync("FoodARScene");
             if (hasConnectionAndModel) {
                 FoodModelConnection.FoodModel.transform.localScale = new Vector3(0, 0, 0);
+                hasFoodModelBeenPlaced = false;
                 UiState = UIStates.AutoPlace;
             } else UiState = UIStates.Idle;
             AnimManager.Instance.Full2Border();
@@ -188,6 +189,7 @@ public class FoodManager : MonoBehaviour
             }
             yield return StartCoroutine(AnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("Food3DScene");
+            lastPlacementPos = Vector3.zero;
             AnimManager.Instance.Full2None();
             Destroy(surfacePlane);
             if (hasConnectionAndModel)
