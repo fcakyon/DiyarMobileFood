@@ -8,16 +8,23 @@ public class FoodXRManager : MonoBehaviour {
 
     public void OnSurfaceAttach()
     {
-        AnimManager.Instance.Border2None();
-        AnimManager.Instance.CircularPlaneAnim();
-        if (FoodManager.Instance.hasConnectionAndModel) {
+        FoodAnimManager.Instance.Border2None();
+        FoodAnimManager.Instance.CircularPlaneAnim();
+        FoodManager.Instance.hasSurfaceFound = true;
+        // Setting model visible after surface has found
+        if (FoodManager.Instance.hasConnectionAndModel)
+        {
             FoodManager.Instance.FoodModelConnection.SetModelScale();
+        }
+        else
+        {
+            FoodAnimManager.Instance.DummyAdd();
         }
         canvas.SetActive(true);
     }
 
     public void OnSurfaceSwitch()
     {
-        AnimManager.Instance.CircularPlaneAnim();
+        FoodAnimManager.Instance.CircularPlaneAnim();
     }
 }

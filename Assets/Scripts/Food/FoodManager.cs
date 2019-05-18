@@ -7,12 +7,11 @@ public class FoodManager : MonoBehaviour
 {
     public static FoodManager Instance { get; private set; }
     [HideInInspector]
-    public FoodModelConnection foodModelConnection;
+    private FoodModelConnection foodModelConnection;
     public LayerMask planeLayerMask;
     public float modelLerpSpeed = 4f;
     public bool isPlacing;
     public bool isChanging;
-    public bool hasFoodModelBeenPlaced;
     public Vector3 lastPlacementPos;
     GameObject surfacePlane;
     public bool is3DScene;
@@ -21,6 +20,7 @@ public class FoodManager : MonoBehaviour
     public UnityEvent OnUIStateChange = new UnityEvent();
     private XRSurfaceController xRSurfaceController;
     public bool hasConnectionAndModel;
+    public bool hasSurfaceFound;
 
     private void Awake()
     {
@@ -36,13 +36,13 @@ public class FoodManager : MonoBehaviour
     private void Start()
     {
         if (is3DScene == true) lastPlacementPos = Vector3.zero;
-        AnimManager.Instance.Full2None();
+        FoodAnimManager.Instance.Full2None();
     }
 
 
     void Update()
     {
-        if (FoodModelConnection != null && FoodModelConnection.FoodModel != null && hasFoodModelBeenPlaced != true)
+        if (FoodModelConnection != null && FoodModelConnection.FoodModel != null && !FoodModelConnection.hasModelBeenPlaced)
         {
             AutoPlaceModel();
         }
@@ -123,7 +123,7 @@ public class FoodManager : MonoBehaviour
            UiState = (int)UIStates.Idle;
         else
         {
-            if(hasFoodModelBeenPlaced)
+            if(FoodModelConnection.hasModelBeenPlaced)
                 UiState = UIStates.Fixed;
             else
                 UiState = UIStates.AutoPlace;
@@ -132,10 +132,10 @@ public class FoodManager : MonoBehaviour
 
     public void Fix()
     {
-        if (hasFoodModelBeenPlaced == false)
+        if (!FoodModelConnection.hasModelBeenPlaced)
         {
             UiState = UIStates.Fixed;
-            hasFoodModelBeenPlaced = true;
+            FoodModelConnection.hasModelBeenPlaced = true;
             FoodModelConnection.FoodModel.transform.position = lastPlacementPos;
             Vector3 localPosition = FoodModelConnection.FoodModel.transform.localPosition;
             localPosition.y = 0;
@@ -165,17 +165,20 @@ public class FoodManager : MonoBehaviour
                 DontDestroyOnLoad(FoodModelConnection);
                 DontDestroyOnLoad(FoodModelConnection.FoodModel);
             }
-            yield return StartCoroutine(AnimManager.Instance.None2FullCoroutine());
+            FoodAnimManager.Instance.dummyToggle.SetActive(false);
+            yield return StartCoroutine(FoodAnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("FoodARScene");
-            if (hasConnectionAndModel) {
+            // Setting model invisible after scene change till surface is found
+            if (hasConnectionAndModel)
+            {
                 FoodModelConnection.FoodModel.transform.localScale = new Vector3(0, 0, 0);
-                hasFoodModelBeenPlaced = false;
-                UiState = UIStates.AutoPlace;
-            } else UiState = UIStates.Idle;
-            AnimManager.Instance.Full2Border();
-            AnimManager.Instance.CircularPlane = GameObject.Find("Plane/CircularPlane");
+                FoodModelConnection.hasModelBeenPlaced = false;
+            }
+            FoodAnimManager.Instance.OnARSceneLoaded();
             is3DScene = false;
             xRSurfaceController = GameObject.Find("Plane").GetComponent<XRSurfaceController>();
+            if (FoodModelConnection != null) UiState = UIStates.AutoPlace;
+            else UiState = UIStates.Idle;
             xRSurfaceController.shouldSurfaceBeUpdated = true;
         }
         else
@@ -187,10 +190,10 @@ public class FoodManager : MonoBehaviour
                 DontDestroyOnLoad(FoodModelConnection);
                 DontDestroyOnLoad(FoodModelConnection.FoodModel);
             }
-            yield return StartCoroutine(AnimManager.Instance.None2FullCoroutine());
+            yield return StartCoroutine(FoodAnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("Food3DScene");
             lastPlacementPos = Vector3.zero;
-            AnimManager.Instance.Full2None();
+            FoodAnimManager.Instance.On3DSceneLoaded();
             Destroy(surfacePlane);
             if (hasConnectionAndModel)
             {
@@ -205,7 +208,7 @@ public class FoodManager : MonoBehaviour
 
     public void Reset()
     {
-        hasFoodModelBeenPlaced = false;
+        FoodModelConnection.hasModelBeenPlaced = false;
         RemoveConnection();
         xRSurfaceController.shouldSurfaceBeUpdated = true;
         UiState = (int)UIStates.Idle;

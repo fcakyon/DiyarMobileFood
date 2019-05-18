@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimManager : MonoBehaviour {
+public class DecorAnimManager : MonoBehaviour {
 
-    public static AnimManager Instance { get; private set; }
+    public static DecorAnimManager Instance { get; private set; }
 
     bool showedToggleAnimation;
     public bool showFixAnimation = true;
@@ -106,6 +106,17 @@ public class AnimManager : MonoBehaviour {
         {
             StartCoroutine(DummyFixCoroutine());
         }
+    }
+
+    public void OnARSceneLoaded()
+    {
+        Full2Border();
+        CircularPlane = GameObject.Find("Plane/CircularPlane");
+    }
+
+    public void On3DSceneLoaded()
+    {
+        Full2None();
     }
 
     public GameObject CircularPlane
@@ -234,7 +245,6 @@ public class AnimManager : MonoBehaviour {
     private IEnumerator DummyAddCoroutine()
     {
         bool initialScene = DecorManager.Instance.is3DScene;
-        //TODO Should be seperated for food/decor
         dummyAdd.SetActive(true);
         dummyAddAnimator.Play("Dummy");
         while (DecorManager.Instance.DecorModelConnection == null && DecorManager.Instance.is3DScene == initialScene)

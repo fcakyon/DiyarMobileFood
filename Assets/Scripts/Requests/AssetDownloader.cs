@@ -27,7 +27,7 @@ public class AssetDownloader : MonoBehaviour {
             coroutine = DownloadAssetBundleAndSetFoodModel();
             FoodManager.Instance.RemoveConnection();
             FoodManager.Instance.FoodModelConnection = foodModelConnection;
-            if (FoodManager.Instance.hasFoodModelBeenPlaced == true)
+            if (FoodManager.Instance.FoodModelConnection.enabled)
                 FoodManager.Instance.isChanging = true;
             StartCoroutine(coroutine);
         }
@@ -42,7 +42,7 @@ public class AssetDownloader : MonoBehaviour {
             if (coroutine != null) StopCoroutine(coroutine);
             if (request != null && !request.isDone) request.Abort();
             coroutine = DownloadAssetBundleAndSetDecorModel();
-            if (DecorManager.Instance.is3DScene == true) DecorManager.Instance.RemoveConnection();
+            if (DecorManager.Instance.is3DScene) DecorManager.Instance.RemoveConnection();
             DecorManager.Instance.DecorModelConnection = decorModelConnection;
             StartCoroutine(coroutine);
         }
