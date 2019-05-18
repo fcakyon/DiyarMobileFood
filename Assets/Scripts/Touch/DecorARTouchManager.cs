@@ -12,13 +12,14 @@ public class DecorARTouchManager : MonoBehaviour
     public GameObject currentSelected;
     public LayerMask modelLayerMask;
     public LayerMask planeLayerMask;
+    private bool isUITouch;
 
     void Start() {}
 
     bool IsUITouch()
     {
-        if (Input.touchCount == 1)
-        {
+        //if (Input.touchCount == 1)
+        //{
             PointerEventData pointer = new PointerEventData(EventSystem.current);
             pointer.position = Input.GetTouch(0).position;
 
@@ -30,24 +31,20 @@ public class DecorARTouchManager : MonoBehaviour
                 return true;
             }
                 return false;
-        }
-            return false;
+        //}
+            //return false;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
 
-        //if (decorManager.DecorModelConnection != null)
-        //{
-        //    return;
-        //}
-
-        bool isUITouch = IsUITouch();
-        if (isUITouch == true) return;
-
         if (Input.touchCount == 1)
         {
+            // check if touch is passing through ui
+            isUITouch = IsUITouch();
+            // dont continue if touch is passing through ui
+            if (isUITouch == true) return;
 
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
