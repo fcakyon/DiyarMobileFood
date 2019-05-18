@@ -26,6 +26,7 @@ public class FoodFix : MonoBehaviour, IClickable {
     public void ClickHandler()
     {
         FoodManager.Instance.Fix();
+        FoodAnimManager.Instance.showFixAnimation = false;
     }
 
     void Start ()

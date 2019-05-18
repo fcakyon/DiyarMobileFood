@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DecorFix : MonoBehaviour, IClickable {
+public class DecorFix : MonoBehaviour, IClickable
+{
     public void ChangeVisibility()
     {
         switch (DecorManager.Instance.UiState)
@@ -23,7 +24,7 @@ public class DecorFix : MonoBehaviour, IClickable {
     public void ClickHandler()
     {
         DecorManager.Instance.Fix();
-        AnimManager.Instance.showFixAnimation = false;
+        DecorAnimManager.Instance.showFixAnimation = false;
     }
 
     void Start ()

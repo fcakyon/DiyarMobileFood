@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class DecorModelConnection : MonoBehaviour
 {
-    
-    public bool hasDecorModelBeenPlaced = false;
     public GameObject decorModel;
     public string assetBundleUrl;
     //[HideInInspector]
@@ -15,6 +13,7 @@ public class DecorModelConnection : MonoBehaviour
     public AssetBundle bundle;
     public AssetDownloader assetDownloader;
     public float height;
+    public bool hasModelBeenPlaced = false;
 
     public GameObject DecorModel
     {

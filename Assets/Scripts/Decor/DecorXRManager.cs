@@ -8,8 +8,8 @@ public class DecorXRManager : MonoBehaviour {
 
     public void OnSurfaceAttach()
     {
-        AnimManager.Instance.Border2None();
-        AnimManager.Instance.CircularPlaneAnim();
+        DecorAnimManager.Instance.Border2None();
+        DecorAnimManager.Instance.CircularPlaneAnim();
         DecorManager.Instance.hasSurfaceFound = true;
         // Setting model visible after surface has found
         if (DecorManager.Instance.hasConnectionAndModel) {
@@ -17,13 +17,13 @@ public class DecorXRManager : MonoBehaviour {
         }
         else
         {
-            AnimManager.Instance.DummyAdd();
+            DecorAnimManager.Instance.DummyAdd();
         }
         canvas.SetActive(true);
     }
 
     public void OnSurfaceSwitch()
     {
-        AnimManager.Instance.CircularPlaneAnim();
+        DecorAnimManager.Instance.CircularPlaneAnim();
     }
 }

@@ -9,7 +9,7 @@ public class DecorManager : MonoBehaviour
 {
     public static DecorManager Instance { get; private set; }
     [HideInInspector]
-    public DecorModelConnection decorModelConnection;
+    private DecorModelConnection decorModelConnection;
     public LayerMask planeLayerMask;
     public float modelLerpSpeed = 4f;
     public bool isPlacing;
@@ -41,17 +41,17 @@ public class DecorManager : MonoBehaviour
     private void Start()
     {
         if (is3DScene) lastPlacementPos = new Vector3(0, 0, 0);
-
-        AnimManager.Instance.Full2None();
+        DecorAnimManager.Instance.Full2None();
     }
 
     void Update()
     {
-        if (DecorModelConnection != null && DecorModelConnection.DecorModel != null && DecorModelConnection.hasDecorModelBeenPlaced != true)
+        if (DecorModelConnection != null && DecorModelConnection.DecorModel != null && !DecorModelConnection.hasModelBeenPlaced)
         {
             AutoPlaceModel();
         }
     }
+
 
     public DecorModelConnection DecorModelConnection
     {
@@ -112,10 +112,10 @@ public class DecorManager : MonoBehaviour
 
     public void Fix()
     {
-        if (!DecorModelConnection.hasDecorModelBeenPlaced)
+        if (!DecorModelConnection.hasModelBeenPlaced)
         {
             UiState = UIStates.Idle;
-            DecorModelConnection.hasDecorModelBeenPlaced = true;
+            DecorModelConnection.hasModelBeenPlaced = true;
             DecorModelConnection.DecorModel.transform.position = lastPlacementPos;
             Vector3 localPosition = DecorModelConnection.DecorModel.transform.localPosition;
             localPosition.y = 0;
@@ -161,17 +161,16 @@ public class DecorManager : MonoBehaviour
                 DontDestroyOnLoad(DecorModelConnection);
                 DontDestroyOnLoad(DecorModelConnection.DecorModel);
             }
-            AnimManager.Instance.dummyToggle.SetActive(false);
-            yield return StartCoroutine(AnimManager.Instance.None2FullCoroutine());
+            DecorAnimManager.Instance.dummyToggle.SetActive(false);
+            yield return StartCoroutine(DecorAnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("DecorARScene");
             // Setting model invisible after scene change till surface is found
             if (hasConnectionAndModel)
             {
                 DecorModelConnection.DecorModel.transform.localScale = new Vector3(0, 0, 0);
-                DecorModelConnection.hasDecorModelBeenPlaced = false;
+                DecorModelConnection.hasModelBeenPlaced = false;
             }
-            AnimManager.Instance.Full2Border();
-            AnimManager.Instance.CircularPlane = GameObject.Find("Plane/CircularPlane");
+            DecorAnimManager.Instance.OnARSceneLoaded();
             is3DScene = false;
             xRSurfaceController = GameObject.Find("Plane").GetComponent<XRSurfaceController>();
             if (DecorModelConnection != null) UiState = UIStates.AutoPlace;
@@ -187,9 +186,9 @@ public class DecorManager : MonoBehaviour
                 DontDestroyOnLoad(DecorModelConnection);
                 DontDestroyOnLoad(DecorModelConnection.DecorModel);
             }
-            yield return StartCoroutine(AnimManager.Instance.None2FullCoroutine());
+            yield return StartCoroutine(DecorAnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("Decor3DScene");
-            AnimManager.Instance.Full2None();
+            DecorAnimManager.Instance.On3DSceneLoaded();
             is3DScene = true;
             Destroy(surfacePlane);
             if (hasConnectionAndModel)

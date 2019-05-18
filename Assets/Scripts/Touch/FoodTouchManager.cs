@@ -24,7 +24,7 @@ public class FoodTouchManager : MonoBehaviour {
                     if (touch0.phase == TouchPhase.Moved)
                     {
                         var angleY = -0.4f * touch0.deltaPosition.x;
-                        FoodManager.Instance.foodModelConnection.FoodModel.transform.Rotate(0f, angleY, 0f);
+                        FoodManager.Instance.FoodModelConnection.FoodModel.transform.Rotate(0f, angleY, 0f);
                     }
                 }
             }
