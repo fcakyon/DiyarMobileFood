@@ -2376,13 +2376,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fb6ec4ba4814dbc8d81771acd9114a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasDecorModelBeenPlaced: 0
   decorModel: {fileID: 0}
   assetBundleUrl: 
   prefabName: model
   bundle: {fileID: 0}
   assetDownloader: {fileID: 30107482}
   height: 0
+  hasModelBeenPlaced: 0
 --- !u!95 &162395166
 Animator:
   serializedVersion: 3
@@ -8162,7 +8162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553f9a2616aa84e3f84a52b348345147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decorModelConnection: {fileID: 0}
   planeLayerMask:
     serializedVersion: 2
     m_Bits: 512
@@ -16390,10 +16389,10 @@ RectTransform:
   m_Father: {fileID: 1392648797}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -938.9995, y: -3509.0002}
-  m_SizeDelta: {x: 500, y: 500}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -938.9995, y: 649.49976}
+  m_SizeDelta: {x: 500, y: 501}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1461303281
 GameObject:
@@ -23234,13 +23233,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fb6ec4ba4814dbc8d81771acd9114a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasDecorModelBeenPlaced: 0
   decorModel: {fileID: 0}
   assetBundleUrl: 
   prefabName: model
   bundle: {fileID: 0}
   assetDownloader: {fileID: 30107482}
   height: 0
+  hasModelBeenPlaced: 0
 --- !u!95 &2081339503
 Animator:
   serializedVersion: 3

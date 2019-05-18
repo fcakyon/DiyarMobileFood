@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Events;
 
 public class Decor3DTouchManager : MonoBehaviour {
 
@@ -14,8 +13,6 @@ public class Decor3DTouchManager : MonoBehaviour {
 
     bool IsUITouch()
     {
-        //if (Input.touchCount == 1)
-        //{
         PointerEventData pointer = new PointerEventData(EventSystem.current);
         pointer.position = Input.GetTouch(0).position;
 
@@ -27,8 +24,6 @@ public class Decor3DTouchManager : MonoBehaviour {
             return true;
         }
         return false;
-        //}
-        //return false;
     }
 
     void Update () {

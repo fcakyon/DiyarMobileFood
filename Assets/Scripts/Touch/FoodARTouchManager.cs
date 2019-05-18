@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodTouchManager : MonoBehaviour {
+public class FoodARTouchManager : MonoBehaviour {
 
 	void Start () {}
 
