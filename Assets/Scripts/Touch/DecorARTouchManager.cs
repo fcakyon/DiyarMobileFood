@@ -25,8 +25,6 @@ public class DecorARTouchManager : MonoBehaviour
             List<RaycastResult> raycastResults = new List<RaycastResult>();
             EventSystem.current.RaycastAll(pointer, raycastResults);
 
-            Debug.Log(raycastResults.Count);
-
             if (raycastResults.Count > 4) //number of border panel elements
             {
                 return true;
@@ -46,7 +44,6 @@ public class DecorARTouchManager : MonoBehaviour
         //}
 
         bool isUITouch = IsUITouch();
-        Debug.Log(isUITouch);
         if (isUITouch == true) return;
 
         if (Input.touchCount == 1)

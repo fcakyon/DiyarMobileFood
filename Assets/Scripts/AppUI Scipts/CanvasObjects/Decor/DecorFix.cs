@@ -23,6 +23,7 @@ public class DecorFix : MonoBehaviour, IClickable {
     public void ClickHandler()
     {
         DecorManager.Instance.Fix();
+        AnimManager.Instance.showFixAnimation = false;
     }
 
     void Start ()

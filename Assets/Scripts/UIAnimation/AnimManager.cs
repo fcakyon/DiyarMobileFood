@@ -6,6 +6,9 @@ public class AnimManager : MonoBehaviour {
 
     public static AnimManager Instance { get; private set; }
 
+    bool showedToggleAnimation;
+    public bool showFixAnimation = true;
+
     const float animationInterval = 0.3f;
     public GameObject cameraMask;
     public GameObject subColorMask;
@@ -25,6 +28,20 @@ public class AnimManager : MonoBehaviour {
     AnimationStates mainColorPanelStates;
     AnimationStates appLogoStates;
     AnimationStates subColorMaskStates;
+
+    #region Dummies
+    public GameObject dummyAdd;
+    Animator dummyAddAnimator;
+    AnimationStates dummyAddStates;
+
+    public GameObject dummyToggle;
+    Animator dummyToggleAnimator;
+    AnimationStates dummyToggleStates;
+
+    public GameObject dummyFix;
+    Animator dummyFixAnimator;
+    AnimationStates dummyFixStates;
+    #endregion
 
     private void Awake()
     {
@@ -49,9 +66,45 @@ public class AnimManager : MonoBehaviour {
         appLogoStates = appLogo.GetComponent<AnimationStates>();
         subColorMaskStates = subColorMask.GetComponent<AnimationStates>();
 
+        #region Dummies
+        dummyAddAnimator = dummyAdd.GetComponent<Animator>();
+        dummyAddStates = dummyAdd.GetComponent<AnimationStates>();
+
+        dummyToggleAnimator = dummyToggle.GetComponent<Animator>();
+        dummyToggleStates = dummyToggle.GetComponent<AnimationStates>();
+
+        dummyFixAnimator = dummyFix.GetComponent<Animator>();
+        dummyFixStates = dummyFix.GetComponent<AnimationStates>();
+        #endregion
+
         if (CircularPlane != null)
         {
             circularPlaneAnimator = CircularPlane.GetComponent<Animator>();
+        }
+    }
+
+    private void Start()
+    {
+        DummyAdd();
+    }
+
+    private void Update()
+    {
+        if(!showedToggleAnimation
+            && DecorManager.Instance.is3DScene
+            && DecorManager.Instance.DecorModelConnection != null 
+            && DecorManager.Instance.DecorModelConnection.DecorModel != null)
+        {
+            StartCoroutine(DummyToggleCoroutine());
+        }
+
+        if(showFixAnimation 
+            && !DecorManager.Instance.is3DScene
+            && DecorManager.Instance.hasSurfaceFound
+            && DecorManager.Instance.DecorModelConnection != null
+            && DecorManager.Instance.DecorModelConnection.DecorModel != null)
+        {
+            StartCoroutine(DummyFixCoroutine());
         }
     }
 
@@ -171,6 +224,44 @@ public class AnimManager : MonoBehaviour {
     public void CircularPlaneAnim()
     {
         circularPlaneAnimator.Play("PlaneCircleAnim");
+    }
+
+    public void DummyAdd()
+    {
+        StartCoroutine(DummyAddCoroutine());
+    }
+
+    private IEnumerator DummyAddCoroutine()
+    {
+        bool initialScene = DecorManager.Instance.is3DScene;
+        //TODO Should be seperated for food/decor
+        dummyAdd.SetActive(true);
+        dummyAddAnimator.Play("Dummy");
+        while (DecorManager.Instance.DecorModelConnection == null && DecorManager.Instance.is3DScene == initialScene)
+        {
+            yield return null;
+        }
+        dummyAdd.SetActive(false);
+    }
+
+    private IEnumerator DummyToggleCoroutine()
+    {
+        dummyToggle.SetActive(true);
+        dummyToggleAnimator.Play("Dummy");
+        yield return new WaitForSeconds(5);
+        dummyToggle.SetActive(false);
+        showedToggleAnimation = true;
+    }
+
+    private IEnumerator DummyFixCoroutine()
+    {
+        dummyFix.SetActive(true);
+        dummyFixAnimator.Play("Dummy");
+        while (showFixAnimation)
+        {
+            yield return null;
+        }
+        dummyFix.SetActive(false);
     }
 
 }
