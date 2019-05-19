@@ -1,12 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class FoodARTouchManager : MonoBehaviour {
 
-	void Start () {}
+    public GameObject foodCanvas;
+    private FoodPanelController foodPanelController;
+    private bool isUITouch;
 
-	void Update () {
+    void Start () {}
+
+    bool IsUITouch()
+    {
+        PointerEventData pointer = new PointerEventData(EventSystem.current);
+        pointer.position = Input.GetTouch(0).position;
+
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointer, raycastResults);
+
+        if (raycastResults.Count > 4) //number of border panel elements
+        {
+            return true;
+        }
+        return false;
+    }
+
+    void Update () {
+        if (Input.touchCount == 1)
+        {
+            isUITouch = IsUITouch();
+            if (isUITouch == true)
+            {
+                return;
+            }
+            else
+            {
+                foodPanelController = foodCanvas.GetComponent<FoodPanelController>();
+                foodPanelController.CloseAllPanels();
+            }
+        }
+
         OneFingerRotate();
     }
 
@@ -16,7 +50,17 @@ public class FoodARTouchManager : MonoBehaviour {
         {
             if (FoodManager.Instance.FoodModelConnection.FoodModel != null)
             {
-                if (Input.touchCount == 0)
+                if (Input.touchCount == 1)
+                {
+                    isUITouch = IsUITouch();
+                    if (isUITouch == true) return;
+                }
+                else
+                {
+                    isUITouch = false;
+                }
+
+                if (Input.touchCount == 0 || isUITouch)
                     FoodManager.Instance.FoodModelConnection.FoodModel.transform.Rotate(0f, 15 * Time.deltaTime, 0f);
                 else
                 {

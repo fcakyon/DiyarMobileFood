@@ -13,6 +13,8 @@ public class DecorARTouchManager : MonoBehaviour
     public LayerMask modelLayerMask;
     public LayerMask planeLayerMask;
     private bool isUITouch;
+    public GameObject decorCanvas;
+    private DecorPanelController decorPanelController;
 
     void Start() {}
 
@@ -45,6 +47,13 @@ public class DecorARTouchManager : MonoBehaviour
             isUITouch = IsUITouch();
             // dont continue if touch is passing through ui
             if (isUITouch == true) return;
+
+            // close panels if canvas is active and touch is not passing through ui
+            if (decorCanvas.activeSelf == true)
+            { 
+            decorPanelController = decorCanvas.GetComponent<DecorPanelController>();
+            decorPanelController.CloseAllPanels();
+            }
 
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)

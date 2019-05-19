@@ -21447,7 +21447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodPopupPanel: {fileID: 1527976621}
-  foodInfoPanel: {fileID: 0}
+  foodInfoPanel: {fileID: 540411010}
 --- !u!1 &1917873303
 GameObject:
   m_ObjectHideFlags: 0
@@ -23263,9 +23263,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1527976623}
-        m_MethodName: Play
-        m_Mode: 5
+      - m_Target: {fileID: 1913300398}
+        m_MethodName: ClosePopupPanel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
