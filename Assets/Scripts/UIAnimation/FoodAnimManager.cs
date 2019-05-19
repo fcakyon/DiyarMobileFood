@@ -246,7 +246,7 @@ public class FoodAnimManager : MonoBehaviour {
     {
         bool initialScene = FoodManager.Instance.is3DScene;
         dummyAdd.SetActive(true);
-        dummyAddAnimator.Play("Dummy");
+        //dummyAddAnimator.Play("Dummy");
         while (FoodManager.Instance.FoodModelConnection == null && FoodManager.Instance.is3DScene == initialScene)
         {
             yield return null;
@@ -257,7 +257,7 @@ public class FoodAnimManager : MonoBehaviour {
     private IEnumerator DummyToggleCoroutine()
     {
         dummyToggle.SetActive(true);
-        dummyToggleAnimator.Play("Dummy");
+        //dummyToggleAnimator.Play("Dummy");
         yield return new WaitForSeconds(5);
         dummyToggle.SetActive(false);
         showedToggleAnimation = true;
@@ -266,7 +266,7 @@ public class FoodAnimManager : MonoBehaviour {
     private IEnumerator DummyFixCoroutine()
     {
         dummyFix.SetActive(true);
-        dummyFixAnimator.Play("Dummy");
+        //dummyFixAnimator.Play("Dummy");
         while (showFixAnimation)
         {
             yield return null;

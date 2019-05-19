@@ -16376,10 +16376,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1637724088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5432ce71b24444528a19bf01ffc8828, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fe773e12f37246e7bf183e19c7c890e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelButtonPrefab: {fileID: 1996913431}
+  modelButtonPrefab: {fileID: 2082436477}
 --- !u!114 &1637724091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20484,14 +20484,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1996913431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20fb6ec4ba4814dbc8d81771acd9114a, type: 3}
+  m_Script: {fileID: 11500000, guid: a44447c6a5b7f4709ad2b108a0071b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decorModel: {fileID: 0}
   assetBundleUrl: 
   prefabName: model
   bundle: {fileID: 0}
-  assetDownloader: {fileID: 0}
+  assetDownloader: {fileID: 2042436135}
   height: 0
   hasModelBeenPlaced: 0
 --- !u!95 &1996913434

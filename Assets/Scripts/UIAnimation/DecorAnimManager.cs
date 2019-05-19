@@ -246,7 +246,7 @@ public class DecorAnimManager : MonoBehaviour {
     {
         bool initialScene = DecorManager.Instance.is3DScene;
         dummyAdd.SetActive(true);
-        dummyAddAnimator.Play("Dummy");
+        //dummyAddAnimator.Play("Dummy");
         while (DecorManager.Instance.DecorModelConnection == null && DecorManager.Instance.is3DScene == initialScene)
         {
             yield return null;
@@ -257,7 +257,7 @@ public class DecorAnimManager : MonoBehaviour {
     private IEnumerator DummyToggleCoroutine()
     {
         dummyToggle.SetActive(true);
-        dummyToggleAnimator.Play("Dummy");
+        //dummyToggleAnimator.Play("Dummy");
         yield return new WaitForSeconds(5);
         dummyToggle.SetActive(false);
         showedToggleAnimation = true;
@@ -266,7 +266,7 @@ public class DecorAnimManager : MonoBehaviour {
     private IEnumerator DummyFixCoroutine()
     {
         dummyFix.SetActive(true);
-        dummyFixAnimator.Play("Dummy");
+        //dummyFixAnimator.Play("Dummy");
         while (showFixAnimation)
         {
             yield return null;
