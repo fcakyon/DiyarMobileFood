@@ -22,7 +22,7 @@ public class DecorModelConnection : MonoBehaviour
         set
         {
             decorModel = value;
-            SetModelScale();
+            SetModelScale(1f);
         }
     }
 
@@ -37,15 +37,15 @@ public class DecorModelConnection : MonoBehaviour
 
     }
 
-    public void SetModelScale()
+    public void SetModelScale(float modelScale)
     {
         if (DecorManager.Instance.is3DScene)
         {
-            ModelScaleTransformer.ModelScaler3D(decorModel);
+            ModelScaleTransformer.CustomModelScale3D(decorModel, modelScale);
         }
         else
         {
-            ModelScaleTransformer.ModelScalerAR(decorModel, height);
+            ModelScaleTransformer.ResetModelScaleAR(decorModel, height);
         }
     }
 

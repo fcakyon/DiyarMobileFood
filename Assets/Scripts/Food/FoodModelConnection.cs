@@ -25,7 +25,7 @@ public class FoodModelConnection : MonoBehaviour
         set
         {
             foodModel = value;
-            SetModelScale();
+            SetModelScale(1f);
         }
     }
 
@@ -38,15 +38,15 @@ public class FoodModelConnection : MonoBehaviour
     void Update()
     {}
 
-    public void SetModelScale()
+    public void SetModelScale(float modelScale)
     {
         if (FoodManager.Instance.is3DScene)
         {
-            ModelScaleTransformer.ModelScaler3D(foodModel);
+            ModelScaleTransformer.CustomModelScale3D(foodModel, modelScale);
         }
         else
         {
-            ModelScaleTransformer.ModelScalerAR(foodModel, height);
+            ModelScaleTransformer.ResetModelScaleAR(foodModel, height);
         }
     }
 

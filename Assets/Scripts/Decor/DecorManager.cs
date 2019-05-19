@@ -193,9 +193,15 @@ public class DecorManager : MonoBehaviour
             Destroy(surfacePlane);
             if (hasConnectionAndModel)
             {
-                DecorModelConnection.SetModelScale();
+                // reset model scale for 3d scene
+                float modelScale = 1f;
+                DecorModelConnection.SetModelScale(modelScale);
+
+                // remove model and connection parent
                 DecorModelConnection.transform.SetParent(null);
                 DecorModelConnection.DecorModel.transform.SetParent(null);
+
+                // reset model position for 3d scene
                 DecorModelConnection.DecorModel.transform.position = Vector3.zero;
             }
             UiState = UIStates.Idle;

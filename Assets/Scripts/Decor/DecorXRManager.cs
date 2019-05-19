@@ -13,7 +13,8 @@ public class DecorXRManager : MonoBehaviour {
         DecorManager.Instance.hasSurfaceFound = true;
         // Setting model visible after surface has found
         if (DecorManager.Instance.hasConnectionAndModel) {
-            DecorManager.Instance.DecorModelConnection.SetModelScale();
+            float modelScale = 1f;
+            DecorManager.Instance.DecorModelConnection.SetModelScale(modelScale);
         }
         else
         {

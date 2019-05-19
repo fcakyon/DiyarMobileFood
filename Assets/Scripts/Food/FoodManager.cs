@@ -192,13 +192,22 @@ public class FoodManager : MonoBehaviour
             }
             yield return StartCoroutine(FoodAnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("Food3DScene");
+
+            // reset last model position for 3d scene
             lastPlacementPos = Vector3.zero;
+
             FoodAnimManager.Instance.On3DSceneLoaded();
             Destroy(surfacePlane);
             if (hasConnectionAndModel)
             {
-                FoodModelConnection.SetModelScale();
+                // reset model scale for 3d scene
+                float modelScale = 1f;
+                FoodModelConnection.SetModelScale(modelScale);
+
+                // remove model parent
                 FoodModelConnection.FoodModel.transform.SetParent(null);
+
+                // reset model position for 3d scene
                 FoodModelConnection.FoodModel.transform.position = Vector3.zero;
             }
             is3DScene = true;

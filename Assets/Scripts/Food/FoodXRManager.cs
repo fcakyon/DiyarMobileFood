@@ -14,7 +14,8 @@ public class FoodXRManager : MonoBehaviour {
         // Setting model visible after surface has found
         if (FoodManager.Instance.hasConnectionAndModel)
         {
-            FoodManager.Instance.FoodModelConnection.SetModelScale();
+            float modelScale = 1f;
+            FoodManager.Instance.FoodModelConnection.SetModelScale(modelScale);
         }
         else
         {
