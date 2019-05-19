@@ -390,12 +390,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 2
-  m_Color1: {r: 0.8745098, g: 0.8039216, b: 0, a: 1}
-  m_Color2: {r: 1, g: 0.9729279, b: 0.31764707, a: 1}
+  m_Color1: {r: 1, g: 0.91764706, b: 0.14509805, a: 1}
+  m_Color2: {r: 1, g: 0.9729279, b: 0.23137255, a: 1}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
-  m_Rotation: 180
-  m_Offset1: -0.23
+  m_Rotation: 90
+  m_Offset1: -1
   m_Offset2: 0
   m_GradientStyle: 0
   m_ColorSpace: -1
@@ -20711,6 +20711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodCanvas: {fileID: 1913300393}
+  canvasGradientBackground: {fileID: 12583146}
 --- !u!4 &1861362255
 Transform:
   m_ObjectHideFlags: 0

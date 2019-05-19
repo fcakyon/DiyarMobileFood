@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+//namespace Coffee.UIExtensions
+//{
+
 public class Food3DTouchManager : MonoBehaviour {
 
     public GameObject foodCanvas;
     private FoodPanelController foodPanelController;
+    //public GameObject canvasGradientBackground;
+    //private UIGradient uiGradient;
     private bool isUITouch;
+    private int uiGradientCounter;
 
-    void Start () {}
+    void Start () 
+    {   
+        //uiGradient = canvasGradientBackground.GetComponent<UIGradient>();
+    }
 
     bool IsUITouch()
     {
@@ -61,7 +70,18 @@ public class Food3DTouchManager : MonoBehaviour {
                 }
 
                 if (Input.touchCount == 0 || isUITouch)
+                {
                     FoodManager.Instance.FoodModelConnection.FoodModel.transform.Rotate(0f, 15 * Time.deltaTime, 0f);
+                    
+                    //if (uiGradientCounter == 10)
+                    //{
+                    //    float modelRotation = FoodManager.Instance.FoodModelConnection.FoodModel.transform.rotation.y;
+                    //    uiGradient.offset = modelRotation;
+                    //    uiGradientCounter = 1;
+                    //}
+                    //uiGradientCounter += 1;
+
+                    }
                 else
                 {
                     Touch touch0 = Input.GetTouch(0);
@@ -75,3 +95,4 @@ public class Food3DTouchManager : MonoBehaviour {
         }
     }
 }
+//}
