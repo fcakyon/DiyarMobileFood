@@ -58,7 +58,7 @@ public class ModelScaleTransformer : MonoBehaviour {
         //Debug.Log("scaledUnitySize: " + scaledUnitySize);
 
         // check if desired scale is suitable
-        if (modelScale > 0.5 && modelScale < 2)
+        if (modelScale > 0.7 && modelScale < 1.8)
         {
             newModelScale = modelScale;
         }
@@ -67,10 +67,10 @@ public class ModelScaleTransformer : MonoBehaviour {
             // dont let model to be scaled less than 0.7 times
             newModelScale = 0.7f;
         }
-        else if (modelScale > 1.5f)
+        else if (modelScale > 1.8f)
         {
-            // dont let model to be scaled greater than 1.5 times
-            newModelScale = 1.5f;
+            // dont let model to be scaled greater than 1.8 times
+            newModelScale = 1.8f;
         }
 
         // calculate scale factor
