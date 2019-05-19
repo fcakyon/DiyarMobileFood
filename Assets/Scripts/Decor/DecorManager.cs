@@ -161,9 +161,18 @@ public class DecorManager : MonoBehaviour
                 DontDestroyOnLoad(DecorModelConnection);
                 DontDestroyOnLoad(DecorModelConnection.DecorModel);
             }
+
+            // hide canvas before starting scene transition animation
+            GameObject canvas = GameObject.Find("Canvas").gameObject;
+            canvas.SetActive(false);
+
+            // hide toggle tutorial panel
             DecorAnimManager.Instance.dummyToggle.SetActive(false);
+
+            // start scene transition animation
             yield return StartCoroutine(DecorAnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("DecorARScene");
+
             // Setting model invisible after scene change till surface is found
             if (hasConnectionAndModel)
             {

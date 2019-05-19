@@ -158,16 +158,25 @@ public class FoodManager : MonoBehaviour
     IEnumerator LoadScene()
     {
         hasConnectionAndModel = FoodModelConnection != null && FoodModelConnection.FoodModel != null;
-        if (is3DScene)
+        if (is3DScene) // 3d to ar scene transition
         {
             if (hasConnectionAndModel)
             {
                 DontDestroyOnLoad(FoodModelConnection);
                 DontDestroyOnLoad(FoodModelConnection.FoodModel);
             }
+
+            // hide canvas before starting scene transition animation
+            GameObject canvas = GameObject.Find("Canvas").gameObject;
+            canvas.SetActive(false);
+
+            // hide toggle tutorial panel
             FoodAnimManager.Instance.dummyToggle.SetActive(false);
+
+            // start scene transition animation
             yield return StartCoroutine(FoodAnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("FoodARScene");
+
             // Setting model invisible after scene change till surface is found
             if (hasConnectionAndModel)
             {
