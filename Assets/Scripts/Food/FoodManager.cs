@@ -170,8 +170,8 @@ public class FoodManager : MonoBehaviour
             GameObject canvas = GameObject.Find("Canvas").gameObject;
             canvas.SetActive(false);
 
-            // hide toggle tutorial panel
-            FoodAnimManager.Instance.dummyToggle.SetActive(false);
+            // hide current active animations
+            FoodAnimManager.Instance.OnARSceneWillLoad();
 
             // start scene transition animation
             yield return StartCoroutine(FoodAnimManager.Instance.None2FullCoroutine());
@@ -183,7 +183,8 @@ public class FoodManager : MonoBehaviour
                 FoodModelConnection.FoodModel.transform.localScale = new Vector3(0, 0, 0);
                 FoodModelConnection.hasModelBeenPlaced = false;
             }
-            FoodAnimManager.Instance.OnARSceneLoaded();
+
+            FoodAnimManager.Instance.OnARSceneDidLoad();
             is3DScene = false;
             xRSurfaceController = GameObject.Find("Plane").GetComponent<XRSurfaceController>();
             if (FoodModelConnection != null) UiState = UIStates.AutoPlace;
@@ -199,13 +200,22 @@ public class FoodManager : MonoBehaviour
                 DontDestroyOnLoad(FoodModelConnection);
                 DontDestroyOnLoad(FoodModelConnection.FoodModel);
             }
+
+            // hide canvas before starting scene transition animation
+            GameObject canvas = GameObject.Find("Canvas").gameObject;
+            canvas.SetActive(false);
+
             yield return StartCoroutine(FoodAnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("Food3DScene");
+
+            // show canvas after scene is loaded
+            canvas = GameObject.Find("Canvas").gameObject;
+            canvas.SetActive(true);
 
             // reset last model position for 3d scene
             lastPlacementPos = Vector3.zero;
 
-            FoodAnimManager.Instance.On3DSceneLoaded();
+            FoodAnimManager.Instance.On3DSceneDidLoad();
             Destroy(surfacePlane);
             if (hasConnectionAndModel)
             {

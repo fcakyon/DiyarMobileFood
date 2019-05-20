@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimationStates : MonoBehaviour {
 
     public bool hasEnded = false;
-
+    public bool isActive = true;
 
     public void AnimationStarted()
     {
@@ -20,5 +20,9 @@ public class AnimationStates : MonoBehaviour {
 
     }
 
+    private void Update()
+    {
+        if (!isActive) gameObject.SetActive(false);
+    }
 
 }

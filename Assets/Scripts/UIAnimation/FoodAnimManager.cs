@@ -108,13 +108,18 @@ public class FoodAnimManager : MonoBehaviour {
         }
     }
 
-    public void OnARSceneLoaded()
+    public void OnARSceneWillLoad()
+    {
+        dummyToggleStates.isActive = false;
+    }
+
+    public void OnARSceneDidLoad()
     {
         Full2Border();
         CircularPlane = GameObject.Find("Plane/CircularPlane");
     }
 
-    public void On3DSceneLoaded()
+    public void On3DSceneDidLoad()
     {
         Full2None();
     }

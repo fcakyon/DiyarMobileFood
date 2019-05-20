@@ -166,8 +166,8 @@ public class DecorManager : MonoBehaviour
             GameObject canvas = GameObject.Find("Canvas").gameObject;
             canvas.SetActive(false);
 
-            // hide toggle tutorial panel
-            DecorAnimManager.Instance.dummyToggle.SetActive(false);
+            // hide current active animations
+            DecorAnimManager.Instance.OnARSceneWillLoad();
 
             // start scene transition animation
             yield return StartCoroutine(DecorAnimManager.Instance.None2FullCoroutine());
@@ -179,7 +179,7 @@ public class DecorManager : MonoBehaviour
                 DecorModelConnection.DecorModel.transform.localScale = new Vector3(0, 0, 0);
                 DecorModelConnection.hasModelBeenPlaced = false;
             }
-            DecorAnimManager.Instance.OnARSceneLoaded();
+            DecorAnimManager.Instance.OnARSceneDidLoad();
             is3DScene = false;
             xRSurfaceController = GameObject.Find("Plane").GetComponent<XRSurfaceController>();
             if (DecorModelConnection != null) UiState = UIStates.AutoPlace;
@@ -195,9 +195,19 @@ public class DecorManager : MonoBehaviour
                 DontDestroyOnLoad(DecorModelConnection);
                 DontDestroyOnLoad(DecorModelConnection.DecorModel);
             }
+
+            // hide canvas before starting scene transition animation
+            GameObject canvas = GameObject.Find("Canvas").gameObject;
+            canvas.SetActive(false);
+
             yield return StartCoroutine(DecorAnimManager.Instance.None2FullCoroutine());
             yield return SceneManager.LoadSceneAsync("Decor3DScene");
-            DecorAnimManager.Instance.On3DSceneLoaded();
+
+            // show canvas after scene is loaded
+            canvas = GameObject.Find("Canvas").gameObject;
+            canvas.SetActive(true);
+
+            DecorAnimManager.Instance.On3DSceneDidLoad();
             is3DScene = true;
             Destroy(surfacePlane);
             if (hasConnectionAndModel)
