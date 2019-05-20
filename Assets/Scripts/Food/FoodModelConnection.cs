@@ -17,6 +17,7 @@ public class FoodModelConnection : MonoBehaviour
     public AssetDownloader assetDownloader;
     public float height;
     public bool hasModelBeenPlaced = false;
+    public string info;
 
     public GameObject FoodModel
     {

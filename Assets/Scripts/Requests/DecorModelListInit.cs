@@ -16,6 +16,7 @@ public class DecorModelListInit : MonoBehaviour {
         public PrefabLinks prefabLinks;
         public string imageUrl;
         public float height;
+        public string info;
     }
 
     [System.Serializable]
@@ -55,6 +56,7 @@ public class DecorModelListInit : MonoBehaviour {
                 modelButton.GetComponent<DecorModelConnection>().assetBundleUrl = model.prefabLinks.ios;
 
             modelButton.GetComponent<DecorModelConnection>().height = model.height;
+            modelButton.GetComponent<DecorModelConnection>().info = model.info;
 
             Transform content = modelButton.transform.Find("Content");
             Text text = content.Find("Text").GetComponent<Text>();

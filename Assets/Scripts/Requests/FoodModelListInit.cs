@@ -16,6 +16,8 @@ public class FoodModelListInit : MonoBehaviour {
         public PrefabLinks prefabLinks;
         public string imageUrl;
         public float height;
+        public string info;
+        public User userId;
     }
 
     [System.Serializable]
@@ -30,6 +32,23 @@ public class FoodModelListInit : MonoBehaviour {
         public string ios;
         public string android;
     }
+    
+    [System.Serializable]
+    public class User
+    {
+        public string email;
+        public string name;
+        public Contact contact;
+    }
+
+    [System.Serializable]
+    public class Contact
+    {
+        public string yemeksepeti;
+        public string instagram;
+        public string facebook;
+    }
+
 
     // Use this for initialization
     void Start () {
@@ -55,6 +74,7 @@ public class FoodModelListInit : MonoBehaviour {
                 modelButton.GetComponent<FoodModelConnection>().assetBundleUrl = model.prefabLinks.ios;
 
             modelButton.GetComponent<FoodModelConnection>().height = model.height;
+            modelButton.GetComponent<FoodModelConnection>().info = model.info;
 
             Transform content = modelButton.transform.Find("Content");
             Text text = content.Find("Text").GetComponent<Text>();

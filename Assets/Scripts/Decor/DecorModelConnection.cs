@@ -14,6 +14,7 @@ public class DecorModelConnection : MonoBehaviour
     public AssetDownloader assetDownloader;
     public float height;
     public bool hasModelBeenPlaced = false;
+    public string info;
 
     public GameObject DecorModel
     {
