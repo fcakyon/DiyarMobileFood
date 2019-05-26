@@ -172,7 +172,7 @@ public class DecorAnimManager : MonoBehaviour {
         planeNotificationBoxAnimator.Play("PlaneNotificationDisappear");
         yield return new WaitForSeconds(animationInterval);
         subColorMaskAnimator.Play("Border2None");
-        yield return new WaitForSeconds(animationInterval);
+        yield return new WaitForSeconds(0.7f);
         cameraMaskAnimator.Play("Border2None");
     }
 

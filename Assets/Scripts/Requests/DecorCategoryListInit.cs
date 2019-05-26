@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class DecorModelListInit : MonoBehaviour {
+public class DecorCategoryListInit : MonoBehaviour {
 
     public GameObject modelButtonPrefab;
 
@@ -34,13 +34,13 @@ public class DecorModelListInit : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        StartCoroutine(GetModelsAndCreateButtons());
+        StartCoroutine(GetCategoriesAndCreateButtons());
     }
     
     // Update is called once per frame
     void Update () {}
 
-    IEnumerator GetModelsAndCreateButtons()
+    IEnumerator GetCategoriesAndCreateButtons()
     {
         UnityWebRequest request = UnityWebRequest.Get(Api.AllModels);
         //UnityWebRequest request = UnityWebRequest.Get(Api.DecorModels);
@@ -59,8 +59,6 @@ public class DecorModelListInit : MonoBehaviour {
             modelButton.GetComponent<DecorModelConnection>().info = model.info;
 
             Transform content = modelButton.transform.Find("Content");
-            Text text = content.Find("Text").GetComponent<Text>();
-            text.text = model.name;
 
             modelButton.name = model.name;
             modelButton.SetActive(true);
