@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class DecorModelListInit : MonoBehaviour {
+public class DecorModelLister : MonoBehaviour {
 
     public GameObject modelButtonPrefab;
-
+    public Coroutine coroutine;
     [System.Serializable]
     public class Model
     {
@@ -34,16 +34,28 @@ public class DecorModelListInit : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        StartCoroutine(GetModelsAndCreateButtons());
+        GetAllModels();
     }
     
     // Update is called once per frame
     void Update () {}
 
-    IEnumerator GetModelsAndCreateButtons()
+    public void GetAllModels()
     {
-        UnityWebRequest request = UnityWebRequest.Get(Api.AllModels);
-        //UnityWebRequest request = UnityWebRequest.Get(Api.DecorModels);
+        ClearContent();
+        UnityWebRequest request = UnityWebRequest.Get(Api.DecorModels);
+        coroutine = StartCoroutine(GetModelsAndCreateButtons(request));
+    }
+
+    public void GetModelsBySubCategory(string subCategory)
+    {
+        ClearContent();
+        UnityWebRequest request = UnityWebRequest.Get(Api.DecorModelsBySubCategory(subCategory));
+        coroutine = StartCoroutine(GetModelsAndCreateButtons(request));
+    }
+
+    IEnumerator GetModelsAndCreateButtons(UnityWebRequest request)
+    {
         yield return request.SendWebRequest();
         ModelsObjectArray modelsObjectArray = JsonUtility.FromJson<ModelsObjectArray>("{\"models\":" + request.downloadHandler.text + "}");
         foreach(Model model in modelsObjectArray.models)
@@ -58,7 +70,7 @@ public class DecorModelListInit : MonoBehaviour {
             modelButton.GetComponent<DecorModelConnection>().height = model.height;
             modelButton.GetComponent<DecorModelConnection>().info = model.info;
 
-            Transform content = modelButton.transform.Find("Content");
+            Transform content = modelButton.transform.GetChild(0);
             Text text = content.Find("Text").GetComponent<Text>();
             text.text = model.name;
 
@@ -72,6 +84,16 @@ public class DecorModelListInit : MonoBehaviour {
             Image image = content.Find("Image").GetComponent<Image>();
             Texture2D texture = DownloadHandlerTexture.GetContent(imageRequest);
             image.sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        }
+    }
+
+    private void ClearContent()
+    {
+        if (coroutine != null) StopCoroutine(coroutine);
+        foreach (Transform child in transform)
+        {
+            if(child.gameObject.activeSelf)
+                Destroy(child.gameObject);
         }
     }
 }
