@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SubCategoryConnection : MonoBehaviour {
 
+    [HideInInspector]
     public string subCategory;
     public DecorModelLister decorModelLister;
 
