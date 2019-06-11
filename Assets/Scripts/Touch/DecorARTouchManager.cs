@@ -129,7 +129,7 @@ public class DecorARTouchManager : MonoBehaviour
                         //    //scaleText.text = "Scale is: " + (Math.Round(newScale.x, 1)).ToString();
                         //}
 
-                        Debug.Log(TouchMovementCalculator.turnAngleDelta);
+                        //Debug.Log(TouchMovementCalculator.turnAngleDelta);
                         if (Mathf.Abs(TouchMovementCalculator.turnAngleDelta) > 0)
                         { // rotate
                             Vector3 rotationDeg = Vector3.zero;
