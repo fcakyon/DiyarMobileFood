@@ -19,7 +19,7 @@ namespace CustomClasses
             lineCoefficientsTemp[2] = objectCenterCoordinates[1] - slope * objectCenterCoordinates[0]; // c
             lineCoefficientsTemp[1] = -lineCoefficientsTemp[2] / (-slope * objectCenterCoordinates[0] + objectCenterCoordinates[1]); // y
             lineCoefficientsTemp[0] = -lineCoefficientsTemp[1] * slope; // x
-                                                                        //Debug.Log("slope: "+slope+" lineCoefficients: "+lineCoefficients[0]+" "+lineCoefficients[1]+ " " + lineCoefficients[2]);
+            //Debug.Log("slope: "+slope+" lineCoefficients: "+lineCoefficients[0]+" "+lineCoefficients[1]+ " " + lineCoefficients[2]);
 
             return lineCoefficientsTemp;
         }

@@ -21,8 +21,63 @@ MonoBehaviour:
   autoUpdateSec: 3600
   updateTimeoutSec: 25
   downloadTimeoutSec: 600
-  updateAvailable: 0
+  updateAvailable: 1
   releaseNotes:
+  - id: 11.2
+    notes: '## Release 11.2
+
+
+      ### 8th Wall Web
+
+
+      New Features
+
+      * iOS 13 motion support
+
+
+      ### 8th Wall XR for Unity
+
+
+      New Features
+
+      * Added support for 64-bit Android builds.
+
+      * Updated to ARCore 1.9.
+
+      * Added XRDetectedImageTarget.TrackingState API.
+
+
+      Breaking Changes
+
+      * Increased minimum Unity version from 5.6.1p1 to 2017.4.16f1.
+
+'
+  - id: 11.1
+    notes: '## Release 11.1
+
+
+      ### 8th Wall Web
+
+
+      Fixes and Enhancements
+
+      * Reduced memory usage.
+
+      * Improved tracking performance.
+
+      * Enhanced detection of browser capabilities.
+
+
+      ### 8th Wall XR for Unity
+
+
+      Fixes and Enhancements
+
+      * Reduced memory usage.
+
+      * Improved tracking performance.
+
+'
   - id: 11
     notes: '## Release 11
 
@@ -139,21 +194,3 @@ MonoBehaviour:
       Fixes:
 
       * Fixed connection issues with XR Remote on Windows'
-  - id: 8
-    notes: "## Release 8\n\n* New features:\n  * Support for ARCore 1.3 with Vertical
-      Surfaces and Image Targets.\n  * Support for XR Remote in non-AR scenes.\n  *
-      Added ability to use 8th Wall SLAM on ARKit & ARCore devices.\n  * Added ability
-      to set initial camera facing direction.\n  * Added ability to increase camera
-      field of view in non-overlay scenes.\n\n\n* Enhancements and Fixes:\n  * Improved
-      8th Wall SLAM accuracy with enhanced bundle adjustment and point triangulation.\n
-      \ * Fixed Surface Controller mesh orientation for deformable meshes.\n  * Improved
-      behavior of all XRSurfaceController option combinations.\n  * Miscellaneous
-      bug fixes and improvements."
-  - id: 7.1
-    notes: "## Release 7.1\n\n* Fixes:\n  * Fix issue where detected instant surface
-      could detach from actual surface\n  * Fix XRSurfaceController issue where game
-      objects weren't rotated properly on vertical surfaces\n  * Fix camera rendering
-      issue on certain Android devices running API 21 and below\n  * Fix camera artifacts
-      on 720p iPads\n  * Fix issue where surface meshes are allocated but not destroyed
-      \ \n  * Fixed crash when attempting Image Detection on iOS devices running 11.2.x
-      or below"
