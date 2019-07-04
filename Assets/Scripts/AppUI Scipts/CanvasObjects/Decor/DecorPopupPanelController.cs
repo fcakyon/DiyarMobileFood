@@ -10,22 +10,16 @@ public class DecorPopupPanelController : MonoBehaviour, ICanvasPanel
 
     public void ClosePanel()
     {
-        if (isPanelOpen)
-        {
-            isPanelOpen = false;
-            cameraMaskAnimator = gameObject.GetComponent<Animator>();
-            cameraMaskAnimator.Play("Popup Panel Out");
-        }
+        isPanelOpen = false;
+        cameraMaskAnimator = gameObject.GetComponent<Animator>();
+        cameraMaskAnimator.Play("Popup Panel Out");
     }
 
     public void OpenPanel()
     {
-        if (!isPanelOpen)
-        {
-            isPanelOpen = true;
-            cameraMaskAnimator = gameObject.GetComponent<Animator>();
-            cameraMaskAnimator.Play("Popup Panel In");
-        }
+        isPanelOpen = true;
+        cameraMaskAnimator = gameObject.GetComponent<Animator>();
+        cameraMaskAnimator.Play("Popup Panel In");
     }
 
 }

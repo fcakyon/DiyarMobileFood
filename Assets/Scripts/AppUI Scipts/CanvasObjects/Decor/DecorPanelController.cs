@@ -6,34 +6,56 @@ public class DecorPanelController : MonoBehaviour {
 
     public GameObject decorPopupPanel;
     public GameObject decorInfoPanel;
-    public List<GameObject> gameObjectsToToggleWithPopulPanel = new List<GameObject>();
     private DecorPopupPanelController decorPopupPanelController;
     private DecorPopupPanelController decorInfoPanelController;
 
-    public void ClosePopupPanel()
+    // Objects to toggle visibility
+    public CanvasGroup addButton;
+    public GameObject addNotification;
+
+    private void Start()
     {
         decorPopupPanelController = decorPopupPanel.GetComponent<DecorPopupPanelController>();
-        decorPopupPanelController.ClosePanel();
-        gameObjectsToToggleWithPopulPanel.ForEach((GameObject obj) => obj.SetActive(true));
+        decorInfoPanelController = decorInfoPanel.GetComponent<DecorPopupPanelController>();
+    }
+
+    public void ClosePopupPanel()
+    {
+        if(decorPopupPanelController.isPanelOpen)
+        {
+            decorPopupPanelController.ClosePanel();
+
+            addButton.alpha = 1;
+        }
     }
 
     public void OpenPopupPanel()
     {
-        decorPopupPanelController = decorPopupPanel.GetComponent<DecorPopupPanelController>();
-        decorPopupPanelController.OpenPanel();
-        gameObjectsToToggleWithPopulPanel.ForEach((GameObject obj) => obj.SetActive(false));
+        if (!decorPopupPanelController.isPanelOpen)
+        {
+            decorPopupPanelController.OpenPanel();
+            addButton.alpha = 0;
+            if (DecorManager.Instance.is3DScene)
+            {
+                addNotification.SetActive(false);
+            }
+        }
     }
 
     public void CloseInfoPanel()
     {
-        decorInfoPanelController = decorInfoPanel.GetComponent<DecorPopupPanelController>();
-        decorInfoPanelController.ClosePanel();
+        if (decorInfoPanelController.isPanelOpen)
+        {
+            decorInfoPanelController.ClosePanel();
+        }
     }
 
     public void OpenInfoPanel()
     {
-        decorInfoPanelController = decorInfoPanel.GetComponent<DecorPopupPanelController>();
-        decorInfoPanelController.OpenPanel();
+        if (!decorInfoPanelController.isPanelOpen)
+        {
+            decorInfoPanelController.OpenPanel();
+        }
     }
 
     public void CloseAllPanels()

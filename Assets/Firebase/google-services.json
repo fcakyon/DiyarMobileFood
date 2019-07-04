@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:966641733414:android:289a3b79bb9b3935",
+        "mobilesdk_app_id": "1:966641733414:android:78c0f5a0488fd20b",
         "android_client_info": {
-          "package_name": "com.diyar.food"
+          "package_name": "com.diyar.denealar"
         }
       },
       "oauth_client": [
@@ -25,15 +25,20 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966641733414-e4rla8dgcuh3o6ri8erbc4qq51ealra5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "966641733414-40k2e1q4is1vedcbsdel7a4nlrlj4k5e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.diyar.denealar"
+              }
+            }
+          ]
         }
       }
     }

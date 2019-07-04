@@ -3,7 +3,7 @@
     {
       "services": {
         "appinvite_service": {
-          "status": 0
+          "status": 1
         }, 
         "analytics_service": {
           "status": 0
@@ -11,7 +11,7 @@
       }, 
       "oauth_client": [
         {
-          "client_id": "966641733414-ehpth02tt5t3hr3t05vlufkdt3ul7ipe.apps.googleusercontent.com"
+          "client_id": "966641733414-40k2e1q4is1vedcbsdel7a4nlrlj4k5e.apps.googleusercontent.com"
         }
       ], 
       "api_key": [
@@ -20,9 +20,9 @@
         }
       ], 
       "client_info": {
-        "mobilesdk_app_id": "1:966641733414:ios:289a3b79bb9b3935", 
+        "mobilesdk_app_id": "1:966641733414:ios:78c0f5a0488fd20b", 
         "android_client_info": {
-          "package_name": "com.diyar.food"
+          "package_name": "com.diyar.denealar"
         }
       }
     }

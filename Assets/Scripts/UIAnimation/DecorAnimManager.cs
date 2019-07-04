@@ -31,16 +31,16 @@ public class DecorAnimManager : MonoBehaviour {
 
     #region Dummies
     public GameObject dummyAdd;
-    Animator dummyAddAnimator;
-    AnimationStates dummyAddStates;
+    //Animator dummyAddAnimator;
+    //AnimationStates dummyAddStates;
 
     public GameObject dummyToggle;
     Animator dummyToggleAnimator;
     AnimationStates dummyToggleStates;
 
     public GameObject dummyFix;
-    Animator dummyFixAnimator;
-    AnimationStates dummyFixStates;
+    //Animator dummyFixAnimator;
+    //AnimationStates dummyFixStates;
     #endregion
 
     private void Awake()
@@ -67,14 +67,14 @@ public class DecorAnimManager : MonoBehaviour {
         subColorMaskStates = subColorMask.GetComponent<AnimationStates>();
 
         #region Dummies
-        dummyAddAnimator = dummyAdd.GetComponent<Animator>();
-        dummyAddStates = dummyAdd.GetComponent<AnimationStates>();
+        //dummyAddAnimator = dummyAdd.GetComponent<Animator>();
+        //dummyAddStates = dummyAdd.GetComponent<AnimationStates>();
 
         dummyToggleAnimator = dummyToggle.GetComponent<Animator>();
         dummyToggleStates = dummyToggle.GetComponent<AnimationStates>();
 
-        dummyFixAnimator = dummyFix.GetComponent<Animator>();
-        dummyFixStates = dummyFix.GetComponent<AnimationStates>();
+        //dummyFixAnimator = dummyFix.GetComponent<Animator>();
+        //dummyFixStates = dummyFix.GetComponent<AnimationStates>();
         #endregion
 
         if (CircularPlane != null)
@@ -110,7 +110,9 @@ public class DecorAnimManager : MonoBehaviour {
 
     public void OnARSceneWillLoad()
     {
+        Debug.Log("GIRDI MI?");
         dummyToggleStates.isActive = false;
+        dummyAdd.SetActive(false);
     }
 
     public void OnARSceneDidLoad()
@@ -251,8 +253,7 @@ public class DecorAnimManager : MonoBehaviour {
     {
         bool initialScene = DecorManager.Instance.is3DScene;
         dummyAdd.SetActive(true);
-        //dummyAddAnimator.Play("Dummy");
-        while (DecorManager.Instance.DecorModelConnection == null && DecorManager.Instance.is3DScene == initialScene)
+        while (DecorManager.Instance.is3DScene == initialScene)
         {
             yield return null;
         }

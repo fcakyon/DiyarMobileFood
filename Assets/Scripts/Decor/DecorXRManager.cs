@@ -18,7 +18,6 @@ public class DecorXRManager : MonoBehaviour {
         }
         else
         {
-            DecorAnimManager.Instance.DummyAdd();
         }
         canvas.SetActive(true);
     }
