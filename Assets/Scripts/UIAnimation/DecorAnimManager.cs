@@ -110,7 +110,6 @@ public class DecorAnimManager : MonoBehaviour {
 
     public void OnARSceneWillLoad()
     {
-        Debug.Log("GIRDI MI?");
         dummyToggleStates.isActive = false;
         dummyAdd.SetActive(false);
     }
