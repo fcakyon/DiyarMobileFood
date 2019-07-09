@@ -25,10 +25,20 @@ public class DecorToggle : MonoBehaviour, IClickable {
         DecorManager.Instance.ToggleScene();
     }
 
+
     void Start () {
-        gameObject.GetComponent<Button>().onClick.AddListener(ClickHandler);
-        DecorManager.Instance.OnUIStateChange.AddListener(ChangeVisibility);
-        ChangeVisibility();
+
+        if (DecorManager.Instance.hasARKitSupport)
+        {
+            gameObject.GetComponent<Button>().onClick.AddListener(ClickHandler);
+            DecorManager.Instance.OnUIStateChange.AddListener(ChangeVisibility);
+            ChangeVisibility();
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+
      }
 	
 	void Update () {}

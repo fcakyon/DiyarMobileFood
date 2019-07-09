@@ -24,9 +24,19 @@ public class DecorManager : MonoBehaviour
     private XRSurfaceController xRSurfaceController;
     public bool hasConnectionAndModel;
     public bool hasSurfaceFound;
+    public bool hasARKitSupport = true;
 
     private void Awake()
     {
+        XRController xr = GameObject.FindWithTag("XRController").GetComponent<XRController>(); ;
+
+        //TODO: REMOVE HERE TO WORK ON REMOTE !!
+        if (!xr.GetCapabilities().IsPositionTrackingRotationAndPosition())
+        {
+            hasARKitSupport = false;
+        }
+        //
+
         if (Instance == null)
         {
             Instance = this;
