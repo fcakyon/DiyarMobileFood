@@ -91,6 +91,7 @@ public class DecorAnimManager : MonoBehaviour {
     private void Update()
     {
         if(!showedToggleAnimation
+            && DecorManager.Instance.hasARKitSupport
             && DecorManager.Instance.is3DScene
             && DecorManager.Instance.DecorModelConnection != null 
             && DecorManager.Instance.DecorModelConnection.DecorModel != null)
@@ -272,7 +273,9 @@ public class DecorAnimManager : MonoBehaviour {
     {
         dummyFix.SetActive(true);
         //dummyFixAnimator.Play("Dummy");
-        while (showFixAnimation)
+        while (showFixAnimation 
+            && DecorManager.Instance.DecorModelConnection != null
+            && DecorManager.Instance.DecorModelConnection.DecorModel != null)
         {
             yield return null;
         }

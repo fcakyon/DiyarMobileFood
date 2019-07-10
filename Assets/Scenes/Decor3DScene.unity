@@ -8301,7 +8301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: -642.4335}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &625462506
@@ -8623,6 +8623,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   hasConnectionAndModel: 0
   hasSurfaceFound: 0
+  hasARKitSupport: 1
 --- !u!4 &655157767
 Transform:
   m_ObjectHideFlags: 0
