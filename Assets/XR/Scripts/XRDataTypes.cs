@@ -609,6 +609,32 @@ public struct XRDetectionImage {
  */
 public struct XRDetectedImageTarget {
   /**
+   * The state of tracking for a given image-target.
+   */
+  public enum TrackingState {
+    /**
+     * Unable to determine the tracking state of the image-target.
+     */
+    UNSPECIFIED,
+
+    /**
+     * The location of an image-target is being tracked using the camera image.
+     */
+    FULL_TRACKING,
+
+    /**
+     * The location of an image-target can no longer be tracked using the camera image, so
+     * it is tracked using its last known pose.
+     */
+    LAST_KNOWN_POSE,
+
+    /**
+     * The location of the image-target is not being tracked.
+     */
+    NOT_TRACKING
+  };
+
+  /**
    * A unique identifier for this detected image-target that is consistent across updates.
    */
   public readonly Int64 id;
@@ -641,6 +667,11 @@ public struct XRDetectedImageTarget {
   public readonly float height;
 
   /**
+   * The tracking state for the detected image.
+   */
+  public readonly TrackingState trackingState;
+
+  /**
    * Initializes a XRDetectedImageTarget from a specified id, name, position, rotation, width, and
    * height.
    */
@@ -650,13 +681,15 @@ public struct XRDetectedImageTarget {
     Vector3 position,
     Quaternion rotation,
     float width,
-    float height) {
+    float height,
+    TrackingState trackingState) {
     this.id = id;
     this.name = name;
     this.position = position;
     this.rotation = rotation;
     this.width = width;
     this.height = height;
+    this.trackingState = trackingState;
   }
 }
 

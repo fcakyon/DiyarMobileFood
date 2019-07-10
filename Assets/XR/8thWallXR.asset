@@ -16,12 +16,12 @@ MonoBehaviour:
   - beta
   channel: release
   installedChannel: release
-  version: 11.0.3.519
+  version: 11.2.6.519
   autoUpdate: 0
   autoUpdateSec: 3600
   updateTimeoutSec: 25
   downloadTimeoutSec: 600
-  updateAvailable: 1
+  updateAvailable: 0
   releaseNotes:
   - id: 11.2
     notes: '## Release 11.2

@@ -458,8 +458,11 @@ public class XREditorBridge {
       var group = GetGroup(sizeGroupType);
       var addCustomSize = getGroup.ReturnType.GetMethod("AddCustomSize");
       var gvsType = typeof(Editor).Assembly.GetType("UnityEditor.GameViewSize");
-      var ctor = gvsType.GetConstructor(
-        new Type[] { typeof(int), typeof(int), typeof(int), typeof(string) });
+
+      // When setting Player Setting > Scripting Runtime Version to .NET 4.x, the runtime
+      // environment doens't seem to like how we used to grab the constructor by types.
+      // Instead, just grab the first contrsuctor, which is equivalent to the one we wanted.
+      var ctor = gvsType.GetConstructors()[0];
       var newSize = ctor.Invoke(new object[] { (int)viewSizeType, width, height, text });
       addCustomSize.Invoke(group, new object[] { newSize });
     }

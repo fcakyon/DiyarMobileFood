@@ -54,7 +54,11 @@ public class XRAndroidWrapper {
   }
 
   public void configureXR(MessageBuilder config) {
+  #if UNITY_2019_1_OR_NEWER
+    sbyte[] b = Serialize.writeSBytes(config);
+  #else
     byte[] b = Serialize.writeBytes(config);
+  #endif
 
     // Configure the reality engine.
     androidXR.Call("configure", b);
@@ -83,13 +87,21 @@ public class XRAndroidWrapper {
   public void recenter() { androidXR.Call("recenter"); }
 
   public RealityResponse.Reader getCurrentRealityXR() {
+  #if UNITY_2019_1_OR_NEWER
+    sbyte[] bytes = androidXR.Call<sbyte[]>("getCurrentRealityXR");
+  #else
     byte[] bytes = androidXR.Call<byte[]>("getCurrentRealityXR");
+  #endif
     MessageReader r = Serialize.read(bytes);
     return r.getRoot(RealityResponse.factory);
   }
 
   public XrQueryResponse.Reader query(MessageBuilder request) {
+  #if UNITY_2019_1_OR_NEWER
+    sbyte[] bytes = androidXR.Call<sbyte[]>("query", Serialize.writeSBytes(request));
+  #else
     byte[] bytes = androidXR.Call<byte[]>("query", Serialize.writeBytes(request));
+  #endif
     MessageReader r = Serialize.read(bytes);
     return r.getRoot(XrQueryResponse.factory);
   }
@@ -99,19 +111,31 @@ public class XRAndroidWrapper {
     c8_loadXRDll();
 
     AndroidJavaClass xrAndroidClass = getXRAndroidClass();
+  #if UNITY_2019_1_OR_NEWER
+    sbyte[] bytes = xrAndroidClass.CallStatic<sbyte[]>("getXREnvironment", getUnityPlayerAcitivty());
+  #else
     byte[] bytes = xrAndroidClass.CallStatic<byte[]>("getXREnvironment", getUnityPlayerAcitivty());
+  #endif
     MessageReader r = Serialize.read(bytes);
     return r.getRoot(XREnvironment.factory);
   }
 
   public XRAppEnvironment.Reader getXRAppEnvironment() {
+  #if UNITY_2019_1_OR_NEWER
+    sbyte[] bytes = androidXR.Call<sbyte[]>("getXRAppEnvironment");
+  #else
     byte[] bytes = androidXR.Call<byte[]>("getXRAppEnvironment");
+  #endif
     MessageReader r = Serialize.read(bytes);
     return r.getRoot(XRAppEnvironment.factory);
   }
 
   public void setXRAppEnvironment(MessageBuilder environment) {
+  #if UNITY_2019_1_OR_NEWER
+    sbyte[] bytes = Serialize.writeSBytes(environment);
+  #else
     byte[] bytes = Serialize.writeBytes(environment);
+  #endif
     androidXR.Call("setXRAppEnvironment", bytes);
   }
 

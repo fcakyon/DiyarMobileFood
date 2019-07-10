@@ -786,9 +786,23 @@ public class XRController : MonoBehaviour {
           target.getPlace().getRotation().getZ(),
           target.getPlace().getRotation().getW()),
         target.getWidthInMeters(),
-        target.getHeightInMeters()));
+        target.getHeightInMeters(),
+        GetTrackingState(target)));
     }
     return pts;
+  }
+
+  private static XRDetectedImageTarget.TrackingState GetTrackingState(DetectedImage.Reader target) {
+    switch (target.getTrackingStatus()) {
+      case DetectedImage.TrackingStatus.FULL_TRACKING:
+        return XRDetectedImageTarget.TrackingState.FULL_TRACKING;
+      case DetectedImage.TrackingStatus.LAST_KNOWN_POSE:
+        return XRDetectedImageTarget.TrackingState.LAST_KNOWN_POSE;
+      case DetectedImage.TrackingStatus.NOT_TRACKING:
+        return XRDetectedImageTarget.TrackingState.NOT_TRACKING;
+      default:
+        return XRDetectedImageTarget.TrackingState.UNSPECIFIED;
+    }
   }
 
   /**

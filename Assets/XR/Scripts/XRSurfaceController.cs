@@ -13,6 +13,7 @@ public class XRSurfaceController : MonoBehaviour {
   private const float MIN_GROUND_DISTANCE_FROM_PHONE = 0.5f;
   //New potential ground surface must be at least 8 inches below current ground surface
   private const float MIN_GROUND_CHANGE_DISTANCE = 0.2f; // ~8in
+
   private const float COMPATIBILITY_SURFACE_HALF_SIZE = 100.0f;
 
   // If true, XRSurfaceController will update the rendered mesh and the collider mesh of the surface
@@ -245,7 +246,6 @@ public class XRSurfaceController : MonoBehaviour {
 
   // Returns true if surface was updated
   private bool UpdateSurface() {
-    //Debug.Log("Surface is UPDATED!");
     long activeSurfaceId = xr.GetActiveSurfaceId();
     XRSurface activeSurface = xr.GetSurface(activeSurfaceId);
 
